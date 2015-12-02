@@ -55,6 +55,70 @@ public class Reserva {
 	@Basic(optional = false)
 	private SituacaoReserva situacao;
 	
+	public Long getIdReserva() {
+		return idReserva;
+	}
+
+	public void setIdReserva(Long idReserva) {
+		this.idReserva = idReserva;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	public Anuncio getAnuncio() {
+		return anuncio;
+	}
+
+	public void setAnuncio(Anuncio anuncio) {
+		this.anuncio = anuncio;
+	}
+
+	public Date getDataInicio() {
+		return dataInicio;
+	}
+
+	public void setDataInicio(Date dataInicio) {
+		this.dataInicio = dataInicio;
+	}
+
+	public Date getDataFim() {
+		return dataFim;
+	}
+
+	public void setDataFim(Date dataFim) {
+		this.dataFim = dataFim;
+	}
+
+	public BigDecimal getValorDia() {
+		return valorDia;
+	}
+
+	public void setValorDia(BigDecimal valorDia) {
+		this.valorDia = valorDia;
+	}
+
+	public BigDecimal getValorTotal() {
+		return valorTotal;
+	}
+
+	public void setValorTotal(BigDecimal valorTotal) {
+		this.valorTotal = valorTotal;
+	}
+
+	public SituacaoReserva getSituacao() {
+		return situacao;
+	}
+
+	public void setSituacao(SituacaoReserva situacao) {
+		this.situacao = situacao;
+	}
+
 	public enum SituacaoReserva{
 		PENDENTE, PROCESSANDO, ENCERRADA, CANCELADA;
 	}
