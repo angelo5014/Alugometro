@@ -1,0 +1,1 @@
+Create user ALUGOMETRO identified by ALUGOMETRO default tablespace ALUGOMETRO_DAT;
