@@ -1,0 +1,1 @@
+Grant connect, resource, create view to ALUGOMETRO;
