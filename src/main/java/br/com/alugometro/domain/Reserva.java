@@ -6,6 +6,8 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -51,9 +53,14 @@ public class Reserva {
 	@Basic(optional = false)
 	private BigDecimal valorTotal;
 	
+	@Enumerated(EnumType.ORDINAL)
 	@Column(name = "Situacao")
 	@Basic(optional = false)
 	private SituacaoReserva situacao;
+	
+	public enum SituacaoReserva{
+		PENDENTE, PROCESSANDO, ENCERRADA, CANCELADA;
+	}
 	
 	public Long getIdReserva() {
 		return idReserva;
@@ -118,9 +125,4 @@ public class Reserva {
 	public void setSituacao(SituacaoReserva situacao) {
 		this.situacao = situacao;
 	}
-
-	public enum SituacaoReserva{
-		PENDENTE, PROCESSANDO, ENCERRADA, CANCELADA;
-	}
-	
 }
