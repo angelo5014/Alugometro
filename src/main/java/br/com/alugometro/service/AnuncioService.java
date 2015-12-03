@@ -21,4 +21,9 @@ public class AnuncioService {
 		return AnuncioMapper.paraDTO(anuncioDAO.encontrarPorId(idAnuncio));
 	}
 	
+	public AnuncioDTO inserir(AnuncioDTO anuncioDTO){
+		anuncioDAO.salvar(AnuncioMapper.gerarNovaEntidade(anuncioDTO));
+		return anuncioDTO;
+	}
+	
 }
