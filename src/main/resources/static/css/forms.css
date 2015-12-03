@@ -1,0 +1,11 @@
+.form-home {
+	padding: 50px 0;
+}
+
+.form-home input {
+	width: 80%;
+	height: 38px;
+	margin: 0 auto;
+	font-size: 20px;
+	padding: 5px 15px;
+}
