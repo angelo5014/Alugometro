@@ -5,6 +5,7 @@ import br.com.alugometro.domain.Anuncio.SituacaoAnuncio;
 import br.com.alugometro.domain.Cidade;
 import br.com.alugometro.domain.Estado;
 import br.com.alugometro.domain.Federacao;
+import br.com.alugometro.domain.Foto;
 import br.com.alugometro.domain.TipoAcomodacao;
 import br.com.alugometro.domain.TipoImovel;
 import br.com.alugometro.domain.Usuario;
@@ -22,9 +23,9 @@ public class AnuncioMapper {
 		anuncio.setDataInicio(anuncioDTO.getDataInicio());
 		anuncio.setDataFim(anuncioDTO.getDataFim());
 		anuncio.setDiaria(anuncioDTO.getDiaria());
-		anuncio.setDescricaoCapa(anuncio.getDescricaoCapa());
-		anuncio.setDescricaoDetalhada(anuncio.getDescricaoDetalhada());
-		anuncio.setFotoCapa(anuncio.getFotoCapa());
+		anuncio.setDescricaoCapa(anuncioDTO.getDescricaoCapa());
+		anuncio.setDescricaoDetalhada(anuncioDTO.getDescricaoDetalhada());
+		anuncio.setFotoCapa(new Foto(anuncioDTO.getFotoCapa()));
 		anuncio.setSituacao(Enum.valueOf(SituacaoAnuncio.class, anuncioDTO.getSituacao()));
 		return anuncio;
 	}
@@ -46,6 +47,7 @@ public class AnuncioMapper {
 		dto.setDescricaoCapa(anuncio.getDescricaoCapa());
 		dto.setDescricaoDetalhada(anuncio.getDescricaoDetalhada());
 		dto.setFotoCapa(anuncio.getFotoCapa().getUrl());
+		dto.setSituacao(anuncio.getSituacao().toString());
 		return dto;
 	}
 	
