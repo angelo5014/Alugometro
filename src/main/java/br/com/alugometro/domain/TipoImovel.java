@@ -12,6 +12,13 @@ import org.hibernate.validator.constraints.Length;
 @Table(name = "Tipo_Imovel")
 public class TipoImovel {
 	
+	public TipoImovel() {
+	}
+
+	public TipoImovel(Long idTipoImovel) {
+		this.idTipoImovel = idTipoImovel;
+	}
+	
 	@Id
 	@Column(name = "Id_Tipo_Imovel")
 	private Long idTipoImovel;

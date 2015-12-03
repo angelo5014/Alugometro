@@ -10,6 +10,13 @@ import javax.persistence.Table;
 @Table(name = "Tipo_Acomodacao")
 public class TipoAcomodacao {
 
+	public TipoAcomodacao() {
+	}
+	
+	public TipoAcomodacao(Long idTipoAcomodacao) {
+		this.idTipoAcomodacao = idTipoAcomodacao;
+	}
+	
 	@Id
 	@Column(name = "Id_Tipo_Acomodacao")
 	private Long idTipoAcomodacao;
