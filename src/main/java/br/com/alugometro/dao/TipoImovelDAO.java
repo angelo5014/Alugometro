@@ -14,7 +14,7 @@ public class TipoImovelDAO extends AbstractDAO {
 	}
 	
 	public List<TipoImovel> listarTodos() {
-		return em.createQuery("FROM Tipo_Imovel", TipoImovel.class)
+		return em.createQuery("FROM TipoImovel", TipoImovel.class)
 				.getResultList();
 	}
 	
