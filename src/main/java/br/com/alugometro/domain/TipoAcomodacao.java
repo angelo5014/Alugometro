@@ -20,5 +20,21 @@ public class TipoAcomodacao {
 	@Length(max = 50)
 	@Basic(optional = false)
 	private String descricao;
+
+	public Long getTipoAcomodacao() {
+		return tipoAcomodacao;
+	}
+
+	public void setTipoAcomodacao(Long tipoAcomodacao) {
+		this.tipoAcomodacao = tipoAcomodacao;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
 	
 }
