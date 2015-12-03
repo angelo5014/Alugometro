@@ -18,6 +18,13 @@ public class Foto {
 	
 	public static final String SEQUENCE_NAME = "SEQ_Foto";
 	
+	public Foto() {
+	}
+	
+	public Foto(String url) {
+		this.url = url;
+	}
+	
 	@Id
 	@Column(name = "Id_Foto")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = SEQUENCE_NAME)
