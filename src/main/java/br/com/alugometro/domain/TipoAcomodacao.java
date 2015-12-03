@@ -6,8 +6,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.hibernate.validator.constraints.Length;
-
 @Entity
 @Table(name = "Tipo_Acomodacao")
 public class TipoAcomodacao {
@@ -16,8 +14,7 @@ public class TipoAcomodacao {
 	@Column(name = "Id_Tipo_Acomodacao")
 	private Long idTipoAcomodacao;
 	
-	@Column(name = "Descricao")
-	@Length(max = 50)
+	@Column(name = "Descricao", length = 50)
 	@Basic(optional = false)
 	private String descricao;
 

@@ -14,7 +14,7 @@ public class TipoAcomodacaoDAO extends AbstractDAO {
 	}
 	
 	public List<TipoAcomodacao> listarTodos() {
-		return em.createQuery("FROM Tipo_Acomodacao", TipoAcomodacao.class)
+		return em.createQuery("FROM TipoAcomodacao", TipoAcomodacao.class)
 				.getResultList();
 	}
 	

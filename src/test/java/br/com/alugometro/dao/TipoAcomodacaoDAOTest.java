@@ -4,11 +4,14 @@ import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 
+import br.com.alugometro.AbstractInfrastructureTest;
 import br.com.alugometro.domain.TipoAcomodacao;
 
-public class TipoAcomodacaoDAOTest {
+public class TipoAcomodacaoDAOTest extends AbstractInfrastructureTest {
 
+	@Autowired
 	private TipoAcomodacaoDAO tipoAcomodacaoDAO;
 
 	@Test
