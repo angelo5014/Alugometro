@@ -32,11 +32,13 @@ public class Anuncio {
 	@JoinColumn(name = "Id_Usuario")
 	private Usuario usuario;
 	
-	@Column(name = "Tipo_Imovel")
+	@ManyToOne
+	@JoinColumn(name = "Tipo_Imovel")
 	@Basic(optional = false)
 	private TipoImovel tipoImovel;
 	
-	@Column(name = "Tipo_Acomodacao")
+	@ManyToOne
+	@JoinColumn(name = "Tipo_Acomodacao")
 	@Basic(optional = false)
 	private TipoAcomodacao tipoAcomodacao;
 	
