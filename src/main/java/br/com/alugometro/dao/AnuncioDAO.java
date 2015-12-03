@@ -10,5 +10,4 @@ public class AnuncioDAO extends AbstractDAO {
 	public Anuncio encontrarPorId(Long idAnuncio) {
 		return em.find(Anuncio.class, idAnuncio);
 	}
-	
 }
