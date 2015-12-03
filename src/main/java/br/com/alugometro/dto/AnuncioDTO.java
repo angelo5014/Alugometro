@@ -48,6 +48,8 @@ public class AnuncioDTO {
 	
 	@NotBlank
 	private String fotoCapa;
+	
+	private String situacao;
 
 	public Long getIdAnuncio() {
 		return idAnuncio;
@@ -168,6 +170,12 @@ public class AnuncioDTO {
 	public void setFotoCapa(String fotoCapa) {
 		this.fotoCapa = fotoCapa;
 	}
-	
-	
+
+	public String getSituacao() {
+		return situacao;
+	}
+
+	public void setSituacao(String situacao) {
+		this.situacao = situacao;
+	}
 }
