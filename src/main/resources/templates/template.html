@@ -17,6 +17,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 	<link rel="stylesheet" href="/css/header.css" />
 	<link rel="stylesheet" href="/css/home.css" />
 	<link rel="stylesheet" href="/css/forms.css" />
+	<link rel="stylesheet" href="/css/footer.css" />
 </head>
 <body>
 	<div class="bg-index">
@@ -35,17 +36,18 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 				</ul>
 			</nav>
 		</header>
+		<div class="header-bg fade"></div>
+		
+		<div class="home-content">
+			<h1 class="text-center home-title">Alugômetro</h1>
 
-		<h1 class="text-center home-title">Alugômetro</h1>
+			<p class="home-text text-center">Você procura, nós encontramos.</p>
 
-		<p class="home-text text-center">Você procura, nós encontramos.</p>
-
-		<form action="#" class="form-home">
-			<input type="text" placeholder="Ex.: Rio de Janeiro..." class="block" />
-			<button>
-				<span class="glyphicon glyphicon-search"></span>
-			</button>
-		</form>
+			<form action="#" class="form-home">
+				<input type="text" placeholder="Ex.: Rio de Janeiro..." class="block" />
+				<button class="block">Pesquisar</button>
+			</form>
+		</div>
 
 	</div>
 
@@ -53,10 +55,11 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 
 	</div>
 
-	<footer>
-		
+	<footer class="footer text-center">
+		<p class="footer-text inline-block">&#169; Todos os direitos reservados.</p>
 	</footer>
 
-	<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+	<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+	<script src="/js/home.js"></script>
 </body>
 </html>
