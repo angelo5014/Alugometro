@@ -35,3 +35,21 @@ DROP SEQUENCE SEQ_Usuario;
 DROP SEQUENCE SEQ_Anuncio;
 DROP SEQUENCE SEQ_Reserva;
 DROP SEQUENCE SEQ_Foto;
+
+Drop Index IX_Anuncio_Cidade;
+Drop Index IX_Anuncio_Foto_Capa;
+Drop Index IX_Anuncio_Situacao;
+Drop Index IX_Anuncio_Tipo_Acomodacao;
+Drop Index IX_Anuncio_Tipo_Imovel;
+Drop Index IX_Anuncio_Usuario;
+
+Drop Index IX_Cidade_Estado;
+Drop Index IX_Estado_Federacao;
+
+Drop Index IX_Foto_Anuncio;
+
+Drop Index IX_Reserva_Anuncio;
+Drop Index IX_Reserva_Situacao;
+Drop Index IX_Reserva_Usuario;
+
+Drop Index IX_Usuario_Situacao;
