@@ -41,5 +41,10 @@ INSERT INTO Tipo_Imovel (Id_Tipo_Imovel, Descricao) VALUES (9, 'Sobrado');
 
 --- Tipo_Acomodacao
 
-INSERT INTO Tipo_Acomodacao (Id_Tipo_Acomodacao, Descricao) VALUES (1, 'Quarto Unico');
+INSERT INTO Tipo_Acomodacao (Id_Tipo_Acomodacao, Descricao) VALUES (1, 'Casa Inteiro');
+INSERT INTO Tipo_Acomodacao (Id_Tipo_Acomodacao, Descricao) VALUES (2, 'Apartamento Inteiro');
+INSERT INTO Tipo_Acomodacao (Id_Tipo_Acomodacao, Descricao) VALUES (3, 'Quarto Inteiro');
+INSERT INTO Tipo_Acomodacao (Id_Tipo_Acomodacao, Descricao) VALUES (5, 'Quarto Compartilhado');
+INSERT INTO Tipo_Acomodacao (Id_Tipo_Acomodacao, Descricao) VALUES (6, 'Quarto Casal');
+
 -- Adicionar mais...
