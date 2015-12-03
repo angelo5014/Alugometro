@@ -12,6 +12,13 @@ import javax.persistence.Table;
 @Table(name = "Cidade")
 public class Cidade {
 	
+	public Cidade() {
+	}
+	
+	public Cidade(Estado estado) {
+		this.estado = estado;
+	}
+	
 	@Id
 	@Column(name = "Id_Cidade")
 	private Long idCidade;

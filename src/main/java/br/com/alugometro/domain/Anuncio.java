@@ -13,8 +13,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import java.util.List;
 
 @Entity
 @Table(name = "Anuncio")
@@ -41,6 +44,10 @@ public class Anuncio {
 	@JoinColumn(name = "Tipo_Acomodacao")
 	@Basic(optional = false)
 	private TipoAcomodacao tipoAcomodacao;
+	
+	@Column(name = "Numero_Pessoas")
+	@Basic(optional = false)
+	private int numeroPessoas;
 	
 	@ManyToOne
 	@JoinColumn(name = "Id_Cidade")
@@ -74,6 +81,9 @@ public class Anuncio {
 	@Enumerated(EnumType.ORDINAL)
 	@Column(name = "Situacao", length = 1)
 	private SituacaoAnuncio situacao;
+	
+	@OneToMany(mappedBy = "anuncio")
+	private List<Foto> demaisFotos;
 	
 	public static enum SituacaoAnuncio {
 		INDISPONIVEL, DISPONIVEL
@@ -109,6 +119,14 @@ public class Anuncio {
 
 	public void setTipoAcomodacao(TipoAcomodacao tipoAcomodacao) {
 		this.tipoAcomodacao = tipoAcomodacao;
+	}
+	
+	public int getNumeroPessoas() {
+		return numeroPessoas;
+	}
+
+	public void setNumeroPessoas(int numeroPessoas) {
+		this.numeroPessoas = numeroPessoas;
 	}
 
 	public Cidade getCidade() {
@@ -165,6 +183,14 @@ public class Anuncio {
 
 	public void setFotoCapa(Foto fotoCapa) {
 		this.fotoCapa = fotoCapa;
+	}
+	
+	public List<Foto> getDemaisFotos() {
+		return demaisFotos;
+	}
+
+	public void setDemaisFotos(List<Foto> demaisFotos) {
+		this.demaisFotos = demaisFotos;
 	}
 
 	public SituacaoAnuncio getSituacao() {

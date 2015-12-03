@@ -8,8 +8,6 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -21,6 +19,13 @@ import org.hibernate.validator.constraints.Length;
 public class Usuario {
 
 	public static final String SEQUENCE_NAME = "SEQ_Usuario";
+	
+	public Usuario() {
+	}
+	
+	public Usuario(Long idUsuario) {
+		this.idUsuario = idUsuario;
+	}
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = SEQUENCE_NAME)

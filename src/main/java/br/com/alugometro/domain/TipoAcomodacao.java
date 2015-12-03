@@ -10,20 +10,27 @@ import javax.persistence.Table;
 @Table(name = "Tipo_Acomodacao")
 public class TipoAcomodacao {
 
+	public TipoAcomodacao() {
+	}
+	
+	public TipoAcomodacao(Long idTipoAcomodacao) {
+		this.idTipoAcomodacao = idTipoAcomodacao;
+	}
+	
 	@Id
 	@Column(name = "Id_Tipo_Acomodacao")
-	private Long tipoAcomodacao;
+	private Long idTipoAcomodacao;
 	
 	@Column(name = "Descricao", length = 50)
 	@Basic(optional = false)
 	private String descricao;
 
-	public Long getTipoAcomodacao() {
-		return tipoAcomodacao;
+	public Long getIdTipoAcomodacao() {
+		return idTipoAcomodacao;
 	}
 
-	public void setTipoAcomodacao(Long tipoAcomodacao) {
-		this.tipoAcomodacao = tipoAcomodacao;
+	public void setIdTipoAcomodacao(Long idTipoAcomodacao) {
+		this.idTipoAcomodacao = idTipoAcomodacao;
 	}
 
 	public String getDescricao() {
