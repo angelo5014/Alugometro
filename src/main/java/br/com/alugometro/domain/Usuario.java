@@ -17,7 +17,7 @@ import org.hibernate.validator.constraints.Length;
 
 @Entity
 @Table(name = "Usuario")
-@SequenceGenerator(name = Anuncio.SEQUENCE_NAME, sequenceName = Anuncio.SEQUENCE_NAME, allocationSize = 1)
+@SequenceGenerator(name = Usuario.SEQUENCE_NAME, sequenceName = Usuario.SEQUENCE_NAME, allocationSize = 1)
 public class Usuario {
 
 	public static final String SEQUENCE_NAME = "SEQ_Usuario";
@@ -28,9 +28,9 @@ public class Usuario {
 	private Long idUsuario;
 
 	//TODO : adicionar tabela de username prória
-	@OneToOne
-	@JoinColumn(name = "IdUser")
-	private String user;
+//	@OneToOne
+//	@JoinColumn(name = "IdUser")
+//	private String user;
 	
 	@Column(name = "Email")
 	@Basic(optional = false)
@@ -49,13 +49,13 @@ public class Usuario {
 		this.idUsuario = idUsuario;
 	}
 
-	public String getUser() {
-		return user;
-	}
-
-	public void setUser(String user) {
-		this.user = user;
-	}
+//	public String getUser() {
+//		return user;
+//	}
+//
+//	public void setUser(String user) {
+//		this.user = user;
+//	}
 
 	public String getEmail() {
 		return email;
