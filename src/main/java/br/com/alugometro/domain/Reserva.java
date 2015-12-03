@@ -11,6 +11,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -28,12 +29,12 @@ public class Reserva {
 	private Long idReserva;
 	
 	@ManyToOne
-	@Column(name = "IdUsuario")
+	@JoinColumn(name = "IdUsuario")
 	@Basic(optional = false)
 	private Usuario usuario;
 	
 	@ManyToOne
-	@Column(name = "IdAnuncio")
+	@JoinColumn(name = "IdAnuncio")
 	@Basic(optional = false)
 	private Anuncio anuncio;
 	

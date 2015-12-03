@@ -9,11 +9,11 @@ import javax.persistence.Table;
 import org.hibernate.validator.constraints.Length;
 
 @Entity
-@Table(name = "TipoAcomodacao")
+@Table(name = "Tipo_Acomodacao")
 public class TipoAcomodacao {
 
 	@Id
-	@Column(name = "IdTipoAcomodacao")
+	@Column(name = "Id_Tipo_Acomodacao")
 	private Long tipoAcomodacao;
 	
 	@Column(name = "Descricao")

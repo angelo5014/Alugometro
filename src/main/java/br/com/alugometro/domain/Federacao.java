@@ -1,5 +1,6 @@
 package br.com.alugometro.domain;
 
+import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -12,11 +13,12 @@ import org.hibernate.validator.constraints.Length;
 public class Federacao {
 
 	@Id
-	@Column(name = "IdFederacao")
+	@Column(name = "Id_Federacao")
 	private Long idFederacao;
 	
-	@Length(max = 300)
 	@Column(name = "Nome")
+	@Length(max = 300)
+	@Basic(optional = false)
 	private String nome;
 
 	public Long getIdFederacao() {

@@ -5,6 +5,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.validator.constraints.Length;
@@ -14,13 +15,22 @@ import org.hibernate.validator.constraints.Length;
 public class Estado {
 
 	@Id
-	@Column(name = "IdEstado")
+	@Column(name = "Id_Estado")
 	private Long idEstado;
 	
 	@Column(name = "nome")
 	@Length(max = 300)
 	@Basic(optional = false)
 	private String nome;
+	
+	@Column(name = "UF")
+	@Length(max = 2)
+	@Basic(optional = false)
+	private String uf;
+	
+	@ManyToOne
+	@JoinColumn(name = "Id_Federacao")
+	private Federacao idFederacao;
 	
 	public Long getIdEstado() {
 		return idEstado;
@@ -54,13 +64,4 @@ public class Estado {
 		this.idFederacao = idFederacao;
 	}
 
-	@Column(name = "UF")
-	@Length(max = 2)
-	@Basic(optional = false)
-	private String uf;
-	
-	@JoinColumn(name = "IdFederacao")
-	@Basic(optional = false)
-	private Federacao idFederacao;
-	
 }
