@@ -31,3 +31,7 @@ DROP table Federacao;
 DROP table Estado;
 DROP table Cidade;
 
+DROP SEQUENCE SEQ_Usuario;
+DROP SEQUENCE SEQ_Anuncio;
+DROP SEQUENCE SEQ_Reserva;
+DROP SEQUENCE SEQ_Foto;
