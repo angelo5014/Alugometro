@@ -12,11 +12,11 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Fotos")
-@SequenceGenerator(name = Fotos.SEQUENCE_NAME, sequenceName = Fotos.SEQUENCE_NAME, allocationSize = 1)
-public class Fotos {
+@Table(name = "Foto")
+@SequenceGenerator(name = Foto.SEQUENCE_NAME, sequenceName = Foto.SEQUENCE_NAME, allocationSize = 1)
+public class Foto {
 	
-	public static final String SEQUENCE_NAME = "SEQ_Fotos";
+	public static final String SEQUENCE_NAME = "SEQ_Foto";
 	
 	@Id
 	@Column(name = "Id_Foto")

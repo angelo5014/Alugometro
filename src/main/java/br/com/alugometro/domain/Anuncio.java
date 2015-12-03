@@ -67,7 +67,7 @@ public class Anuncio {
 	@ManyToOne
 	@JoinColumn(name = "Foto_Capa")
 	@Basic(optional = false)
-	private Fotos fotoCapa;
+	private Foto fotoCapa;
 	
 	@Enumerated(EnumType.ORDINAL)
 	@Column(name = "Situacao", length = 1)
@@ -157,11 +157,11 @@ public class Anuncio {
 		this.descricaoDetalhada = descricaoDetalhada;
 	}
 
-	public Fotos getFotoCapa() {
+	public Foto getFotoCapa() {
 		return fotoCapa;
 	}
 
-	public void setFotoCapa(Fotos fotoCapa) {
+	public void setFotoCapa(Foto fotoCapa) {
 		this.fotoCapa = fotoCapa;
 	}
 
