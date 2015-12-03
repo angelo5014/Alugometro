@@ -56,11 +56,11 @@ public class Anuncio {
 	@Basic(optional = false)
 	private BigDecimal diaria;
 	
-	@Column(name = "Descricao_Capa")
+	@Column(name = "Descricao_Capa", length = 300)
 	@Basic(optional = false)
 	private String descricaoCapa;
 	
-	@Column(name = "Descricao_Detalhada")
+	@Column(name = "Descricao_Detalhada", length = 1000)
 	@Basic(optional = false)
 	private String descricaoDetalhada;
 	
