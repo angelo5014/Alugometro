@@ -47,4 +47,3 @@ INSERT INTO Tipo_Acomodacao (Id_Tipo_Acomodacao, Descricao) VALUES (3, 'Quarto I
 INSERT INTO Tipo_Acomodacao (Id_Tipo_Acomodacao, Descricao) VALUES (5, 'Quarto Compartilhado');
 INSERT INTO Tipo_Acomodacao (Id_Tipo_Acomodacao, Descricao) VALUES (6, 'Quarto Casal');
 
--- Adicionar mais...
