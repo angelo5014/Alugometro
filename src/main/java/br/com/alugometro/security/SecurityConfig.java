@@ -20,8 +20,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private DataSource dataSource;
     
-    private final String userQuery = "SELECT Email FROM Usuario WHERE Email = ?";
-
+    private final String buscaUsuario = "SELECT Email, Senha, Id_Situacao_Usuario FROM Usuario WHERE Email = ?";
+    private final String buscaPermissao = "SELECT Email, Permissao FROM Usuario WHERE Email = ?";
+    
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
@@ -38,7 +39,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.jdbcAuthentication()
                 .dataSource(dataSource)
-                //.usersByUsernameQuery(userQuery)
+                .usersByUsernameQuery(buscaUsuario)
+                .authoritiesByUsernameQuery(buscaPermissao)
                 .passwordEncoder(new Md5PasswordEncoder());
     }
 }

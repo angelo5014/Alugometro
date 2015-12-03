@@ -13,6 +13,13 @@ import org.hibernate.validator.constraints.Length;
 @Entity
 @Table(name = "Estado")
 public class Estado {
+	
+	public Estado() {
+	}
+	
+	public Estado(Federacao federacao) {
+		this.federacao = federacao;
+	}
 
 	@Id
 	@Column(name = "Id_Estado")
@@ -30,7 +37,7 @@ public class Estado {
 	
 	@ManyToOne
 	@JoinColumn(name = "Id_Federacao")
-	private Federacao idFederacao;
+	private Federacao federacao;
 	
 	public Long getIdEstado() {
 		return idEstado;
@@ -56,12 +63,12 @@ public class Estado {
 		this.uf = uf;
 	}
 
-	public Federacao getIdFederacao() {
-		return idFederacao;
+	public Federacao getFederacao() {
+		return federacao;
 	}
 
-	public void setIdFederacao(Federacao idFederacao) {
-		this.idFederacao = idFederacao;
+	public void setFederacao(Federacao federacao) {
+		this.federacao = federacao;
 	}
 
 }

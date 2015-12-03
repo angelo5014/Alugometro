@@ -3,9 +3,12 @@
 
 Create table Usuario(
   Id_Usuario NUMBER NOT NULL,
-  Id_User NUMBER NOT NULL,
+  Nome VARCHAR2(200) NOT NULL,
+  Sobrenome VARCHAR2(300) NOT NULL,
   Email VARCHAR2(250) NOT NULL,
+  Senha VARCHAR2(32) NOT NULL,
   Id_Situacao_Usuario NUMBER NOT NULL,
+  Permissao VARCHAR2(9) DEFAULT 'ROLE_USER' NOT NULL,
   
   CONSTRAINT Usuario_PK PRIMARY KEY (Id_Usuario)
   );
