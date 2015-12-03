@@ -5,7 +5,7 @@ Create table Usuario(
   Id_Usuario NUMBER NOT NULL,
   Id_User NUMBER NOT NULL,
   Email VARCHAR2(250) NOT NULL,
-  Situacao NUMBER NOT NULL,
+  Id_Situacao_Usuario NUMBER NOT NULL,
   
   CONSTRAINT Usuario_PK PRIMARY KEY (Id_Usuario)
   );
