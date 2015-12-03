@@ -127,4 +127,4 @@ Create table Situacao_Reserva(
 	Descricao VARCHAR2(11) NOT NULL,
 
 	CONSTRAINT Situacao_Reserva_PK PRIMARY KEY (Id_Situacao_Reserva)
-):
+);
