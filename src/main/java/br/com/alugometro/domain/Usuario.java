@@ -20,31 +20,43 @@ public class Usuario {
 
 	public static final String SEQUENCE_NAME = "SEQ_Usuario";
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = SEQUENCE_NAME)
+	@Column(name = "Id_Usuario")
+	private Long idUsuario;
+
+	@Column(name = "Nome")
+	@Basic(optional = false)
+	private String nome;
+	
+	@Column(name = "Sobrenome")
+	@Basic(optional = false)
+	private String sobrenome;
+	
+	@Column(name = "Email")
+	@Basic(optional = false)
+	private String email;
+	
+	@Column(name = "Senha")
+	@Basic(optional = false)
+	private String senha;
+
+	@Enumerated(EnumType.ORDINAL)
+	@Column(name = "Situacao")
+	@Basic(optional = false)
+	private SituacaoUsuario situacao;
+	
+	@Enumerated(EnumType.STRING)
+	@Column(name = "Permissao")
+	@Basic(optional = false)
+	private PermissaoUsuario permissao;
+	
 	public Usuario() {
 	}
 	
 	public Usuario(Long idUsuario) {
 		this.idUsuario = idUsuario;
 	}
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = SEQUENCE_NAME)
-	@Column(name = "IdUsuario")
-	private Long idUsuario;
-
-	//TODO : adicionar tabela de username prória
-//	@OneToOne
-//	@JoinColumn(name = "IdUser")
-//	private String user;
-	
-	@Column(name = "Email")
-	@Basic(optional = false)
-	@Length(max = 250)
-	private String email;
-	
-	@Enumerated(EnumType.ORDINAL)
-	@Column(name = "Situacao")
-	private SituacaoUsuario situacao;
 	
 	public Long getIdUsuario() {
 		return idUsuario;
@@ -54,13 +66,21 @@ public class Usuario {
 		this.idUsuario = idUsuario;
 	}
 
-//	public String getUser() {
-//		return user;
-//	}
-//
-//	public void setUser(String user) {
-//		this.user = user;
-//	}
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getSobrenome() {
+		return sobrenome;
+	}
+
+	public void setSobrenome(String sobrenome) {
+		this.sobrenome = sobrenome;
+	}
 
 	public String getEmail() {
 		return email;
@@ -68,6 +88,14 @@ public class Usuario {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
 
 	public SituacaoUsuario getSituacao() {
@@ -78,8 +106,20 @@ public class Usuario {
 		this.situacao = situacao;
 	}
 
+	public PermissaoUsuario getPermissao() {
+		return permissao;
+	}
+
+	public void setPermissao(PermissaoUsuario permissao) {
+		this.permissao = permissao;
+	}
+
 	public enum SituacaoUsuario{
 		INATIVO, ATIVO;
+	}
+	
+	public enum PermissaoUsuario{
+		ROLE_USER
 	}
 	
 }
