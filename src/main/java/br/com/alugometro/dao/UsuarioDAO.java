@@ -14,7 +14,7 @@ import br.com.alugometro.exception.UsuarioNaoEncontradoException;
 @Repository
 public class UsuarioDAO extends AbstractDAO{
 
-	public Usuario encontrarPorId(Long idUsuario) throws UsuarioNaoEncontradoException{
+	public Usuario buscarPorId(Long idUsuario) throws UsuarioNaoEncontradoException{
 		Usuario usuario = this.em.find(Usuario.class, idUsuario);
 		
 		if(usuario != null){
@@ -24,7 +24,7 @@ public class UsuarioDAO extends AbstractDAO{
 		}
 	}
 	
-	public Usuario encontrarPorEmail(String email) throws AbstractException{
+	public Usuario buscarPorEmail(String email) throws AbstractException{
 		List<Usuario> usuarios = this.em.createQuery("FROM Usuario WHERE Email = :email")
 								.setParameter("email", email)
 								.getResultList();
