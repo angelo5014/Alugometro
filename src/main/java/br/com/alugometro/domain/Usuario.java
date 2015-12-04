@@ -11,10 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import org.hibernate.validator.constraints.Length;
-
-import br.com.alugometro.dto.UsuarioDTO;
-
 @Entity
 @Table(name = "Usuario")
 @SequenceGenerator(name = Usuario.SEQUENCE_NAME, sequenceName = Usuario.SEQUENCE_NAME, allocationSize = 1)
