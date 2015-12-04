@@ -24,38 +24,38 @@ public class Reserva {
 	public final static String SEQUENCE_NAME = "SEQ_reserva";
 	
 	@Id
-	@Column(name = "IdReserva")
+	@Column(name = "Id_Reserva")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = SEQUENCE_NAME)
 	private Long idReserva;
 	
 	@ManyToOne
-	@JoinColumn(name = "IdUsuario")
+	@JoinColumn(name = "Id_Usuario")
 	@Basic(optional = false)
 	private Usuario usuario;
 	
 	@ManyToOne
-	@JoinColumn(name = "IdAnuncio")
+	@JoinColumn(name = "Id_Anuncio")
 	@Basic(optional = false)
 	private Anuncio anuncio;
 	
-	@Column(name = "DataInicio")
+	@Column(name = "Data_Inicio")
 	@Basic(optional = false)
 	private Date dataInicio;
 	
-	@Column(name = "DataFim")
+	@Column(name = "Data_Fim")
 	@Basic(optional = false)
 	private Date dataFim;
 	
-	@Column(name = "ValorDia")
+	@Column(name = "Valor_Dia")
 	@Basic(optional = false)
 	private BigDecimal valorDia;
 	
-	@Column(name = "ValorTotal")
+	@Column(name = "Valor_Total")
 	@Basic(optional = false)
 	private BigDecimal valorTotal;
 	
 	@Enumerated(EnumType.ORDINAL)
-	@Column(name = "Situacao")
+	@Column(name = "Id_Situacao_Reserva")
 	@Basic(optional = false)
 	private SituacaoReserva situacao;
 	
