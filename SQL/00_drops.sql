@@ -17,6 +17,27 @@ Alter table Reserva Drop CONSTRAINT Reserva_Usuario_FK;
 Alter table Reserva Drop CONSTRAINT Reserva_Anuncio_FK;
 Alter table Reserva Drop CONSTRAINT Reserva_Situacao_Reserva_FK; 
 
+Drop Index IX_Anuncio_Cidade;
+Drop Index IX_Anuncio_Foto_Capa;
+Drop Index IX_Anuncio_Situacao;
+Drop Index IX_Anuncio_Tipo_Acomodacao;
+Drop Index IX_Anuncio_Tipo_Imovel;
+Drop Index IX_Anuncio_Usuario;
+
+Drop Index IX_Cidade_Estado;
+Drop Index IX_Estado_Federacao;
+
+Drop Index IX_Foto_Anuncio;
+
+Drop Index IX_Reserva_Anuncio;
+Drop Index IX_Reserva_Situacao;
+Drop Index IX_Reserva_Usuario;
+
+Drop Index IX_Usuario_Situacao;
+Drop Index IX_Usuario_Email_Senha_Situacao;
+Drop Index IX_Usuario_Email_Permissao;
+
+Alter table Usuario Drop CONSTRAINT Usuario_Email_UK;
 
 DROP table Situacao_Usuario;
 DROP table Situacao_Anuncio;
@@ -36,20 +57,3 @@ DROP SEQUENCE SEQ_Anuncio;
 DROP SEQUENCE SEQ_Reserva;
 DROP SEQUENCE SEQ_Foto;
 
-Drop Index IX_Anuncio_Cidade;
-Drop Index IX_Anuncio_Foto_Capa;
-Drop Index IX_Anuncio_Situacao;
-Drop Index IX_Anuncio_Tipo_Acomodacao;
-Drop Index IX_Anuncio_Tipo_Imovel;
-Drop Index IX_Anuncio_Usuario;
-
-Drop Index IX_Cidade_Estado;
-Drop Index IX_Estado_Federacao;
-
-Drop Index IX_Foto_Anuncio;
-
-Drop Index IX_Reserva_Anuncio;
-Drop Index IX_Reserva_Situacao;
-Drop Index IX_Reserva_Usuario;
-
-Drop Index IX_Usuario_Situacao;
