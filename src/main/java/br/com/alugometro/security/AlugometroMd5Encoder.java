@@ -2,7 +2,7 @@ package br.com.alugometro.security;
 
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 
-public final class AlugometroMd5Encoder extends Md5PasswordEncoder{
+public final class AlugometroMd5Encoder extends Md5PasswordEncoder {
 
 	private final String salt = "Alohomora";
 	
