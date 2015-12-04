@@ -1,16 +1,21 @@
-.form-home {
+/* ==========================================
+	Forms
+========================================== */
+
+.form-container {
 	padding: 32px 0;
 }
 
-.form-home input {
+.form-container input {
 	width: 80%;
 	height: 38px;
 	font-size: 20px;
-	margin: 0 auto;
+	margin: 0 auto 10px;
 	padding: 5px 15px;
+	border: 1px solid #95a5a6;
 }
 
-.form-home button {
+.btn-default {
 	height: 50px;
 	background-color: #3498db;
 	font-size: 22px;
@@ -20,4 +25,13 @@
 	cursor: pointer;
 	padding: 10px;
 	margin: 32px auto 0;
+}
+
+.btn-login {
+	margin: 0 auto;
+	width: 40%;
+}
+
+.form-radius {
+	border-radius: 3px;
 }
