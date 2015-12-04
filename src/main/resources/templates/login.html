@@ -12,26 +12,22 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css' />
 	<link rel="stylesheet" href="/css/normalize.css" />
+	<link rel="stylesheet" href="/css/grid.css" />
 	<link rel="stylesheet" href="/css/modules.css" />
 	<link rel="stylesheet" href="/css/colors.css" />
 	<link rel="stylesheet" href="/css/header.css" />
 	<link rel="stylesheet" href="/css/background.css" />
-	<link rel="stylesheet" href="/css/home.css" />
+	<link rel="stylesheet" href="/css/content.css" />
 	<link rel="stylesheet" href="/css/forms.css" />
 	<link rel="stylesheet" href="/css/footer.css" />
 </head>
 <body>
-	<h2>Login</h2>
-	<form th:action="@{/login}" action="/login" method="POST">
-		<input  type="text" name="username" placeholder="Username" />
-		<input  type="password" name="password" placeholder="Password" />
-		<input type="submit" id="login" value="Login" />
-	</form>
-
 	<div class="bg-index">
 		<header class="header clearfix fixed">
-
-			<h1 class="logo inline-block pull-left azul-fraco">Alugômetro</h1>
+			
+			<a href="/" th:href="@{'/'}">
+				<h1 class="logo inline-block pull-left azul-fraco">Alugômetro</h1>
+			</a>
 
 			<nav class="pull-right">
 				<ul class="reset-list">
@@ -46,15 +42,38 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 		</header>
 		<div class="header-bg"></div>
 		
-		<div class="home-content">
-			<h1 class="text-center home-title">Alugômetro</h1>
+		<div class="content">
+			<div class="container">
+				<div class="row">
+					<div class="col col-l-6 col-s-12">
+						<h2 class="text-center content-title-s">Bem vindo ao Alugômetro.</h2>
 
-			<p class="home-text text-center">Você procura, nós encontramos.</p>
+						<p class="text-center content-text-s">Disponibilize seu imóvel para aluguel ou encontre o lugar que você procura.</p>
 
-			<form action="#" class="form-home">
-				<input type="text" placeholder="Ex.: Rio de Janeiro..." class="block" />
-				<button class="block">Pesquisar</button>
-			</form>
+						<p class="text-center content-text-s">Ainda não é usuário? Faça seu cadastro agora mesmo.</p>
+
+						<a href="#" class="block text-center link-s link-l">Cadastre-se!</a>
+					</div>
+
+					<div class="col col-l-6 col-s-12">
+						<h2 class="text-center content-title-s content-title-login">Login</h2>
+						<form th:action="@{/login}" action="/login" method="POST" class="form-container">
+							<input type="text" name="username" placeholder="Usuario" class="block form-login form-radius" />
+							<input type="password" name="password" placeholder="Senha" class="block form-radius" />
+							<button class="block btn-default btn-login form-radius">Logar</button>
+
+							<ul class="reset-list link-list text-center">
+								<li class="inline-block">
+									<a href="#" class="text-center link-s">Esqueceu sua senha?</a>	
+								</li>
+								<li class="inline-block">
+									<a href="#" class="text-center link-s">Cadastre-se!</a>
+								</li>
+							</ul>
+						</form>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 
