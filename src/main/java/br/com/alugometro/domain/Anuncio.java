@@ -36,12 +36,12 @@ public class Anuncio {
 	private Usuario usuario;
 	
 	@ManyToOne
-	@JoinColumn(name = "Tipo_Imovel")
+	@JoinColumn(name = "Id_Tipo_Imovel")
 	@Basic(optional = false)
 	private TipoImovel tipoImovel;
 	
 	@ManyToOne
-	@JoinColumn(name = "Tipo_Acomodacao")
+	@JoinColumn(name = "Id_Tipo_Acomodacao")
 	@Basic(optional = false)
 	private TipoAcomodacao tipoAcomodacao;
 	
@@ -74,12 +74,12 @@ public class Anuncio {
 	private String descricaoDetalhada;
 	
 	@ManyToOne
-	@JoinColumn(name = "Foto_Capa")
+	@JoinColumn(name = "Id_Foto_Capa")
 	@Basic(optional = false)
 	private Foto fotoCapa;
 	
 	@Enumerated(EnumType.ORDINAL)
-	@Column(name = "Situacao", length = 1)
+	@Column(name = "Id_Situacao_Anuncio", length = 1)
 	private SituacaoAnuncio situacao;
 	
 	@OneToMany(mappedBy = "anuncio")
