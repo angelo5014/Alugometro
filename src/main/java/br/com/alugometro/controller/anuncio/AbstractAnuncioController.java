@@ -6,9 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
+import br.com.alugometro.domain.Cidade;
 import br.com.alugometro.domain.TipoAcomodacao;
 import br.com.alugometro.domain.TipoImovel;
 import br.com.alugometro.service.AnuncioService;
+import br.com.alugometro.service.CidadeService;
 import br.com.alugometro.service.TipoAcomodacaoService;
 import br.com.alugometro.service.TipoImovelService;
 
@@ -18,6 +20,7 @@ public abstract class AbstractAnuncioController {
 	protected AnuncioService anuncioService;
 	protected TipoImovelService tipoImovelService;
 	protected TipoAcomodacaoService tipoAcomodacaoService;
+	protected CidadeService cidadeService;
 
 	@Autowired
 	public AbstractAnuncioController(AnuncioService anuncioService, TipoImovelService tipoImovelService) {
@@ -33,6 +36,11 @@ public abstract class AbstractAnuncioController {
 	@ModelAttribute("tiposAcomodacoes")
     public List<TipoAcomodacao> comboTiposAcomodacoes() {
         return tipoAcomodacaoService.listarTodos();
+    }
+	
+	@ModelAttribute("cidades")
+    public List<Cidade> comboCidade() {
+        return cidadeService.listarTodos();
     }
 	
 }
