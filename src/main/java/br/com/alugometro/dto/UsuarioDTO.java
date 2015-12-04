@@ -86,4 +86,19 @@ public class UsuarioDTO {
 	public boolean estaAtivo(){
 		return this.situacao == SituacaoUsuario.ATIVO;
 	}
+	
+	@Override
+	public boolean equals(Object obj){
+		UsuarioDTO objetoRecebido = (UsuarioDTO) obj;
+		boolean idIgual = this.idUsuario == objetoRecebido.getIdUsuario();
+		boolean nomeIgual = this.nome.equals(objetoRecebido.getNome());
+		boolean sobrenomeIgual = this.sobrenome.equals(objetoRecebido.getSobrenome());
+		boolean emailIgual = this.email.equals(objetoRecebido.getEmail());
+		boolean senhaIgual = this.senha.equals(objetoRecebido.getSenha());
+		boolean situacaoIgual = this.situacao == objetoRecebido.getSituacao();
+		boolean permissaoIgual = this.permissao == objetoRecebido.getPermissao();
+		
+		
+		return idIgual && nomeIgual && sobrenomeIgual && emailIgual && senhaIgual && situacaoIgual && permissaoIgual; 
+	}
 }

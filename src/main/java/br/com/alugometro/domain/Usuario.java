@@ -13,6 +13,8 @@ import javax.persistence.Table;
 
 import org.hibernate.validator.constraints.Length;
 
+import br.com.alugometro.dto.UsuarioDTO;
+
 @Entity
 @Table(name = "Usuario")
 @SequenceGenerator(name = Usuario.SEQUENCE_NAME, sequenceName = Usuario.SEQUENCE_NAME, allocationSize = 1)
@@ -122,4 +124,18 @@ public class Usuario {
 		ROLE_USER
 	}
 	
+	@Override
+	public boolean equals(Object obj){
+		Usuario objetoRecebido = (Usuario) obj;
+		boolean idIgual = this.idUsuario == objetoRecebido.getIdUsuario();
+		boolean nomeIgual = this.nome.equals(objetoRecebido.getNome());
+		boolean sobrenomeIgual = this.sobrenome.equals(objetoRecebido.getSobrenome());
+		boolean emailIgual = this.email.equals(objetoRecebido.getEmail());
+		boolean senhaIgual = this.senha.equals(objetoRecebido.getSenha());
+		boolean situacaoIgual = this.situacao == objetoRecebido.getSituacao();
+		boolean permissaoIgual = this.permissao == objetoRecebido.getPermissao();
+		
+		
+		return idIgual && nomeIgual && sobrenomeIgual && emailIgual && senhaIgual && situacaoIgual && permissaoIgual; 
+	}
 }
