@@ -13,32 +13,31 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.alugometro.dto.AnuncioDTO;
 import br.com.alugometro.service.AnuncioService;
+import br.com.alugometro.service.TipoImovelService;
 
 @Controller
 @RequestMapping("/anuncio")
-public class AnuncioInserirController {
-
-	private AnuncioService anuncioService;
+public class AnuncioInserirController extends AbstractAnuncioController {
 
 	@Autowired
-	public AnuncioInserirController(AnuncioService anuncioService) {
-		this.anuncioService = anuncioService;
+	public AnuncioInserirController(AnuncioService anuncioService, TipoImovelService tipoImovelService) {
+		super(anuncioService, tipoImovelService);
 	}
-	
+
 	@RequestMapping(path = "/inserir" , method = RequestMethod.GET)
 	public ModelAndView inserir() {	
-		return new ModelAndView("anuncio/inserir", "anuncio", new AnuncioDTO());
+		return new ModelAndView("anuncio/insere", "anuncio", new AnuncioDTO());
 	}
-	
+
 	@RequestMapping(path = "/inserir", method = RequestMethod.POST)
 	public ModelAndView inserir(@Valid @ModelAttribute AnuncioDTO anuncioDTO,
 								BindingResult result,
 								final RedirectAttributes redirectAttributes){
 		if(result.hasErrors()){
-			return new ModelAndView("cliente/inserir");
+			return new ModelAndView("anuncio/insere");
 		}
 		
-		redirectAttributes.addFlashAttribute("mensagem", "Anuncio feito com sucesso");
+		redirectAttributes.addFlashAttribute("mensagem", "Anuncio criado com sucesso");
 		anuncioService.inserir(anuncioDTO);
 		return new ModelAndView("redirect:/");
 	}
