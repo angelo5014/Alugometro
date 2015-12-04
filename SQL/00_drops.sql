@@ -11,11 +11,11 @@ Alter table Anuncio Drop CONSTRAINT Anuncio_Cidade_FK;
 Alter table Anuncio Drop CONSTRAINT Anuncio_Foto_Capa_FK;
 Alter table Anuncio Drop CONSTRAINT Anuncio_Situacao_FK;
 
-Alter table Foto Drop CONSTRAINT Foto_Anuncio_FK;
-
 Alter table Reserva Drop CONSTRAINT Reserva_Usuario_FK;
 Alter table Reserva Drop CONSTRAINT Reserva_Anuncio_FK;
 Alter table Reserva Drop CONSTRAINT Reserva_Situacao_Reserva_FK; 
+
+Alter table Anuncio_Foto Drop CONSTRAINT Anuncio_Foto_PK;
 
 Drop Index IX_Anuncio_Cidade;
 Drop Index IX_Anuncio_Foto_Capa;
