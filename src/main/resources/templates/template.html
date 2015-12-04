@@ -8,6 +8,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 	<meta charset="UTF-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
 	<title layout:title-pattern="$DECORATOR_TITLE - $CONTENT_TITLE">Alugômetro</title>
 
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css' />
@@ -20,46 +21,14 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 	<link rel="stylesheet" href="/css/footer.css" />
 </head>
 <body>
-	<div class="bg-index">
-		<header class="header clearfix fixed">
-
-			<h1 class="logo inline-block pull-left azul-fraco">Alugômetro</h1>
-
-			<nav class="pull-right">
-				<ul class="reset-list">
-					<li class="inline-block">
-						<a class="nav-link inline-block" href="#">Anunciar</a>
-					</li>
-					<li class="inline-block">
-						<a class="nav-link inline-block" th:href="@{|/login|}">Login</a>
-					</li>
-				</ul>
-			</nav>
-		</header>
-		<div class="header-bg fade"></div>
-		
-		<div class="home-content">
-			<h1 class="text-center home-title">Alugômetro</h1>
-
-			<p class="home-text text-center">Você procura, nós encontramos.</p>
-
-			<form action="#" class="form-home">
-				<input type="text" placeholder="Ex.: Rio de Janeiro..." class="block" />
-				<button class="block">Pesquisar</button>
-			</form>
-		</div>
-
-	</div>
+	<div th:include="fragments/_header :: header"></div>
 
 	<div layout:fragment="content" class="">
 
 	</div>
 
-	<footer class="footer text-center">
-		<p class="footer-text inline-block">&#169; Todos os direitos reservados.</p>
-	</footer>
+	<div th:include="fragments/_footer :: footer"></div>
 
 	<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-	<script src="/js/home.js"></script>
 </body>
 </html>

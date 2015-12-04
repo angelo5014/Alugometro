@@ -2,18 +2,58 @@
 <html lang="pt-BR"
 xmlns="http://www.w3.org/1999/xhtml" 
 xmlns:th="http://www.thymeleaf.org" 
-xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-layout:decorator="template"
 xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
-	<title>Home</title>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
 
+	<title>Alugômetro - Home</title>
+
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css' />
+	<link rel="stylesheet" href="/css/normalize.css" />
+	<link rel="stylesheet" href="/css/modules.css" />
+	<link rel="stylesheet" href="/css/colors.css" />
+	<link rel="stylesheet" href="/css/header.css" />
 	<link rel="stylesheet" href="/css/background.css" />
-	
+	<link rel="stylesheet" href="/css/home.css" />
+	<link rel="stylesheet" href="/css/forms.css" />
+	<link rel="stylesheet" href="/css/footer.css" />
 </head>
 <body>
-	<div layout:fragment="content">
+	<div class="bg-index">
+		<header class="header clearfix fixed">
 
+			<h1 class="logo inline-block pull-left azul-fraco">Alugômetro</h1>
+
+			<nav class="pull-right">
+				<ul class="reset-list">
+					<li class="inline-block">
+						<a class="nav-link inline-block" href="#">Anunciar</a>
+					</li>
+					<li class="inline-block">
+						<a class="nav-link inline-block" th:href="@{|/login|}">Login</a>
+					</li>
+				</ul>
+			</nav>
+		</header>
+		<div class="header-bg fade"></div>
+		
+		<div class="home-content">
+			<h1 class="text-center home-title">Alugômetro</h1>
+
+			<p class="home-text text-center">Você procura, nós encontramos.</p>
+
+			<form action="#" class="form-home">
+				<input type="text" placeholder="Ex.: Rio de Janeiro..." class="block" />
+				<button class="block">Pesquisar</button>
+			</form>
+		</div>
 	</div>
+
+	<div th:include="fragments/_footer :: footer"></div>
+
+	<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+	<script src="/js/home.js"></script>
 </body>
 </html>
