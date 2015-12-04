@@ -40,7 +40,7 @@ public class Usuario {
 	private String senha;
 
 	@Enumerated(EnumType.ORDINAL)
-	@Column(name = "Situacao")
+	@Column(name = "Id_Situacao_Usuario")
 	@Basic(optional = false)
 	private SituacaoUsuario situacao;
 	
