@@ -7,12 +7,21 @@
 }
 
 .form-container input {
-	width: 80%;
+	width: 93%;
 	height: 38px;
 	font-size: 20px;
-	margin: 0 auto 10px;
+	margin: 10px auto 20px;
 	padding: 5px 15px;
 	border: 1px solid #95a5a6;
+}
+
+.form-container select {
+	width: 98.8%;
+	height: 50px;
+	font-size: 20px;
+	margin: 10px auto 20px;
+	padding: 5px 15px;
+	background-color: #fff;
 }
 
 .btn-default {
@@ -29,9 +38,18 @@
 
 .btn-login {
 	margin: 0 auto;
-	width: 40%;
+	width: 100%;
 }
 
 .form-radius {
 	border-radius: 3px;
+}
+
+.index-search {
+	width: 50% !important;
+}
+
+.label {
+	display: block;
+	padding: 25px 0;
 }

@@ -46,19 +46,15 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 			<div class="container">
 				<div class="row">
 					<div class="col col-l-6 col-s-12">
-						<h2 class="text-center content-title-s">Bem vindo ao Alugômetro.</h2>
+						<h2 class="content-title-s">Bem vindo ao Alugômetro.</h2>
 
-						<p class="text-center content-text-s">Disponibilize seu imóvel para aluguel ou encontre o lugar que você procura.</p>
-
-						<p class="text-center content-text-s">Ainda não é usuário? Faça seu cadastro agora mesmo.</p>
-
-						<a href="#" class="block text-center link-s link-l">Cadastre-se!</a>
+						<p class="content-text-s">Disponibilize seu imóvel para aluguel ou encontre o lugar que você procura.</p>
 					</div>
 
 					<div class="col col-l-6 col-s-12">
-						<h2 class="text-center content-title-s content-title-login">Login</h2>
+						<h2 class="content-title-s content-title-login">Login</h2>
 						<form th:action="@{/login}" action="/login" method="POST" class="form-container">
-							<input type="text" name="username" placeholder="Usuario" class="block form-login form-radius" />
+							<input type="text" name="username" placeholder="Usuario" class="block form-radius" />
 							<input type="password" name="password" placeholder="Senha" class="block form-radius" />
 							<button class="block btn-default btn-login form-radius">Logar</button>
 
@@ -67,6 +63,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 									<a href="#" class="text-center link-s">Esqueceu sua senha?</a>	
 								</li>
 								<li class="inline-block">
+									<span class="content-text-ss">Ainda não possui conta?</span>
 									<a href="#" class="text-center link-s">Cadastre-se!</a>
 								</li>
 							</ul>
