@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.alugometro.service.AnuncioService;
@@ -24,6 +25,11 @@ public class AnuncioListarController extends AbstractAnuncioController {
 	@RequestMapping(method=RequestMethod.GET)
 	public ModelAndView listar() {
 		return new ModelAndView("anuncio/listar", "anuncios", anuncioService.listarTodos());
+	}
+	
+	@RequestMapping(path = "/listarPorCidade", method=RequestMethod.GET)
+	public ModelAndView listarPorCidade(@RequestParam("cidade") String cidade) {
+		return new ModelAndView("anuncio/listar", "anuncios", anuncioService.listarPorCidade(cidade));
 	}
 	
 }
