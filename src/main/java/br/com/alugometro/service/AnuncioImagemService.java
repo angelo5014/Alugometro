@@ -6,6 +6,7 @@ import java.io.IOException;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.FieldError;
 import org.springframework.web.multipart.MultipartFile;
 
 import br.com.alugometro.dao.FotoDAO;
@@ -23,10 +24,11 @@ public class AnuncioImagemService {
 		this.fotoDAO = fotoDAO;
 	}
 	
-	public void validarImagem(MultipartFile imagem) {
-		if (!imagem.getContentType().equals("image/jpeg")) {
-			throw new RuntimeException("Only JPG images are accepted");
+	public boolean validarFormatoImagem(MultipartFile imagem) {
+		if (imagem.getContentType().equals("image/jpeg")) {
+			return true;
 		}
+		return false;
 	}
 	
 	public Foto saveImage(String filename, MultipartFile image)
