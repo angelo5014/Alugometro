@@ -6,8 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -76,8 +74,7 @@ public class AnuncioService {
 	
 	public Anuncio inserir(AnuncioDTO dto, MultipartFile imagem) throws RuntimeException, IOException, AbstractException{
 		
-		User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		Long idUsuario = usuarioService.buscarPorEmail(user.getUsername()).getIdUsuario();
+		Long idUsuario = usuarioService.obterIdDoUsuarioLogado();
 		
 		Foto imagemSalva = anuncioImagemService.saveImage(imagem.getOriginalFilename(), imagem);
 		Long idFoto = imagemSalva.getIdFoto();
