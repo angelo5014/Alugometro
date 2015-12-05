@@ -23,7 +23,7 @@ public class AnuncioService {
 	}
 	
 	public AnuncioDTO buscarPorID(Long idAnuncio) {
-		return AnuncioMapper.paraDTO(anuncioDAO.encontrarPorId(idAnuncio));
+		return AnuncioMapper.paraDTO(anuncioDAO.buscarPorId(idAnuncio));
 	}
 	
 	public List<AnuncioResumoDTO> listarTodos() {
@@ -38,7 +38,7 @@ public class AnuncioService {
 	}
 	
 	public AnuncioDTO inserir(AnuncioDTO anuncioDTO){
-		anuncioDAO.salvar(AnuncioMapper.gerarNovaEntidade(anuncioDTO));
+		anuncioDAO.salvar(AnuncioMapper.paraEntidade(anuncioDTO));
 		return anuncioDTO;
 	}
 	

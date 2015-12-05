@@ -13,7 +13,7 @@ import br.com.alugometro.dto.AnuncioDTO;
 
 public class AnuncioMapper {
 
-	public static Anuncio gerarNovaEntidade(AnuncioDTO anuncioDTO) {
+	public static Anuncio paraEntidade(AnuncioDTO anuncioDTO) {
 		Anuncio anuncio = new Anuncio();
 		anuncio.setUsuario(new Usuario(anuncioDTO.getIdUsuario()));
 		anuncio.setTipoImovel(new TipoImovel(anuncioDTO.getIdTipoImovel()));
