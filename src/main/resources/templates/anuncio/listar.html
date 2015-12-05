@@ -10,20 +10,75 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 </head>
 <body>
 	<div layout:fragment="content">
-		<div class="container">
-			<h2 class="text-center content-title-s">Cadastrar Anúncio</h2>
-
-			<form th:action="@{/anuncio/inserir}" action="/anuncio/inserir" th:object="${anuncio}" method="POST" class="form-horizontal">
-
-				<div class="form-group form-group-lg">
-					<label for="" class="col-sm-2 control-label">Demais fotos:</label>
-					<div class="col-sm-10">
-						<input type="range" class="form-control" id="" placeholder="" />
+		<div class="row">
+			<aside class="col col-l-3 col-s-12">
+				<div class="form-insert section">
+					<div class="form-insert-heading">
+						Filtre sua busca
 					</div>
-				</div>
+					<form th:action="@{/anuncio/buscar}" action="/anuncio/buscar" method="GET">
+						<input type="hidden" id="minval" />
+						<input type="hidden" id="maxval" />	
+						<label>
+							<p>
+								<span for="amount">Faixa de Preço:</span>
+								<input type="text" id="amount" readonly="true" />
+							</p>
+							<div id="slider-range"></div>
+						</label>
 
-				<button class="block btn-default form-radius">Anunciar</button>
-			</form>
+						<label>
+							<span>Cidade:</span>
+							<select class="select-field form-input-aside">
+								<option th:each="c : ${cidades}" th:text="${c.nome}" th:value="${c.idCidade}" >[option]</option>
+							</select>
+						</label>
+
+						<label>
+							<span>Tipo de Imóvel:</span>
+							<select class="select-field form-input-aside">
+								<option th:each="tipoImovel : ${tiposImoveis}" th:text="${tipoImovel.descricao}" th:value="${tipoImovel.idTipoImovel}" >[option]</option>
+							</select>
+						</label>
+
+						<label>
+							<span>Tipo de Acomodação:</span>
+							<select class="select-field form-input-aside">
+								<option th:each="tipoAcomodacao : ${tiposAcomodacoes}" th:text="${tipoAcomodacao.descricao}" th:value="${tipoAcomodacao.idTipoAcomodacao}" >[option]</option>
+							</select>
+						</label>
+
+						<label class="button-aside">
+							<input type="submit" value="Filtrar" class="form-input-aside" />
+						</label>
+					</form>
+				</div>
+			</aside>
+
+			<div class="col col-l-8 col-s-12">
+				<div th:if="${ not #lists .isEmpty(anuncios) }">
+
+					<div th:each="anuncio : ${(anuncios)}" class="section clearfix">
+						<div class="image-content pull-left">
+							<a href="#">
+								<img width="250" height="200" th:src="${anuncio.fotoCapa}" />
+							</a>
+						</div>
+						<div class="pull-left">
+							<p th:text="${anuncio.tipoImovel}">Apartamento</p>
+							<p th:text="${anuncio.preco}"></p>
+							<p th:text="${anuncio.descricaoCapa}"></p>
+							<p th:text="${anuncio.cidade}"></p>
+						</div>
+						<div class="pull-right link-section-content">
+							<a href="#" class="link-section">
+								<p>Ver anuncio!</p>
+							</a>
+						</div>
+					</div>
+
+				</div>
+			</div>
 		</div>
 	</div>
 </body>
