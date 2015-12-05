@@ -37,6 +37,18 @@ public class AnuncioService {
 		return anunciosResumoDTO;
 	}
 	
+	public List<AnuncioResumoDTO> listarPorCidade(String cidade) {
+
+		List<Anuncio> anuncios = anuncioDAO.listarPorCidade(cidade);
+
+		List<AnuncioResumoDTO> anunciosDTO = new ArrayList<AnuncioResumoDTO>();
+		for (Anuncio anuncio : anuncios) {
+			anunciosDTO.add(new AnuncioResumoDTO(anuncio));
+		}
+
+		return anunciosDTO;
+	}
+	
 	public Anuncio inserir(AnuncioDTO dto){
 		dto.setSituacao("DISPONIVEL");
 		return anuncioDAO.salvar(AnuncioMapper.paraEntidade(dto));
