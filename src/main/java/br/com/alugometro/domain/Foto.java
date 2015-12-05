@@ -25,6 +25,14 @@ public class Foto {
 	@Basic(optional = false)
 	private String url;
 
+	public Foto() {
+		
+	}
+	
+	public Foto(String url) {
+		this.url = url;
+	}
+
 	public Long getIdFoto() {
 		return idFoto;
 	}
