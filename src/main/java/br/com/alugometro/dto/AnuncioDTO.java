@@ -1,10 +1,8 @@
 package br.com.alugometro.dto;
 
 import java.math.BigDecimal;
-import java.util.Date;
 
 import org.hibernate.validator.constraints.NotBlank;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.NumberFormat;
 
 public class AnuncioDTO {
@@ -22,11 +20,9 @@ public class AnuncioDTO {
 	
 	private Long idCidade;
 
-	@DateTimeFormat
-	private Date dataInicio;
+	private String dataInicio;
 	
-	@DateTimeFormat
-	private Date dataFim;
+	private String dataFim;
 	
 	@NumberFormat
 	private BigDecimal diaria;
@@ -89,19 +85,19 @@ public class AnuncioDTO {
 		this.idCidade = idCidade;
 	}
 
-	public Date getDataInicio() {
+	public String getDataInicio() {
 		return dataInicio;
 	}
 
-	public void setDataInicio(Date dataInicio) {
+	public void setDataInicio(String dataInicio) {
 		this.dataInicio = dataInicio;
 	}
 
-	public Date getDataFim() {
+	public String getDataFim() {
 		return dataFim;
 	}
 
-	public void setDataFim(Date dataFim) {
+	public void setDataFim(String dataFim) {
 		this.dataFim = dataFim;
 	}
 

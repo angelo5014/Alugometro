@@ -13,7 +13,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -71,7 +70,7 @@ public class Anuncio {
 	@Basic(optional = false)
 	private String descricaoDetalhada;
 	
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "Id_Foto_Capa")
 	@Basic(optional = false)
 	private Foto fotoCapa;
@@ -79,9 +78,6 @@ public class Anuncio {
 	@Enumerated(EnumType.ORDINAL)
 	@Column(name = "Id_Situacao_Anuncio", length = 1)
 	private SituacaoAnuncio situacao;
-	
-	@OneToOne(mappedBy = "anuncio")
-	private AnuncioFoto demaisFotos;
 	
 	public static enum SituacaoAnuncio {
 		INDISPONIVEL, DISPONIVEL
@@ -182,19 +178,6 @@ public class Anuncio {
 	public void setFotoCapa(Foto fotoCapa) {
 		this.fotoCapa = fotoCapa;
 	}
-	public AnuncioFoto getDemaisFotos() {
-		return demaisFotos;
-	}
-	public void setDemaisFotos(AnuncioFoto demaisFotos) {
-		this.demaisFotos = demaisFotos;
-	}
-//	public List<Foto> getDemaisFotos() {
-//		return demaisFotos;
-//	}
-//
-//	public void setDemaisFotos(List<Foto> demaisFotos) {
-//		this.demaisFotos = demaisFotos;
-//	}
 
 	public SituacaoAnuncio getSituacao() {
 		return situacao;

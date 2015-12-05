@@ -6,7 +6,6 @@ import java.util.Date;
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.NumberFormat;
-import org.springframework.web.multipart.MultipartFile;
 
 public class AnuncioCadastroDTO {
 
@@ -38,7 +37,7 @@ public class AnuncioCadastroDTO {
 	@NotBlank
 	private String descricaoDetalhada;
 	
-	private MultipartFile fotoCapa;
+	private Long idFotoCapa;
 	
 	private String situacao;
 
@@ -130,12 +129,12 @@ public class AnuncioCadastroDTO {
 		this.descricaoDetalhada = descricaoDetalhada;
 	}
 
-	public MultipartFile getFotoCapa() {
-		return fotoCapa;
+	public Long getIdFotoCapa() {
+		return idFotoCapa;
 	}
 
-	public void setFotoCapa(MultipartFile fotoCapa) {
-		this.fotoCapa = fotoCapa;
+	public void setIdFotoCapa(Long idFotoCapa) {
+		this.idFotoCapa = idFotoCapa;
 	}
 
 	public String getSituacao() {
