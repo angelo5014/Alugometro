@@ -22,6 +22,9 @@ public class Foto {
 	public Foto(Long idFoto) {
 		this.idFoto = idFoto;
 	}
+	public Foto(String url) {
+		this.url = url;
+	}
 	
 	@Id
 	@Column(name = "Id_Foto")

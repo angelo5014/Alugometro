@@ -14,7 +14,7 @@ public class ReservaDAO extends AbstractDAO {
 	}
 	
 	public List<Reserva> buscarPorIdUsuario(Long idUsuario){
-		return em.createQuery("FROM Reserva WHERE Id_Usuario = :idUsuario")
+		return em.createQuery("FROM Reserva WHERE Id_Usuario = :idUsuario", Reserva.class)
 				.setParameter("idUsuario", idUsuario)
 				.getResultList();
 	}

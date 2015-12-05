@@ -1,6 +1,8 @@
 package br.com.alugometro.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 
 import br.com.alugometro.dao.UsuarioDAO;
@@ -22,6 +24,14 @@ public class UsuarioService {
 	public UsuarioService(UsuarioDAO usuarioDAO, UsuarioSenhaService senhaService){
 		this.usuarioDAO = usuarioDAO;
 		this.senhaService = senhaService;
+	}
+	
+	public Long obterIdDoUsuarioLogado() throws AbstractException{
+		User usuario = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+	
+		Usuario usuarioLogado = this.usuarioDAO.buscarPorEmail(usuario.getUsername());
+		
+		return usuarioLogado.getIdUsuario();
 	}
 	
 	public UsuarioDTO buscarPorId(Long idUsuario) throws UsuarioNaoEncontradoException{

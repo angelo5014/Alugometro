@@ -1,14 +1,13 @@
 package br.com.alugometro.controller.anuncio;
 
-import java.io.File;
 import java.io.IOException;
 
 import javax.validation.Valid;
 
-import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,6 +17,8 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.alugometro.dto.AnuncioDTO;
+import br.com.alugometro.exception.AbstractException;
+import br.com.alugometro.service.AnuncioImagemService;
 import br.com.alugometro.service.AnuncioService;
 import br.com.alugometro.service.CidadeService;
 import br.com.alugometro.service.TipoAcomodacaoService;
@@ -27,9 +28,16 @@ import br.com.alugometro.service.TipoImovelService;
 @RequestMapping("/anuncio")
 public class AnuncioInserirController extends AbstractAnuncioController{
 	
+	private AnuncioImagemService anuncioImagemService;
+	
 	@Autowired
-	public AnuncioInserirController(AnuncioService anuncioService, TipoImovelService tipoImovelService,TipoAcomodacaoService tipoAcomodacaoService, CidadeService cidadeService) {
+	public AnuncioInserirController(AnuncioService anuncioService,
+									TipoImovelService tipoImovelService,
+									TipoAcomodacaoService tipoAcomodacaoService,
+									CidadeService cidadeService,
+									AnuncioImagemService anuncioImagemService) {
 		super(anuncioService, tipoImovelService, tipoAcomodacaoService, cidadeService);
+		this.anuncioImagemService = anuncioImagemService;
 	}
 
 	@RequestMapping(path = "/inserir" , method = RequestMethod.GET)
@@ -47,36 +55,22 @@ public class AnuncioInserirController extends AbstractAnuncioController{
 			return new ModelAndView("anuncio/inserir");
 		}
 		if(!imagem.isEmpty()){
-			validarImagem(imagem);
+			if(!anuncioImagemService.validarFormatoImagem(imagem)){
+				result.addError(new FieldError("anuncio", "idFotoCapa", "Somente imagens jpg são aceitas"));
+				return new ModelAndView("anuncio/inserir");
+			}
 		}
-		
-		try {
-			saveImage(imagem.getOriginalFilename() + ".jpg", imagem);
-		} catch (IOException e) {
+		if(imagem.getSize() == 0 ){
+			result.addError(new FieldError("anuncio", "idFotoCapa", "Por favor insira uma imagem"));
 			return new ModelAndView("anuncio/inserir");
 		}
 		
-		redirectAttributes.addFlashAttribute("mensagem", "Anuncio criado com sucesso");
-		anuncioService.inserir(anuncioDTO);
-		return new ModelAndView("redirect:/");
-	}
-	
-	private void saveImage(String filename, MultipartFile image)
-			throws RuntimeException, IOException {
-			try {
-				
-				File file = new File("C:\\Alugometro\\" + filename);
-			
-				FileUtils.writeByteArrayToFile(file, image.getBytes());
-			
-			} catch (Exception e) {
-				throw e;
-			}
-		}
-	
-	private void validarImagem(MultipartFile imagem) {
-		if (!imagem.getContentType().equals("image/jpeg")) {
-			throw new RuntimeException("Only JPG images are accepted");
+		try {
+			anuncioService.inserir(anuncioDTO, imagem);
+			redirectAttributes.addFlashAttribute("mensagem", "Anuncio criado com sucesso");
+			return new ModelAndView("redirect:/home");
+		} catch (IOException | RuntimeException | AbstractException e) {
+			return new ModelAndView("anuncio/inserir");
 		}
 	}
 }

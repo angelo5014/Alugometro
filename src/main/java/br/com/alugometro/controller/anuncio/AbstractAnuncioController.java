@@ -23,7 +23,10 @@ public abstract class AbstractAnuncioController {
 	protected CidadeService cidadeService;
 
 	@Autowired
-	public AbstractAnuncioController(AnuncioService anuncioService, TipoImovelService tipoImovelService,TipoAcomodacaoService tipoAcomodacaoService, CidadeService cidadeService) {
+	public AbstractAnuncioController(AnuncioService anuncioService,
+									TipoImovelService tipoImovelService,
+									TipoAcomodacaoService tipoAcomodacaoService,
+									CidadeService cidadeService) {
 		this.anuncioService = anuncioService;
 		this.tipoImovelService = tipoImovelService;
 		this.cidadeService = cidadeService;
