@@ -1,5 +1,7 @@
 package br.com.alugometro.controller.anuncio;
 
+import java.math.BigDecimal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,6 +32,18 @@ public class AnuncioListarController extends AbstractAnuncioController {
 	@RequestMapping(path = "/listarPorCidade", method=RequestMethod.GET)
 	public ModelAndView listarPorCidade(@RequestParam("cidade") String cidade) {
 		return new ModelAndView("anuncio/listar", "anuncios", anuncioService.listarPorCidade(cidade));
+	}
+	
+	@RequestMapping(path = "/listarPorBuscaDetalhada", method=RequestMethod.GET)
+	public ModelAndView listarPorBuscaDetalhada(
+			@RequestParam("precoMenor") BigDecimal precoMenor, 
+			@RequestParam("precoMaior") BigDecimal precoMaior,
+			@RequestParam("idTipoImovel") Long idTipoImovel,
+			@RequestParam("idTipoAcomodacao") Long idTipoAcomodacao,
+			@RequestParam("idCidade") Long idCidade) {
+		
+		return new ModelAndView("anuncio/listar", "anuncios", anuncioService.listarPorBuscaDetalhada(
+				precoMenor, precoMaior, idTipoImovel, idTipoAcomodacao, idCidade));
 	}
 	
 }

@@ -1,6 +1,13 @@
 package br.com.alugometro.dao;
 
+import java.math.BigDecimal;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
 
@@ -24,34 +31,42 @@ public class AnuncioDAO extends AbstractDAO {
 				.getResultList();
 	}
 	
-	// Exemplo de busca com varios parametros
-	/*
-	public List<Anuncio> listarPorCidade(String material, String servico) {
-		StringBuilder sql = new StringBuilder("FROM Produto p WHERE 1=1");
+	public List<Anuncio> listarPorPrecoETipoImovelETipoAcomodacaoECidade(
+				BigDecimal precoMenor, BigDecimal precoMaior, Long idTipoImovel, Long idTipoAcomodacao, Long idCidade) {
+		
+		StringBuilder sql = new StringBuilder("FROM Anuncio a WHERE 1=1");
 
 		HashMap<String, Object> parameters = new HashMap<String, Object>();
 
-		if (material != null) {
-			sql.append(" AND p.material.descricao LIKE :material");
-			parameters.put("material", material);
+		if (precoMenor != null && precoMaior != null) {
+			sql.append(" AND a.diaria BETWEEN :precoMenor AND :precoMaior");
+			parameters.put("precoMenor", precoMenor);
+			parameters.put("precoMaior", precoMaior);
 		}
-		if (servico != null) {
-			sql.append(" AND p.servico.descricao LIKE :servico");
-			parameters.put("servico", servico);
+		if (idTipoImovel != null) {
+			sql.append(" AND a.tipoImovel.idTipoImovel = :idTipoImovel");
+			parameters.put("idTipoImovel", idTipoImovel);
+		}
+		if (idTipoAcomodacao != null) {
+			sql.append(" AND a.tipoAcomodacao.idTipoAcomodacao = :idTipoAcomodacao");
+			parameters.put("idTipoAcomodacao", idTipoAcomodacao);
+		}
+		if (idCidade != null) {
+			sql.append(" AND a.cidade.idCidade = :idCidade");
+			parameters.put("idCidade", idCidade);
 		}
 
-		TypedQuery<Produto> query = em.createQuery(sql.toString(), Produto.class);
+		TypedQuery<Anuncio> query = em.createQuery(sql.toString(), Anuncio.class);
 
 		Set set = parameters.entrySet();
 		Iterator iterator = set.iterator();
 		while (iterator.hasNext()) {
 			Map.Entry mentry = (Map.Entry) iterator.next();
-			query.setParameter(mentry.getKey().toString(), mentry.getValue() + "%");
+			query.setParameter(mentry.getKey().toString(), mentry.getValue());
 		}
 		
 		return query.getResultList();
 	}
-	*/
 	
 	public Anuncio salvar(Anuncio anuncio) {
 		if(anuncio.getIdAnuncio() == null){
