@@ -7,6 +7,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -54,7 +55,14 @@ public class AnuncioInserirController extends AbstractAnuncioController{
 			return new ModelAndView("anuncio/inserir");
 		}
 		if(!imagem.isEmpty()){
-			anuncioImagemService.validarImagem(imagem);
+			if(!anuncioImagemService.validarFormatoImagem(imagem)){
+				result.addError(new FieldError("anuncio", "idFotoCapa", "Somente imagens jpg são aceitas"));
+				return new ModelAndView("anuncio/inserir");
+			}
+		}
+		if(imagem.getSize() == 0 ){
+			result.addError(new FieldError("anuncio", "idFotoCapa", "Por favor insira uma imagem"));
+			return new ModelAndView("anuncio/inserir");
 		}
 		
 		try {
