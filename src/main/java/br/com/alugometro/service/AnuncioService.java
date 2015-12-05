@@ -37,9 +37,8 @@ public class AnuncioService {
 		return anunciosResumoDTO;
 	}
 	
-	public AnuncioDTO inserir(AnuncioDTO anuncioDTO){
-		anuncioDAO.salvar(AnuncioMapper.paraEntidade(anuncioDTO));
-		return anuncioDTO;
+	public Anuncio inserir(AnuncioDTO dto){
+		dto.setSituacao("DISPONIVEL");
+		return anuncioDAO.salvar(AnuncioMapper.paraEntidade(dto));
 	}
-	
 }
