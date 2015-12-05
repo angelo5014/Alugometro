@@ -15,8 +15,8 @@ public class Cidade {
 	public Cidade() {
 	}
 	
-	public Cidade(Estado estado) {
-		this.estado = estado;
+	public Cidade(Long idCidade) {
+		this.idCidade = idCidade;
 	}
 	
 	@Id
