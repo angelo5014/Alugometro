@@ -46,8 +46,8 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 
 			<p class="text-center content-text-l">Você procura, nós encontramos.</p>
 
-			<form action="#" class="form-container">
-				<input type="text" placeholder="Ex.: Rio de Janeiro..." class="block index-search form-radius" />
+			<form th:action="@{'/anuncio/listarPorCidade'}" method="GET" class="form-container">
+				<input type="text" placeholder="Ex.: Rio de Janeiro..." name="cidade" class="block index-search form-radius" />
 				<button class="block btn-default form-radius">Pesquisar</button>
 			</form>
 		</div>
