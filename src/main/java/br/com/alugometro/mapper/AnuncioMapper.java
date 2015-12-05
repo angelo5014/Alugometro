@@ -12,6 +12,7 @@ import br.com.alugometro.domain.TipoAcomodacao;
 import br.com.alugometro.domain.TipoImovel;
 import br.com.alugometro.domain.Usuario;
 import br.com.alugometro.dto.AnuncioDTO;
+import br.com.alugometro.service.CalendarioService;
 
 public class AnuncioMapper {
 
@@ -22,8 +23,8 @@ public class AnuncioMapper {
 		anuncio.setTipoAcomodacao(new TipoAcomodacao(dto.getIdTipoAcomodacao()));
 		anuncio.setNumeroPessoas(dto.getNumeroPessoas());
 		anuncio.setCidade(new Cidade(dto.getIdCidade()));
-		anuncio.setDataInicio(dateParaString(dto.getDataInicio()));
-		anuncio.setDataFim(dateParaString(dto.getDataFim()));
+		anuncio.setDataInicio(CalendarioService.converterStringParaDate(dto.getDataInicio()));
+		anuncio.setDataFim(CalendarioService.converterStringParaDate(dto.getDataFim()));
 		anuncio.setDiaria(dto.getDiaria());
 		anuncio.setDescricaoCapa(dto.getDescricaoCapa());
 		anuncio.setDescricaoDetalhada(dto.getDescricaoDetalhada());
@@ -49,16 +50,4 @@ public class AnuncioMapper {
 		dto.setSituacao(anuncio.getSituacao().toString());
 		return dto;
 	}
-	
-	private static Date dateParaString(String data){
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-		Date date = new Date();
-		try {
-			date = (Date) formatter.parse(data);
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		return date;
-	}
-	
 }

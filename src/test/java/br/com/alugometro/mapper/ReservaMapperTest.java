@@ -16,6 +16,7 @@ import br.com.alugometro.domain.Reserva.SituacaoReserva;
 import br.com.alugometro.domain.Usuario;
 import br.com.alugometro.dto.ReservaConfirmacaoDTO;
 import br.com.alugometro.dto.ReservaDTO;
+import br.com.alugometro.service.CalendarioService;
 
 public class ReservaMapperTest {
 
@@ -128,16 +129,8 @@ public class ReservaMapperTest {
 		Anuncio anuncio = new Anuncio();
 		anuncio.setIdAnuncio(1L);
 		
-		Date dataInicio = new Date();;
-		Date dataFim = new Date();
-		
-		try {
-			dataInicio = df.parse("10/10/2015");
-			dataFim = df.parse("11/10/2015");
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		String dataInicio = "10/10/2015";
+		String dataFim = "11/10/2015";
 		
 		ReservaConfirmacaoDTO dto = new ReservaConfirmacaoDTO();
 		dto.setIdAnuncio(1L);
@@ -150,8 +143,8 @@ public class ReservaMapperTest {
 		Reserva entidadeEsperada = new Reserva();
 		entidadeEsperada.setAnuncio(anuncio);
 		entidadeEsperada.setUsuario(usuario);
-		entidadeEsperada.setDataInicio(dataInicio);
-		entidadeEsperada.setDataFim(dataFim);
+		entidadeEsperada.setDataInicio(CalendarioService.converterStringParaDate(dataInicio));
+		entidadeEsperada.setDataFim(CalendarioService.converterStringParaDate(dataFim));
 		entidadeEsperada.setValorDia(new BigDecimal(10));
 		entidadeEsperada.setValorTotal(new BigDecimal(10));
 		
