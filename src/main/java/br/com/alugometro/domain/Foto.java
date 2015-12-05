@@ -6,8 +6,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -17,13 +15,6 @@ import javax.persistence.Table;
 public class Foto {
 	
 	public static final String SEQUENCE_NAME = "SEQ_Foto";
-	
-	public Foto() {
-	}
-	
-	public Foto(String url) {
-		this.url = url;
-	}
 	
 	@Id
 	@Column(name = "Id_Foto")
@@ -49,4 +40,5 @@ public class Foto {
 	public void setUrl(String url) {
 		this.url = url;
 	}
+	
 }
