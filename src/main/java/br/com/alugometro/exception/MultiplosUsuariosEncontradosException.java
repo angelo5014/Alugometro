@@ -1,5 +1,6 @@
 package br.com.alugometro.exception;
 
+@SuppressWarnings("serial")
 public class MultiplosUsuariosEncontradosException extends AbstractException{
 	
 	public MultiplosUsuariosEncontradosException(){

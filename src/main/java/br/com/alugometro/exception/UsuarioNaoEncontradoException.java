@@ -1,5 +1,6 @@
 package br.com.alugometro.exception;
 
+@SuppressWarnings("serial")
 public class UsuarioNaoEncontradoException extends AbstractException{
 
 	public UsuarioNaoEncontradoException(){
