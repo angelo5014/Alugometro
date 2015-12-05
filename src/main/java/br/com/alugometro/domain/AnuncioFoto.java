@@ -8,9 +8,15 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
-@Entity(name = "Anuncio_Foto")
+@Entity
+@Table(name = "Anuncio_Foto")
+@SequenceGenerator(name = AnuncioFoto.SEQUENCE_NAME, sequenceName = AnuncioFoto.SEQUENCE_NAME, allocationSize = 1)
 public class AnuncioFoto {
+	
+	public static final String SEQUENCE_NAME = "SEQ_Anuncio_Foto";
 	
 	@Id
 	@Column(name = "Id_Anuncio_Foto")
