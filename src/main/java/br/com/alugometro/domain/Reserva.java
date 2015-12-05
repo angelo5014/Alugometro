@@ -126,4 +126,20 @@ public class Reserva {
 	public void setSituacao(SituacaoReserva situacao) {
 		this.situacao = situacao;
 	}
+	
+	@Override
+	public boolean equals(Object obj){
+		Reserva obtido = (Reserva) obj;
+		boolean mesmoId = this.idReserva == obtido.getIdReserva();
+		boolean mesmoUsuario = this.usuario.getIdUsuario() == obtido.getUsuario().getIdUsuario();
+		boolean mesmoAnuncio = this.anuncio.getIdAnuncio() == obtido.getAnuncio().getIdAnuncio();
+		boolean mesmaDataInicio = this.dataInicio.compareTo(obtido.getDataInicio()) == 0;
+		boolean mesmaDataFim = this.dataFim.compareTo(obtido.getDataFim()) == 0;
+		boolean mesmoValorDia = this.valorDia.intValue() == obtido.getValorDia().intValue();
+		boolean mesmoValorTotal = this.valorTotal.intValue() == obtido.getValorTotal().intValue();
+		boolean mesmaSituacao = this.situacao == obtido.getSituacao();
+		
+		return mesmoId && mesmoUsuario && mesmoAnuncio && mesmaDataInicio && mesmaDataFim && mesmoValorDia
+				&& mesmoValorTotal && mesmaSituacao;
+	}
 }
