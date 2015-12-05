@@ -31,11 +31,14 @@ public class UsuarioDTO {
 	
 	@NotNull
 	@NotBlank
-	@Length(max = 32)
+	@Length(min = 8,max = 32)
 	private String senha;
 	
 	@NotNull
 	@NotBlank
+	@Length(min = 8,max = 32)
+	private String confirmacaoSenha;
+	
 	private SituacaoUsuario situacao;
 	
 	private PermissaoUsuario permissao;
@@ -81,6 +84,12 @@ public class UsuarioDTO {
 	}
 	public void setPermissao(PermissaoUsuario permissao) {
 		this.permissao = permissao;
+	}
+	public void setConfirmacaoSenha(String confirmacaoSenha) {
+		this.confirmacaoSenha = confirmacaoSenha;
+	}
+	public String getConfirmacaoSenha() {
+		return confirmacaoSenha;
 	}
 	
 	public boolean estaAtivo(){
