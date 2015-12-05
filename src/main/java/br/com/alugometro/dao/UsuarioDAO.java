@@ -25,7 +25,7 @@ public class UsuarioDAO extends AbstractDAO{
 	}
 	
 	public Usuario buscarPorEmail(String email) throws AbstractException{
-		List<Usuario> usuarios = this.em.createQuery("FROM Usuario WHERE Email = :email")
+		List<Usuario> usuarios = this.em.createQuery("FROM Usuario WHERE Email = :email", Usuario.class)
 								.setParameter("email", email)
 								.getResultList();
 		if(!usuarios.isEmpty()){
