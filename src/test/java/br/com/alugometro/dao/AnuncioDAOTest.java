@@ -16,7 +16,7 @@ public class AnuncioDAOTest extends AbstractInfrastructureTest {
 	
 	@Test
 	public void testListarPorCidade() throws Exception {
-		List<Anuncio> anuncios = anuncioDAO.listarPorCidade("Porto Alegre");
+		List<Anuncio> anuncios = anuncioDAO.listarPorCidade("P");
 		Assert.assertNotNull(anuncios);
 	}
 
