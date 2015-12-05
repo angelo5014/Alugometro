@@ -16,7 +16,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 					<div class="form-insert-heading">
 						Insira os dados do seu anuncio
 					</div>
-					<form th:action="@{/anuncio/inserir}" action="/anuncio/inserir" th:object="${anuncio}" method="POST">
+					<form th:action="@{/anuncio/inserir}" action="/anuncio/inserir" th:object="${anuncio}" method="POST" enctype="multipart/form-data">
 						<label>
 							<span>Tipo de Imóvel:</span>
 							<select th:field="*{idTipoImovel}" class="select-field">
@@ -33,7 +33,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 
 						<label>
 							<span>Nº de Pessoas:</span>
-							<input type="number" class="input-field" id="" placeholder="" />
+							<input th:field="*{numeroPessoas}" type="number" class="input-field" id="" placeholder="" />
 						</label>
 
 						<label>
@@ -55,22 +55,22 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 
 						<label>
 							<span>Preço por dia:</span>
-							<input type="number" class="input-field" id="" placeholder="" />
+							<input th:field="*{diaria}" type="number" class="input-field" id="" placeholder="" />
 						</label>
 
 						<label>
 							<span>Descrição Capa:</span>
-							<input type="text" class="input-field" id="" placeholder="" />
+							<input th:field="*{descricaoCapa}" type="text" class="input-field" id="" placeholder="" />
 						</label>
 
 						<label>
 							<span>Descrição Detalhada:</span>
-							<textarea class="textarea-field"></textarea>
+							<textarea th:field="*{descricaoDetalhada}" class="textarea-field"></textarea>
 						</label>
 
 						<label>
 							<span>Foto Capa:</span>
-							<input type="file" class="input-field" id="" placeholder="" />
+							<input name="imagem" type="file" class="input-field" id="" placeholder="" />
 						</label>
 
 						<label>
