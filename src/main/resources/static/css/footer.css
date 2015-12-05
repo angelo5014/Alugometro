@@ -4,6 +4,10 @@
 	background-color: #fff;
 }
 
+.footer-inverse {
+	border-top: 1px solid #bdc3c7;
+}
+
 .footer-text {
 	margin: 0;
 	padding: 30px;
