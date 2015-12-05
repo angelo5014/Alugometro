@@ -1,12 +1,12 @@
 package br.com.alugometro.controller.anuncio;
 
-import java.io.File;
 import java.io.IOException;
 
 import javax.validation.Valid;
 
-import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.alugometro.dto.AnuncioDTO;
+import br.com.alugometro.service.AnuncioImagemService;
 import br.com.alugometro.service.AnuncioService;
 import br.com.alugometro.service.CidadeService;
 import br.com.alugometro.service.TipoAcomodacaoService;
@@ -27,9 +28,16 @@ import br.com.alugometro.service.TipoImovelService;
 @RequestMapping("/anuncio")
 public class AnuncioInserirController extends AbstractAnuncioController{
 	
+	private AnuncioImagemService anuncioImagemService;
+	
 	@Autowired
-	public AnuncioInserirController(AnuncioService anuncioService, TipoImovelService tipoImovelService,TipoAcomodacaoService tipoAcomodacaoService, CidadeService cidadeService) {
+	public AnuncioInserirController(AnuncioService anuncioService,
+									TipoImovelService tipoImovelService,
+									TipoAcomodacaoService tipoAcomodacaoService,
+									CidadeService cidadeService,
+									AnuncioImagemService anuncioImagemService) {
 		super(anuncioService, tipoImovelService, tipoAcomodacaoService, cidadeService);
+		this.anuncioImagemService = anuncioImagemService;
 	}
 
 	@RequestMapping(path = "/inserir" , method = RequestMethod.GET)
@@ -43,40 +51,27 @@ public class AnuncioInserirController extends AbstractAnuncioController{
 								final RedirectAttributes redirectAttributes,
 								@RequestPart("imagem") MultipartFile imagem){
 		
+		User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		
+		System.out.println(user.getUsername());
+		
 		if(result.hasErrors()){
 			return new ModelAndView("anuncio/inserir");
 		}
 		if(!imagem.isEmpty()){
-			validarImagem(imagem);
+			anuncioImagemService.validarImagem(imagem);
 		}
 		
+		Long idFoto;
 		try {
-			saveImage(imagem.getOriginalFilename() + ".jpg", imagem);
+			idFoto = anuncioImagemService.saveImage(imagem.getOriginalFilename(), imagem).getIdFoto();
 		} catch (IOException e) {
 			return new ModelAndView("anuncio/inserir");
 		}
 		
 		redirectAttributes.addFlashAttribute("mensagem", "Anuncio criado com sucesso");
+		anuncioDTO.setIdFotoCapa(idFoto);
 		anuncioService.inserir(anuncioDTO);
 		return new ModelAndView("redirect:/");
-	}
-	
-	private void saveImage(String filename, MultipartFile image)
-			throws RuntimeException, IOException {
-			try {
-				
-				File file = new File("C:\\Alugometro\\" + filename);
-			
-				FileUtils.writeByteArrayToFile(file, image.getBytes());
-			
-			} catch (Exception e) {
-				throw e;
-			}
-		}
-	
-	private void validarImagem(MultipartFile imagem) {
-		if (!imagem.getContentType().equals("image/jpeg")) {
-			throw new RuntimeException("Only JPG images are accepted");
-		}
 	}
 }
