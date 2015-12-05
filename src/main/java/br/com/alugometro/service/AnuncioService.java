@@ -1,5 +1,6 @@
 package br.com.alugometro.service;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,6 +41,20 @@ public class AnuncioService {
 	public List<AnuncioResumoDTO> listarPorCidade(String cidade) {
 
 		List<Anuncio> anuncios = anuncioDAO.listarPorCidade(cidade);
+
+		List<AnuncioResumoDTO> anunciosDTO = new ArrayList<AnuncioResumoDTO>();
+		for (Anuncio anuncio : anuncios) {
+			anunciosDTO.add(new AnuncioResumoDTO(anuncio));
+		}
+
+		return anunciosDTO;
+	}
+	
+	public List<AnuncioResumoDTO> listarPorBuscaDetalhada(
+			BigDecimal precoMenor, BigDecimal precoMaior, Long idTipoImovel, Long idTipoAcomodacao, Long idCidade) {
+
+		List<Anuncio> anuncios = anuncioDAO.listarPorPrecoETipoImovelETipoAcomodacaoECidade(
+				precoMenor, precoMaior, idTipoImovel, idTipoAcomodacao, idCidade);
 
 		List<AnuncioResumoDTO> anunciosDTO = new ArrayList<AnuncioResumoDTO>();
 		for (Anuncio anuncio : anuncios) {

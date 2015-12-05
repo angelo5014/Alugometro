@@ -16,9 +16,9 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 					<div class="form-insert-heading">
 						Filtre sua busca
 					</div>
-					<form th:action="@{/anuncio/buscar}" action="/anuncio/buscar" method="GET">
-						<input type="hidden" id="minval" />
-						<input type="hidden" id="maxval" />	
+					<form th:action="@{/anuncio/listarPorBuscaDetalhada}" action="/anuncio/buscar" method="GET">
+						<input type="hidden" id="minval" name="precoMenor" />
+						<input type="hidden" id="maxval" name="precoMaior" />
 						<label>
 							<p>
 								<span for="amount">Faixa de Preço:</span>
@@ -29,21 +29,21 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 
 						<label>
 							<span>Cidade:</span>
-							<select class="select-field form-input-aside">
+							<select class="select-field form-input-aside" name="idCidade">
 								<option th:each="c : ${cidades}" th:text="${c.nome}" th:value="${c.idCidade}" >[option]</option>
 							</select>
 						</label>
 
 						<label>
 							<span>Tipo de Imóvel:</span>
-							<select class="select-field form-input-aside">
+							<select class="select-field form-input-aside" name="idTipoImovel">
 								<option th:each="tipoImovel : ${tiposImoveis}" th:text="${tipoImovel.descricao}" th:value="${tipoImovel.idTipoImovel}" >[option]</option>
 							</select>
 						</label>
 
 						<label>
 							<span>Tipo de Acomodação:</span>
-							<select class="select-field form-input-aside">
+							<select class="select-field form-input-aside" name="idTipoAcomodacao">
 								<option th:each="tipoAcomodacao : ${tiposAcomodacoes}" th:text="${tipoAcomodacao.descricao}" th:value="${tipoAcomodacao.idTipoAcomodacao}" >[option]</option>
 							</select>
 						</label>
