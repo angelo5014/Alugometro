@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.alugometro.dto.ReservaConfirmacaoDTO;
-import br.com.alugometro.service.AnuncioService;
 import br.com.alugometro.service.ReservaService;
 
 @Controller
