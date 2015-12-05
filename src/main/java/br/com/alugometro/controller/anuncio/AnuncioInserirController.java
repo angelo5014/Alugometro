@@ -5,8 +5,6 @@ import java.io.IOException;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -18,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.alugometro.dto.AnuncioDTO;
+import br.com.alugometro.exception.AbstractException;
 import br.com.alugometro.service.AnuncioImagemService;
 import br.com.alugometro.service.AnuncioService;
 import br.com.alugometro.service.CidadeService;
@@ -51,10 +50,6 @@ public class AnuncioInserirController extends AbstractAnuncioController{
 								final RedirectAttributes redirectAttributes,
 								@RequestPart("imagem") MultipartFile imagem){
 		
-		User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		
-		System.out.println(user.getUsername());
-		
 		if(result.hasErrors()){
 			return new ModelAndView("anuncio/inserir");
 		}
@@ -62,16 +57,12 @@ public class AnuncioInserirController extends AbstractAnuncioController{
 			anuncioImagemService.validarImagem(imagem);
 		}
 		
-		Long idFoto;
 		try {
-			idFoto = anuncioImagemService.saveImage(imagem.getOriginalFilename(), imagem).getIdFoto();
-		} catch (IOException e) {
+			anuncioService.inserir(anuncioDTO, imagem);
+			redirectAttributes.addFlashAttribute("mensagem", "Anuncio criado com sucesso");
+			return new ModelAndView("redirect:/home");
+		} catch (IOException | RuntimeException | AbstractException e) {
 			return new ModelAndView("anuncio/inserir");
 		}
-		
-		redirectAttributes.addFlashAttribute("mensagem", "Anuncio criado com sucesso");
-		anuncioDTO.setIdFotoCapa(idFoto);
-		anuncioService.inserir(anuncioDTO);
-		return new ModelAndView("redirect:/");
 	}
 }

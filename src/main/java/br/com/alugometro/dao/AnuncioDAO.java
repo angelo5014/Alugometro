@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.Set;
 
 import javax.persistence.TypedQuery;
+import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
 
@@ -68,6 +69,7 @@ public class AnuncioDAO extends AbstractDAO {
 		return query.getResultList();
 	}
 	
+	@Transactional
 	public Anuncio salvar(Anuncio anuncio) {
 		if(anuncio.getIdAnuncio() == null){
 			em.persist(anuncio);

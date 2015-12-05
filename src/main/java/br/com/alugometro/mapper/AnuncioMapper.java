@@ -51,7 +51,7 @@ public class AnuncioMapper {
 	}
 	
 	private static Date dateParaString(String data){
-		SimpleDateFormat formatter = new SimpleDateFormat();
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = new Date();
 		try {
 			date = (Date) formatter.parse(data);
