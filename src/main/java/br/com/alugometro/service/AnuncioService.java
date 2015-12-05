@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.alugometro.dao.AnuncioDAO;
 import br.com.alugometro.domain.Anuncio;
-import br.com.alugometro.dto.AnuncioCadastroDTO;
+import br.com.alugometro.dto.AnuncioDTO;
 import br.com.alugometro.dto.AnuncioResumoDTO;
 import br.com.alugometro.mapper.AnuncioMapper;
 
@@ -22,8 +22,8 @@ public class AnuncioService {
 		this.anuncioDAO = anuncioDAO;
 	}
 	
-	public AnuncioCadastroDTO buscarPorID(Long idAnuncio) {
-		return AnuncioMapper.paraDTO(anuncioDAO.encontrarPorId(idAnuncio));
+	public AnuncioDTO buscarPorID(Long idAnuncio) {
+		return AnuncioMapper.paraDTO(anuncioDAO.buscarPorId(idAnuncio));
 	}
 	
 	public List<AnuncioResumoDTO> listarTodos() {
@@ -37,8 +37,9 @@ public class AnuncioService {
 		return anunciosResumoDTO;
 	}
 	
-	public AnuncioCadastroDTO inserir(AnuncioCadastroDTO dto){
-		anuncioDAO.salvar(AnuncioMapper.gerarNovaEntidade(dto));
-		return dto;
+	public AnuncioDTO inserir(AnuncioDTO anuncioDTO){
+		anuncioDAO.salvar(AnuncioMapper.paraEntidade(anuncioDTO));
+		return anuncioDTO;
 	}
+	
 }

@@ -33,10 +33,6 @@ public class Foto {
 	@Column(name = "Url")
 	@Basic(optional = false)
 	private String url;
-	
-	@ManyToOne
-	@JoinColumn(name = "Id_Anuncio")
-	private Anuncio anuncio;
 
 	public Long getIdFoto() {
 		return idFoto;
@@ -53,13 +49,4 @@ public class Foto {
 	public void setUrl(String url) {
 		this.url = url;
 	}
-
-	public Anuncio getAnuncio() {
-		return anuncio;
-	}
-
-	public void setAnuncio(Anuncio anuncio) {
-		this.anuncio = anuncio;
-	}
-	
 }

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR"
+xmlns="http://www.w3.org/1999/xhtml" 
+xmlns:th="http://www.thymeleaf.org" 
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorator="template"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+	<title>Confirmar Reserva</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<div class="container">
+
+			<h2 class="text-center content-title-s">Confirmar Reserva</h2>
+		
+			<table th:object="${reservaConfirmacao}">
+				<tr>
+					<td>ID ANUNCIO</td>
+					<td th:text="*{idAnuncio}">Anúncio</td>
+				</tr>
+				<tr>
+					<td>LOCATARIO</td>
+					<td th:text="*{nomeLocador}">Locatário</td>
+				</tr>
+				<tr>
+					<td>LOCAL</td>
+					<td th:text="*{local}">Local</td>
+				</tr>
+				<tr>
+					<td>DATA INICIO</td>
+					<td th:text="*{dataInicio}">Data Inicio</td>
+				</tr>
+				<tr>
+					<td>DATA FIM</td>
+					<td th:text="*{dataFim}">Data Fim</td>
+				</tr>
+				<tr>
+					<td>DIARIA</td>
+					<td th:text="*{diaria}">Anúncio</td>
+				</tr>
+				<tr>
+					<td>TOTAL</td>
+					<td th:text="*{total}">Valor Total</td>
+				</tr>
+				<span>FAZER INPUTS PARA AS DATAS, E CALCULAR VALOR TOTAL SENDO: DIFERENÇA ENTRE AS DATAS * DIARIA</span>
+			</table>
+		
+		</div>
+	</div>
+</body>
+</html>
