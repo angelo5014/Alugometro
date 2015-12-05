@@ -18,6 +18,13 @@ public class Usuario {
 
 	public static final String SEQUENCE_NAME = "SEQ_Usuario";
 	
+	public Usuario() {
+	}
+	
+	public Usuario(Long idUsuario) {
+		this.idUsuario = idUsuario;
+	}
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = SEQUENCE_NAME)
 	@Column(name = "Id_Usuario")
@@ -48,13 +55,6 @@ public class Usuario {
 	@Column(name = "Permissao")
 	@Basic(optional = false)
 	private PermissaoUsuario permissao;
-	
-	public Usuario() {
-	}
-	
-	public Usuario(Long idUsuario) {
-		this.idUsuario = idUsuario;
-	}
 	
 	public Long getIdUsuario() {
 		return idUsuario;

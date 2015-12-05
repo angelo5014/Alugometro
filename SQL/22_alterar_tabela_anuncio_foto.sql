@@ -10,4 +10,4 @@ Alter table Anuncio_Foto Drop Column Id_Foto;
 Alter table Anuncio_Foto Add Id_Anuncio NUMBER NOT NULL;
 Alter table Anuncio_Foto Add Id_Foto NUMBER NOT NULL;
 
---RODAR SCRIPT 1 NOVAMENTE
+--RODAR SCRIPT 15 NOVAMENTE
