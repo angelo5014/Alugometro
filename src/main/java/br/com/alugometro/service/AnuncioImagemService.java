@@ -6,11 +6,11 @@ import java.io.IOException;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.validation.FieldError;
 import org.springframework.web.multipart.MultipartFile;
 
 import br.com.alugometro.dao.FotoDAO;
 import br.com.alugometro.domain.Foto;
+import br.com.alugometro.exception.MultiplosUsuariosEncontradosException;
 
 @Service
 public class AnuncioImagemService {
@@ -24,11 +24,10 @@ public class AnuncioImagemService {
 		this.fotoDAO = fotoDAO;
 	}
 	
-	public boolean validarFormatoImagem(MultipartFile imagem) {
+	public void validarFormatoImagem(MultipartFile imagem) throws MultiplosUsuariosEncontradosException {
 		if (imagem.getContentType().equals("image/jpeg")) {
-			return true;
+			throw new MultiplosUsuariosEncontradosException();
 		}
-		return false;
 	}
 	
 	public Foto saveImage(String filename, MultipartFile image)
