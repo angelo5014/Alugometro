@@ -6,8 +6,9 @@ import java.util.Date;
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.NumberFormat;
+import org.springframework.web.multipart.MultipartFile;
 
-public class AnuncioDTO {
+public class AnuncioCadastroDTO {
 
 	private Long idAnuncio;
 	
@@ -21,16 +22,7 @@ public class AnuncioDTO {
 	private int numeroPessoas;
 	
 	private Long idCidade;
-	
-	@NotBlank
-	private String nomeCidade;
-	
-	@NotBlank
-	private Long idEstado;
-	
-	@NotBlank
-	private Long idFederacao;
-	
+
 	@DateTimeFormat
 	private Date dataInicio;
 	
@@ -46,8 +38,7 @@ public class AnuncioDTO {
 	@NotBlank
 	private String descricaoDetalhada;
 	
-	@NotBlank
-	private String fotoCapa;
+	private MultipartFile fotoCapa;
 	
 	private String situacao;
 
@@ -99,30 +90,6 @@ public class AnuncioDTO {
 		this.idCidade = idCidade;
 	}
 
-	public String getNomeCidade() {
-		return nomeCidade;
-	}
-
-	public void setNomeCidade(String nomeCidade) {
-		this.nomeCidade = nomeCidade;
-	}
-
-	public Long getIdEstado() {
-		return idEstado;
-	}
-
-	public void setIdEstado(Long idEstado) {
-		this.idEstado = idEstado;
-	}
-
-	public Long getIdFederacao() {
-		return idFederacao;
-	}
-
-	public void setIdFederacao(Long idFederacao) {
-		this.idFederacao = idFederacao;
-	}
-
 	public Date getDataInicio() {
 		return dataInicio;
 	}
@@ -163,11 +130,11 @@ public class AnuncioDTO {
 		this.descricaoDetalhada = descricaoDetalhada;
 	}
 
-	public String getFotoCapa() {
+	public MultipartFile getFotoCapa() {
 		return fotoCapa;
 	}
 
-	public void setFotoCapa(String fotoCapa) {
+	public void setFotoCapa(MultipartFile fotoCapa) {
 		this.fotoCapa = fotoCapa;
 	}
 
