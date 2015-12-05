@@ -10,82 +10,81 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 </head>
 <body>
 	<div layout:fragment="content">
-		<div class="container">
-			<h2 class="text-center content-title-s">Cadastrar Anúncio</h2>
-
-			<form th:action="@{/anuncio/inserir}" action="/anuncio/inserir" th:object="${anuncio}" method="POST" class="form-horizontal" enctype="multipart/form-data">
-
-				<div class="form-group form-group-lg">
-					<label for="" class="col-sm-2 control-label">Tipo de Imóvel:</label>
-					<div class="col-sm-10">
-						<select th:field="*{idTipoImovel}" class="form-control">
-							<option th:each="tipoImovel : ${tiposImoveis}" th:text="${tipoImovel.descricao}" th:value="${tipoImovel.idTipoImovel}" >[option]</option>
-						</select>
+		<div class="row">
+			<div class="col col-s-12 col-l-12">
+				<div class="form-insert section">
+					<div class="form-insert-heading">
+						Insira os dados do seu anuncio
 					</div>
-				</div>
+					<form th:action="@{/anuncio/inserir}" action="/anuncio/inserir" th:object="${anuncio}" method="POST" enctype="multipart/form-data">
+						<label>
+							<span>Tipo de Imóvel:</span>
+							<select th:field="*{idTipoImovel}" class="select-field">
+								<option th:each="tipoImovel : ${tiposImoveis}" th:text="${tipoImovel.descricao}" th:value="${tipoImovel.idTipoImovel}" >[option]</option>
+							</select>
+						</label>
 
-				<div class="form-group form-group-lg">
-					<label for="" class="col-sm-2 control-label">Tipo de Acomodação:</label>
-					<div class="col-sm-10">
-						<select th:field="*{idTipoAcomodacao}" class="form-control">
-							<option th:each="tipoAcomodacao : ${tiposAcomodacoes}" th:text="${tipoAcomodacao.descricao}" th:value="${tipoAcomodacao.idTipoAcomodacao}" >[option]</option>
-						</select>
-					</div>
-				</div>
+						<label>
+							<span>Tipo de Acomodação:</span>
+							<select th:field="*{idTipoAcomodacao}" class="select-field">
+								<option th:each="tipoAcomodacao : ${tiposAcomodacoes}" th:text="${tipoAcomodacao.descricao}" th:value="${tipoAcomodacao.idTipoAcomodacao}" >[option]</option>
+							</select>
+						</label>
 
-				<div class="form-group form-group-lg">
-					<label for="" class="col-sm-2 control-label">Nº de pessoas:</label>
-					<div class="col-sm-10">
-						<input th:field="*{numeroPessoas}" type="number" class="form-control" id="" placeholder="" />
-					</div>
-				</div>
+						<label>
+							<span>Nº de Pessoas:</span>
+							<input th:field="*{numeroPessoas}" type="number" class="input-field" id="" placeholder="" />
+						</label>
 
-				<div class="form-group form-group-lg">
-					<label for="" class="col-sm-2 control-label">Cidade:</label>
-					<div class="col-sm-10">
-						<select th:field="*{idCidade}" class="form-control">
-							<option th:each="c : ${cidades}" th:text="${c.nome}" th:value="${c.idCidade}" >[option]</option>
-						</select>
-					</div>
-				</div>
+						<label>
+							<span>Cidade:</span>
+							<select th:field="*{idCidade}" class="select-field">
+								<option th:each="c : ${cidades}" th:text="${c.nome}" th:value="${c.idCidade}" >[option]</option>
+							</select>
+						</label>
 
-				<div class="form-group form-group-lg">
-					<label for="" class="col-sm-2 control-label">Preço por dia:</label>
-					<div class="col-sm-10">
-						<input th:field="*{diaria}" type="number" class="form-control" id="" placeholder="" />
-					</div>
-				</div>
+						<label>
+							<span>Data disponibilidade inicial:</span>
+							<input type="date" class="input-field" id="" placeholder="" />
+						</label>
 
-				<div class="form-group form-group-lg">
-					<label for="" class="col-sm-2 control-label">Descrição capa:</label>
-					<div class="col-sm-10">
-						<input th:field="*{descricaoCapa}" type="text" class="form-control" id="" placeholder="" />
-					</div>
-				</div>
+						<label>
+							<span>Data disponibilidade final:</span>
+							<input type="date" class="input-field" id="" placeholder="" />
+						</label>
 
-				<div class="form-group form-group-lg">
-					<label for="" class="col-sm-2 control-label">Descrição detalhada:</label>
-					<div class="col-sm-10">
-						<input th:field="*{descricaoDetalhada}" type="text" class="form-control" id="" placeholder="" />
-					</div>
-				</div>
+						<label>
+							<span>Preço por dia:</span>
+							<input th:field="*{diaria}" type="number" class="input-field" id="" placeholder="" />
+						</label>
 
-				<div class="form-group form-group-lg">
-					<label for="" class="col-sm-2 control-label">Foto capa:</label>
-					<div class="col-sm-10">
-						<input name="imagem" type="file" class="form-control" id="imagem" placeholder="" />
-					</div>
-				</div>
+						<label>
+							<span>Descrição Capa:</span>
+							<input th:field="*{descricaoCapa}" type="text" class="input-field" id="" placeholder="" />
+						</label>
 
-				<div class="form-group form-group-lg">
-					<label for="" class="col-sm-2 control-label">Demais fotos:</label>
-					<div class="col-sm-10">
-						<input type="file" class="form-control" id="" placeholder="" />
-					</div>
-				</div>
+						<label>
+							<span>Descrição Detalhada:</span>
+							<textarea th:field="*{descricaoDetalhada}" class="textarea-field"></textarea>
+						</label>
 
-				<button class="block btn-default form-radius">Anunciar</button>
-			</form>
+						<label>
+							<span>Foto Capa:</span>
+							<input name="imagem" type="file" class="input-field" id="" placeholder="" />
+						</label>
+
+						<label>
+							<span>Demais Fotos:</span>
+							<input type="file" class="input-field" id="" placeholder="" />
+						</label>
+
+						<label>
+							<span>&nbsp;</span>
+							<input type="submit" value="Cadastrar" />
+						</label>
+					</form>
+				</div>
+			</div>
 		</div>
 	</div>
 </body>

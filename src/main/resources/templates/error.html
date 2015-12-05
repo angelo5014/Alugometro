@@ -6,12 +6,9 @@ xmlns:th="http://www.thymeleaf.org">
 	<meta charset="UTF-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<title layout:title-pattern="$DECORATOR_TITLE - $CONTENT_TITLE">Alugômetro</title>
-
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+	<title>Erro</title>
 </head>
 <body>
-
 	<h1 class="index-title">Ocorreu algum erro inesperado :(</h1>
 
 	<p th:text="${timestamp}" class="index-paragraph"></p>
@@ -23,8 +20,5 @@ xmlns:th="http://www.thymeleaf.org">
 	<div th:if="${ex} or ${exception} or (${message} and ${message.length() != 0})">
 		<p th:text="${message}" class="index-paragraph">message...</p>
 	</div>
-
-	<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </body>
 </html>

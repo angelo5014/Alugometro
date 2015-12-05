@@ -11,8 +11,8 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 
 	<title layout:title-pattern="$DECORATOR_TITLE - $CONTENT_TITLE">Alugômetro</title>
 
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css' />
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
 	<link rel="stylesheet" href="/css/normalize.css" />
 	<link rel="stylesheet" href="/css/grid.css" />
 	<link rel="stylesheet" href="/css/modules.css" />
@@ -23,14 +23,23 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 	<link rel="stylesheet" href="/css/footer.css" />
 </head>
 <body>
+	<!-- HEADER -->
 	<div th:include="fragments/_header :: header"></div>
 
+	<!-- CONTEUDO -->
 	<div class="bg-color">
-		<div layout:fragment="content" class="content"></div>
+		<div class="content">
+			<div layout:fragment="content" class="container">
+				
+			</div>
+		</div>
 	</div>
-
+	
+	<!-- RODAPE -->
 	<div th:include="fragments/_footer :: footer"></div>
 
 	<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	<script src="/js/template.js"></script>
 </body>
 </html>
