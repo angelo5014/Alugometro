@@ -8,6 +8,7 @@ import br.com.alugometro.domain.Reserva;
 import br.com.alugometro.domain.Usuario;
 import br.com.alugometro.dto.ReservaConfirmacaoDTO;
 import br.com.alugometro.dto.ReservaDTO;
+import br.com.alugometro.service.CalendarioService;
 
 public class ReservaMapper {
 	
@@ -44,8 +45,8 @@ public class ReservaMapper {
 		
 		entidade.setAnuncio(anuncio);
 		entidade.setUsuario(usuario);
-		entidade.setDataInicio(dto.getDataInicio());
-		entidade.setDataFim(dto.getDataFim());
+		entidade.setDataInicio(CalendarioService.converterStringParaDate(dto.getDataInicio()));
+		entidade.setDataFim(CalendarioService.converterStringParaDate(dto.getDataFim()));
 		entidade.setValorDia(dto.getDiaria());
 		entidade.setValorTotal(dto.getTotal());
 		
