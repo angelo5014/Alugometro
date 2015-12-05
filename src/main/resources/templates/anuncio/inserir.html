@@ -46,31 +46,37 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 						<label>
 							<span>Data disponibilidade inicial:</span>
 							<input th:field="*{dataInicio}" type="date" class="input-field" id="" placeholder="" />
+							<span class="content-text-ss help-inline" th:errors="*{dataInicio}"></span>
 						</label>
 
 						<label>
 							<span>Data disponibilidade final:</span>
 							<input th:field="*{dataFim}" type="date" class="input-field" id="" placeholder="" />
+							<span class="content-text-ss help-inline" th:errors="*{dataFim}"></span>
 						</label>
 
 						<label>
 							<span>Preço por dia:</span>
 							<input th:field="*{diaria}" type="number" class="input-field" id="" placeholder="" />
+							<span class="content-text-ss help-inline" th:errors="*{diaria}"></span>
 						</label>
 
 						<label>
 							<span>Descrição Capa:</span>
 							<input th:field="*{descricaoCapa}" type="text" class="input-field" id="" placeholder="" />
+							<span class="content-text-ss help-inline" th:errors="*{descricaoCapa}"></span>
 						</label>
 
 						<label>
 							<span>Descrição Detalhada:</span>
 							<textarea th:field="*{descricaoDetalhada}" class="textarea-field"></textarea>
+							<span class="content-text-ss help-inline" th:errors="*{descricaoDetalhada}"></span>
 						</label>
 
 						<label>
 							<span>Foto Capa:</span>
 							<input name="imagem" type="file" class="input-field" id="" placeholder="" />
+							<span class="content-text-ss help-inline" th:errors="*{idFotoCapa}"></span>
 						</label>
 
 						<label>
