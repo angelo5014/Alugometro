@@ -45,12 +45,12 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 
 						<label>
 							<span>Data disponibilidade inicial:</span>
-							<input type="date" class="input-field" id="" placeholder="" />
+							<input th:field="*{dataInicio}" type="date" class="input-field" id="" placeholder="" />
 						</label>
 
 						<label>
 							<span>Data disponibilidade final:</span>
-							<input type="date" class="input-field" id="" placeholder="" />
+							<input th:field="*{dataFim}" type="date" class="input-field" id="" placeholder="" />
 						</label>
 
 						<label>
