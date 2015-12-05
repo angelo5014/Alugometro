@@ -1,10 +1,12 @@
 package br.com.alugometro.mapper;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import br.com.alugometro.domain.Anuncio;
 import br.com.alugometro.domain.Anuncio.SituacaoAnuncio;
 import br.com.alugometro.domain.Cidade;
-import br.com.alugometro.domain.Estado;
-import br.com.alugometro.domain.Federacao;
 import br.com.alugometro.domain.Foto;
 import br.com.alugometro.domain.TipoAcomodacao;
 import br.com.alugometro.domain.TipoImovel;
@@ -13,20 +15,20 @@ import br.com.alugometro.dto.AnuncioDTO;
 
 public class AnuncioMapper {
 
-	public static Anuncio paraEntidade(AnuncioDTO anuncioDTO) {
+	public static Anuncio paraEntidade(AnuncioDTO dto) {
 		Anuncio anuncio = new Anuncio();
-		anuncio.setUsuario(new Usuario(anuncioDTO.getIdUsuario()));
-		anuncio.setTipoImovel(new TipoImovel(anuncioDTO.getIdTipoImovel()));
-		anuncio.setTipoAcomodacao(new TipoAcomodacao(anuncioDTO.getIdTipoAcomodacao()));
-		anuncio.setNumeroPessoas(anuncioDTO.getNumeroPessoas());
-		anuncio.setCidade(new Cidade(new Estado(new Federacao(anuncioDTO.getIdFederacao()))));
-		anuncio.setDataInicio(anuncioDTO.getDataInicio());
-		anuncio.setDataFim(anuncioDTO.getDataFim());
-		anuncio.setDiaria(anuncioDTO.getDiaria());
-		anuncio.setDescricaoCapa(anuncioDTO.getDescricaoCapa());
-		anuncio.setDescricaoDetalhada(anuncioDTO.getDescricaoDetalhada());
-		anuncio.setFotoCapa(new Foto(anuncioDTO.getFotoCapa()));
-		anuncio.setSituacao(Enum.valueOf(SituacaoAnuncio.class, anuncioDTO.getSituacao()));
+		anuncio.setUsuario(new Usuario(dto.getIdUsuario()));
+		anuncio.setTipoImovel(new TipoImovel(dto.getIdTipoImovel()));
+		anuncio.setTipoAcomodacao(new TipoAcomodacao(dto.getIdTipoAcomodacao()));
+		anuncio.setNumeroPessoas(dto.getNumeroPessoas());
+		anuncio.setCidade(new Cidade(dto.getIdCidade()));
+		anuncio.setDataInicio(dateParaString(dto.getDataInicio()));
+		anuncio.setDataFim(dateParaString(dto.getDataFim()));
+		anuncio.setDiaria(dto.getDiaria());
+		anuncio.setDescricaoCapa(dto.getDescricaoCapa());
+		anuncio.setDescricaoDetalhada(dto.getDescricaoDetalhada());
+		anuncio.setFotoCapa(new Foto(dto.getIdFotoCapa()));
+		anuncio.setSituacao(Enum.valueOf(SituacaoAnuncio.class, dto.getSituacao()));
 		return anuncio;
 	}
 	
@@ -38,17 +40,25 @@ public class AnuncioMapper {
 		dto.setIdTipoAcomodacao(anuncio.getTipoAcomodacao().getIdTipoAcomodacao());
 		dto.setNumeroPessoas(anuncio.getNumeroPessoas());
 		dto.setIdCidade(anuncio.getCidade().getIdCidade());
-		dto.setNomeCidade(anuncio.getCidade().getNome());
-		dto.setIdEstado(anuncio.getCidade().getEstado().getIdEstado());
-		dto.setIdFederacao(anuncio.getCidade().getEstado().getFederacao().getIdFederacao());
-		dto.setDataInicio(anuncio.getDataInicio());
-		dto.setDataFim(anuncio.getDataFim());
+		dto.setDataInicio(anuncio.getDataInicio().toString());
+		dto.setDataFim(anuncio.getDataFim().toString());
 		dto.setDiaria(anuncio.getDiaria());
 		dto.setDescricaoCapa(anuncio.getDescricaoCapa());
 		dto.setDescricaoDetalhada(anuncio.getDescricaoDetalhada());
-		dto.setFotoCapa(anuncio.getFotoCapa().getUrl());
+		dto.setIdFotoCapa(anuncio.getFotoCapa().getIdFoto());
 		dto.setSituacao(anuncio.getSituacao().toString());
 		return dto;
+	}
+	
+	private static Date dateParaString(String data){
+		SimpleDateFormat formatter = new SimpleDateFormat();
+		Date date = new Date();
+		try {
+			date = (Date) formatter.parse(data);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return date;
 	}
 	
 }
