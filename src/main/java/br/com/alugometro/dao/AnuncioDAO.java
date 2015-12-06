@@ -26,6 +26,12 @@ public class AnuncioDAO extends AbstractDAO {
 				.getResultList();
 	}
 	
+	@Transactional
+	public void desativar(Long idAnuncio) {
+		em.createQuery("UPDATE Anuncio SET Id_Situacao_Anuncio=0 WHERE Id_Anuncio=:idAnuncio")
+			.setParameter("idAnuncio", idAnuncio).executeUpdate();
+	}
+	
 	public List<Anuncio> listarPorCidade(String cidade) {
 		return em.createQuery("FROM Anuncio a WHERE a.cidade.nome LIKE :cidade", Anuncio.class)
 				.setParameter("cidade", cidade + "%")
