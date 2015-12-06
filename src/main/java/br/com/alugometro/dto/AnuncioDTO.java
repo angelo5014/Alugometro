@@ -8,20 +8,15 @@ import org.springframework.format.annotation.NumberFormat;
 public class AnuncioDTO {
 
 	private Long idAnuncio;
-	
 	private Long idUsuario;
-	
 	private Long idTipoImovel;
-
 	private Long idTipoAcomodacao;
 	
 	@NumberFormat
 	private int numeroPessoas;
-	
-	private Long idCidade;
 
+	private Long idCidade;
 	private String dataInicio;
-	
 	private String dataFim;
 	
 	@NumberFormat
@@ -34,7 +29,6 @@ public class AnuncioDTO {
 	private String descricaoDetalhada;
 	
 	private Long idFotoCapa;
-	
 	private String situacao;
 
 	public Long getIdAnuncio() {

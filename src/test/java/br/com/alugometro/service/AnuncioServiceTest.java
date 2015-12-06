@@ -41,7 +41,7 @@ public class AnuncioServiceTest {
 	}
 	
 	@Test
-	public void buscarPorIdnaoEhNulo() {
+	public void buscarPorIdNaoEhNulo() {
 		Mockito.when(anuncioDAO.buscarPorId(1L)).thenReturn(anuncio);
 		Assert.assertNotNull(anuncioService.buscarPorID(1L));
 	}

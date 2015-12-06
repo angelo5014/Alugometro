@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR"
+xmlns="http://www.w3.org/1999/xhtml" 
+xmlns:th="http://www.thymeleaf.org" 
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorator="template"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+	<title>Anunciar</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<div class="row section" th:object="${anuncio}">
+			
+			<div class="col col-l-8 col-s-12">
+				<div class="">
+					<img class="image-details" src="http://quinan.com/wp-content/uploads/2015/07/Fachadas-de-casas-modernas-o-cartao-de-visita-do-lar-13-2.jpg" />
+				</div>
+			</div>
+
+			<div class="col col-l-4 col-s-12">
+				<p>Tipo Imovel</p>
+				<p>Preço</p>
+				<p>
+					Descrição detalhada. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, quidem maxime aliquam culpa nam qui obcaecati possimus, vitae natus esse incidunt recusandae error ipsa consectetur.
+				</p>
+				<p>Cidade</p>
+			</div>
+
+		</div>
+	</div>
+</body>
+</html>
