@@ -24,9 +24,10 @@ public class AnuncioImagemService {
 	private FotoDAO fotoDAO;
 	private AnuncioFotoDAO anuncioFotoDAO;
 	
-	private final String CAMINHO_RESOURCES_SERVIDOR = "/alugometroImagens/"; 
-	private final String CAMINHO_SISTEMA = "C:\\Users\\Angelo\\Documents\\Alugometro\\src\\main\\resources\\static\\alugometroImagens\\";
+	private final String CAMINHO_RESOURCES_SERVIDOR = "/anuncioImagens/"; 
+	private final String CAMINHO_SISTEMA = "src/main/resources/static/anuncioImagens/";
 
+	
 	@Autowired
 	ServletContext context;
 	
@@ -61,7 +62,7 @@ public class AnuncioImagemService {
 	}
 
 	public Foto salvarImagem(String filename, Long idUsuario,MultipartFile imagem) throws ImagemNaoRegistradaException{
-				String caminhoFinalNoSistema = CAMINHO_SISTEMA + idUsuario + "\\" + filename;
+				String caminhoFinalNoSistema = CAMINHO_SISTEMA + idUsuario + "/" + filename;
 				String caminhoFinalNoServidor = CAMINHO_RESOURCES_SERVIDOR + idUsuario + "/" + filename;
 				
 				File file = new File(caminhoFinalNoSistema);
