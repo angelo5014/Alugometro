@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-BR"
+xmlns="http://www.w3.org/1999/xhtml" 
+xmlns:th="http://www.thymeleaf.org" 
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorator="template"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+	<title>Anunciar</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<div class="row">
+			<div th:if="${ not #lists .isEmpty(anuncios) }" class="col col-l-8 col-s-12">
+				<div th:each="anuncio : ${(anuncios)}" class="section clearfix list-row">
+					<div class="image-list pull-left">
+						<a th:href="${ '/anuncio/' + anuncio.idAnuncio }">
+							<img width="250" height="200" th:src="${anuncio.fotoCapa}" />
+						</a>
+					</div>
+					<div class="pull-left">	
+						<p th:text="${anuncio.tipoImovel}">Apartamento</p>
+						<p th:text="${anuncio.preco}"></p>
+						<p th:text="${anuncio.descricaoCapa}"></p>
+						<p th:text="${anuncio.cidade}"></p>
+					</div>
+					<div class="pull-right link-section-content">
+						<a th:href="${ '/anuncio/' + anuncio.idAnuncio }" class="link-section">
+							<p>Ver anuncio!</p>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

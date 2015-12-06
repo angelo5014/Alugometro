@@ -1,6 +1,7 @@
 package br.com.alugometro.service;
 
 import java.math.BigDecimal;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,26 +10,30 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import br.com.alugometro.dao.AnuncioDAO;
+import br.com.alugometro.dao.UsuarioDAO;
 import br.com.alugometro.domain.Anuncio;
 import br.com.alugometro.domain.Foto;
 import br.com.alugometro.dto.AnuncioDTO;
 import br.com.alugometro.dto.AnuncioResumoDTO;
 import br.com.alugometro.exception.AbstractException;
 import br.com.alugometro.exception.ImagemNaoRegistradaException;
+import br.com.alugometro.exception.UsuarioNaoEncontradoException;
 import br.com.alugometro.mapper.AnuncioMapper;
 
 @Service
 public class AnuncioService {
 
 	private AnuncioDAO anuncioDAO;
-	private AnuncioImagemService anuncioImagemService;
+	private UsuarioDAO usuarioDAO;
+	private AnuncioFotoService anuncioFotoService;
 	private UsuarioService usuarioService;
 
 	@Autowired
-	public AnuncioService(AnuncioDAO anuncioDAO,UsuarioService usuarioService, AnuncioImagemService anuncioImagemService) {
+	public AnuncioService(AnuncioDAO anuncioDAO,UsuarioDAO usuarioDAO,UsuarioService usuarioService, AnuncioFotoService anuncioFotoService) {
 		this.anuncioDAO = anuncioDAO;
+		this.usuarioDAO = usuarioDAO;
 		this.usuarioService = usuarioService;
-		this.anuncioImagemService = anuncioImagemService;
+		this.anuncioFotoService = anuncioFotoService;
 	}
 	
 	public AnuncioDTO buscarPorID(Long idAnuncio) {
@@ -46,6 +51,19 @@ public class AnuncioService {
 		return anunciosResumoDTO;
 	}
 	
+	public List<AnuncioResumoDTO> buscarAnunciosDoUsuario(Long idUsuario) {
+		List<AnuncioResumoDTO> anunciosDTO = new ArrayList<>();
+		
+		try {
+			for (Anuncio anuncio : usuarioDAO.buscarPorId(idUsuario).getAnuncios()) {
+				anunciosDTO.add(new AnuncioResumoDTO(anuncio));
+			}
+		} catch (UsuarioNaoEncontradoException e) {
+			e.printStackTrace();
+		}
+		return anunciosDTO;
+	}
+	
 	public List<AnuncioResumoDTO> listarPorCidade(String cidade) {
 
 		List<Anuncio> anuncios = anuncioDAO.listarPorCidade(cidade);
@@ -59,7 +77,11 @@ public class AnuncioService {
 	}
 	
 	public List<AnuncioResumoDTO> listarPorBuscaDetalhada(
-			BigDecimal precoMenor, BigDecimal precoMaior, Long idTipoImovel, Long idTipoAcomodacao, Long idCidade) {
+			BigDecimal precoMenor, 
+			BigDecimal precoMaior, 
+			Long idTipoImovel, 
+			Long idTipoAcomodacao, 
+			Long idCidade) {
 
 		List<Anuncio> anuncios = anuncioDAO.listarPorPrecoETipoImovelETipoAcomodacaoECidade(
 				precoMenor, precoMaior, idTipoImovel, idTipoAcomodacao, idCidade);
@@ -83,7 +105,7 @@ public class AnuncioService {
 		
 		Foto imagemSalva = null;
 		try {
-			imagemSalva = anuncioImagemService.salvarImagem(imagem.getOriginalFilename(), imagem);
+			imagemSalva = anuncioFotoService.salvarImagem(imagem.getOriginalFilename(),idUsuario , imagem);
 		} catch (ImagemNaoRegistradaException e) {
 			e.printStackTrace();
 		}
@@ -92,6 +114,11 @@ public class AnuncioService {
 		dto.setIdUsuario(idUsuario);
 		dto.setIdFotoCapa(idFoto);
 		dto.setSituacao("DISPONIVEL");
-		return anuncioDAO.salvar(AnuncioMapper.paraEntidade(dto));
+		try {
+			return anuncioDAO.salvar(AnuncioMapper.paraEntidade(dto));
+		} catch (ParseException e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 }

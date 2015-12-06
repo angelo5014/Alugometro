@@ -11,8 +11,15 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 
 	<title layout:title-pattern="$DECORATOR_TITLE - $CONTENT_TITLE">Alugômetro</title>
 
+	<!-- FONTS -->
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css' />
+
+	<!-- DEPENDENCIES -->
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
+	<link rel="stylesheet" href="/slick/slick.css"/>
+	<link rel="stylesheet" href="/slick/slick-theme.css"/>
+
+	<!-- STYLES -->
 	<link rel="stylesheet" href="/css/normalize.css" />
 	<link rel="stylesheet" href="/css/grid.css" />
 	<link rel="stylesheet" href="/css/modules.css" />
@@ -21,6 +28,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 	<link rel="stylesheet" href="/css/content.css" />
 	<link rel="stylesheet" href="/css/forms.css" />
 	<link rel="stylesheet" href="/css/footer.css" />
+	<link rel="stylesheet" href="/css/pagination.css" />
 </head>
 <body>
 	<!-- HEADER -->
@@ -38,11 +46,13 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 	<!-- RODAPE -->
 	<div th:include="fragments/_footer :: footer"></div>
 
+	<!-- SCRIPTS -->
 	<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 	<script src="/js/template.js"></script>
-	<script type="text/javascript" th:src="@{/js/validaDatas.js}"></script>
-	<script type="text/javascript" th:src="@{/js/moment.min.js}"></script>
+	<script th:src="@{/js/validaDatas.js}"></script>
+	<script th:src="@{/js/moment.min.js}"></script>
+	<script src="/slick/slick.min.js"></script>
 	<script type="text/javascript" th:src="@{/js/calcularTotalReserva.js}"></script>
 </body>
 </html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR"
+xmlns="http://www.w3.org/1999/xhtml" 
+xmlns:th="http://www.thymeleaf.org" 
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorator="template"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+	<title>Anunciar</title>
+</head>
+<body>
+	<div th:object="${anuncio}" layout:fragment="content">
+		<div class="row">
+			<div class="section clearfix">
+
+				<div class="col col-l-12 col-s-12 details-header">
+					<p class="inline-block">
+						<span th:text="*{tipoImovel}"></span>
+					</p>
+					<p th:text="*{cidade}" class="inline-block">Cidade</p>
+					<p class="inline-block pull-right">
+						<a th:href="${'/reserva/confirmar/' + anuncio.idAnuncio}" class="link-reserva form-radius">Reservar</a>
+					</p>
+					<p class="inline-block pull-right">R$ <span th:text="*{diaria}"></span></p>
+				</div>
+
+				<div class="col col-l-8 col-s-12">
+					<div class="image-pagination">
+						<div>
+							<img class="image-details" th:src="*{urlFotoCapa}" />
+						</div>
+						<div th:each="foto : ${(anuncioFotos)}">
+							<img class="image-details" th:src="${foto.urlFoto}" />
+						</div>
+					</div>
+				</div>
+
+				<div class="col col-l-4 col-s-12">
+					<p>Tipo Acomodação: <span th:text="*{tipoAcomodacao}"></span></p>
+					<p>Numero de Pessoas: <span th:text="*{numeroPessoas}"></span></p>
+					<p>
+						Disponibilidade: 
+						<span th:text="*{dataInicio}"></span> - 
+						<span th:text="*{dataFim}"></span>
+					</p>
+					<p th:text="*{descricaoDetalhada}"></p>
+				</div>
+
+				<!--
+				<div class="col col-l-12 col-s-12">
+					<nav class="">
+						<ul class="reset-list ">
+							<li th:each="foto : ${(anuncioFotos)}" class="inline-block image-nav-list">
+								<img th:src="${foto.urlFoto}" class="image-details-list" />
+							</li>
+						</ul>
+					</nav>
+				</div>
+				-->
+				
+			</div>
+		</div>
+	</div>
+</body>
+</html>

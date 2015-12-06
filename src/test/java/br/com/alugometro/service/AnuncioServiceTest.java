@@ -1,5 +1,6 @@
 package br.com.alugometro.service;
 
+import org.apache.tomcat.jni.File;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -41,14 +42,10 @@ public class AnuncioServiceTest {
 	}
 	
 	@Test
-	public void buscarPorIdnaoEhNulo() {
+	public void buscarPorIdNaoEhNulo() {
 		Mockito.when(anuncioDAO.buscarPorId(1L)).thenReturn(anuncio);
 		Assert.assertNotNull(anuncioService.buscarPorID(1L));
 	}
-	
-	@Test
-	public void inserirAnuncioComSucesso() {
-		Assert.assertNotNull(anuncioService.inserir(AnuncioMapper.paraDTO(anuncio)));
-	}
+
 	
 }
