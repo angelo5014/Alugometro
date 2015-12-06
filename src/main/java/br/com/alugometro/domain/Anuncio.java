@@ -23,6 +23,13 @@ public class Anuncio {
 	
 	public static final String SEQUENCE_NAME = "SEQ_Anuncio";
 
+	public Anuncio() {
+	}
+	
+	public Anuncio(Long idAnuncio) {
+		this.idAnuncio = idAnuncio;
+	}
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = SEQUENCE_NAME)
 	@Column(name = "Id_Anuncio")
