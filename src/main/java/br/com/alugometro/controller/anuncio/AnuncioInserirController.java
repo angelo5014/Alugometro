@@ -1,8 +1,5 @@
 package br.com.alugometro.controller.anuncio;
 
-import java.io.IOException;
-import java.text.ParseException;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +15,6 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.alugometro.dto.AnuncioDTO;
-import br.com.alugometro.exception.AbstractException;
 import br.com.alugometro.exception.FormatoDeImagemNaoSuportadoException;
 import br.com.alugometro.exception.ImagemNaoRegistradaException;
 import br.com.alugometro.service.AnuncioImagemService;
@@ -55,39 +51,36 @@ public class AnuncioInserirController extends AbstractAnuncioController{
 								@RequestParam("imagem") MultipartFile imagem,
 								@RequestParam("imagens") MultipartFile[] imagens){
 		
+		final boolean IMAGEM_CAPA_NULA = imagem.getSize() == 0;	
+		final boolean IMAGENS_OPCIONAIS_VAZIAS = imagens.length == 0;
+		
 		if(result.hasErrors()){
 			return new ModelAndView("anuncio/inserir");
 		}
 		
-		if(imagem.getSize() != 0){
-			try{
-				anuncioImagemService.validarFormatoImagem(imagem);
-			}catch (FormatoDeImagemNaoSuportadoException e) {
-				result.addError(new FieldError("anuncio", "idFotoCapa", e.getMensagem()));
-				return new ModelAndView("anuncio/inserir");
-			}
-		}else{
+		if(IMAGEM_CAPA_NULA){
 			result.addError(new FieldError("anuncio", "idFotoCapa", "Por favor insira uma imagem"));
 			return new ModelAndView("anuncio/inserir");
 		}
 		
 		try {
-			Long idAnuncio = anuncioService.inserir(anuncioDTO, imagem).getIdAnuncio();
-			
-			if(imagens.length > 0){
-				try {
-					anuncioImagemService.validarFormatoVariasImagensEInserir(imagens, idAnuncio);
-				} catch (FormatoDeImagemNaoSuportadoException | ImagemNaoRegistradaException e) {
-					result.addError(new FieldError("anuncio", "idFotoCapa", e.getMensagem()));
-					return new ModelAndView("anuncio/inserir");
-				}
-			}
-			
-			redirectAttributes.addFlashAttribute("mensagem", "Anuncio criado com sucesso");
-			return new ModelAndView("redirect:/home");
-		} catch (IOException | RuntimeException | AbstractException | ParseException e) {
+			anuncioImagemService.validarFormatoImagem(imagem);
+		} catch (FormatoDeImagemNaoSuportadoException e) {
+			result.addError(new FieldError("anuncio", "idFotoCapa", e.getMensagem()));
 			return new ModelAndView("anuncio/inserir");
 		}
 		
+			Long idAnuncio = anuncioService.inserir(anuncioDTO, imagem).getIdAnuncio();
+			
+		if(!IMAGENS_OPCIONAIS_VAZIAS){
+			try {
+				anuncioImagemService.validarFormatoVariasImagensEInserir(imagens, idAnuncio);
+			} catch (FormatoDeImagemNaoSuportadoException | ImagemNaoRegistradaException e) {
+				result.addError(new FieldError("anuncio", "idFotoCapa", e.getMensagem()));
+			}
+		}
+			
+		redirectAttributes.addFlashAttribute("mensagem", "Anuncio criado com sucesso");
+		return new ModelAndView("redirect:/home");
 	}
 }

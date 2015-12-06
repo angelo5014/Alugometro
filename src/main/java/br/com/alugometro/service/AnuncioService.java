@@ -1,8 +1,6 @@
 package br.com.alugometro.service;
 
-import java.io.IOException;
 import java.math.BigDecimal;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +14,7 @@ import br.com.alugometro.domain.Foto;
 import br.com.alugometro.dto.AnuncioDTO;
 import br.com.alugometro.dto.AnuncioResumoDTO;
 import br.com.alugometro.exception.AbstractException;
+import br.com.alugometro.exception.ImagemNaoRegistradaException;
 import br.com.alugometro.mapper.AnuncioMapper;
 
 @Service
@@ -73,11 +72,21 @@ public class AnuncioService {
 		return anunciosDTO;
 	}
 	
-	public Anuncio inserir(AnuncioDTO dto, MultipartFile imagem) throws RuntimeException, IOException, AbstractException, ParseException{
+	public Anuncio inserir(AnuncioDTO dto, MultipartFile imagem) {
 		
-		Long idUsuario = usuarioService.obterIdDoUsuarioLogado();
+		Long idUsuario = null;
+		try {
+			idUsuario = usuarioService.obterIdDoUsuarioLogado();
+		} catch (AbstractException e) {
+			e.printStackTrace();
+		}
 		
-		Foto imagemSalva = anuncioImagemService.salvarImagem(imagem.getOriginalFilename(), imagem);
+		Foto imagemSalva = null;
+		try {
+			imagemSalva = anuncioImagemService.salvarImagem(imagem.getOriginalFilename(), imagem);
+		} catch (ImagemNaoRegistradaException e) {
+			e.printStackTrace();
+		}
 		Long idFoto = imagemSalva.getIdFoto();
 		
 		dto.setIdUsuario(idUsuario);

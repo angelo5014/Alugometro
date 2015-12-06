@@ -4,7 +4,7 @@ package br.com.alugometro.exception;
 public class FormatoDeImagemNaoSuportadoException extends AbstractException {
 	
 	public FormatoDeImagemNaoSuportadoException() {
-		this.mensagem = "Somente imagens no formato JPG são suportadas";
+		this.mensagem = "Somente imagens são suportads";
 	}
 	
 }
