@@ -23,7 +23,7 @@ public class ReservaMapperTest {
 	@Test
 	public void converteParaDTOComSucesso(){
 		// Arrange
-		DateFormat df = new SimpleDateFormat("dd/mm/yyyy");
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		
 		Usuario usuario = new Usuario();
 		usuario.setIdUsuario(1L);
@@ -35,8 +35,8 @@ public class ReservaMapperTest {
 		Date dataFim = new Date();
 		
 		try {
-			dataInicio = df.parse("10/10/2015");
-			dataFim = df.parse("11/10/2015");
+			dataInicio = df.parse("2015-10-10");
+			dataFim = df.parse("2015-10-11");
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -72,7 +72,7 @@ public class ReservaMapperTest {
 	@Test
 	public void converteParaEntidadeComsucesso(){
 		// Arrange
-		DateFormat df = new SimpleDateFormat("dd/mm/yyyy");
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		
 		Usuario usuario = new Usuario();
 		usuario.setIdUsuario(1L);
@@ -84,8 +84,8 @@ public class ReservaMapperTest {
 		Date dataFim = new Date();
 		
 		try {
-			dataInicio = df.parse("10/10/2015");
-			dataFim = df.parse("11/10/2015");
+			dataInicio = df.parse("2015-10-10");
+			dataFim = df.parse("2015-10-11");
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -121,7 +121,7 @@ public class ReservaMapperTest {
 	@Test
 	public void converteDeReservaConfirmacaoDTOParaEntidadeComsucesso(){
 		// Arrange
-		DateFormat df = new SimpleDateFormat("dd/mm/yyyy");
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		
 		Usuario usuario = new Usuario();
 		usuario.setIdUsuario(1L);
@@ -129,8 +129,8 @@ public class ReservaMapperTest {
 		Anuncio anuncio = new Anuncio();
 		anuncio.setIdAnuncio(1L);
 		
-		String dataInicio = "10/10/2015";
-		String dataFim = "11/10/2015";
+		String dataInicio = "2015-10-10";
+		String dataFim = "2015-10-11";
 		
 		ReservaConfirmacaoDTO dto = new ReservaConfirmacaoDTO();
 		dto.setIdAnuncio(1L);
@@ -143,13 +143,25 @@ public class ReservaMapperTest {
 		Reserva entidadeEsperada = new Reserva();
 		entidadeEsperada.setAnuncio(anuncio);
 		entidadeEsperada.setUsuario(usuario);
-		entidadeEsperada.setDataInicio(CalendarioService.converterStringParaDate(dataInicio));
-		entidadeEsperada.setDataFim(CalendarioService.converterStringParaDate(dataFim));
+		try {
+			entidadeEsperada.setDataInicio(CalendarioService.converterStringParaDate(dataInicio));
+			entidadeEsperada.setDataFim(CalendarioService.converterStringParaDate(dataFim));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		entidadeEsperada.setValorDia(new BigDecimal(10));
 		entidadeEsperada.setValorTotal(new BigDecimal(10));
 		
 		// Act
-		Reserva entidadeObtida = ReservaMapper.paraEntidade(dto);
+		Reserva entidadeObtida = new Reserva();;
+		try {
+			entidadeObtida = ReservaMapper.paraEntidade(dto);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		// Assert
 		assertEquals(entidadeEsperada, entidadeObtida);

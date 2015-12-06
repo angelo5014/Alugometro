@@ -16,7 +16,7 @@ import br.com.alugometro.service.CalendarioService;
 
 public class AnuncioMapper {
 
-	public static Anuncio paraEntidade(AnuncioDTO dto) {
+	public static Anuncio paraEntidade(AnuncioDTO dto) throws ParseException {
 		Anuncio anuncio = new Anuncio();
 		anuncio.setUsuario(new Usuario(dto.getIdUsuario()));
 		anuncio.setTipoImovel(new TipoImovel(dto.getIdTipoImovel()));

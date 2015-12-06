@@ -1,13 +1,10 @@
 package br.com.alugometro.service;
 
-import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -17,6 +14,7 @@ import br.com.alugometro.domain.Foto;
 import br.com.alugometro.dto.AnuncioDTO;
 import br.com.alugometro.dto.AnuncioResumoDTO;
 import br.com.alugometro.exception.AbstractException;
+import br.com.alugometro.exception.ImagemNaoRegistradaException;
 import br.com.alugometro.mapper.AnuncioMapper;
 
 @Service
@@ -74,12 +72,21 @@ public class AnuncioService {
 		return anunciosDTO;
 	}
 	
-	public Anuncio inserir(AnuncioDTO dto, MultipartFile imagem) throws RuntimeException, IOException, AbstractException{
+	public Anuncio inserir(AnuncioDTO dto, MultipartFile imagem) {
 		
-		User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		Long idUsuario = usuarioService.buscarPorEmail(user.getUsername()).getIdUsuario();
+		Long idUsuario = null;
+		try {
+			idUsuario = usuarioService.obterIdDoUsuarioLogado();
+		} catch (AbstractException e) {
+			e.printStackTrace();
+		}
 		
-		Foto imagemSalva = anuncioImagemService.saveImage(imagem.getOriginalFilename(), imagem);
+		Foto imagemSalva = null;
+		try {
+			imagemSalva = anuncioImagemService.salvarImagem(imagem.getOriginalFilename(), imagem);
+		} catch (ImagemNaoRegistradaException e) {
+			e.printStackTrace();
+		}
 		Long idFoto = imagemSalva.getIdFoto();
 		
 		dto.setIdUsuario(idUsuario);

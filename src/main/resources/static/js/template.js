@@ -17,7 +17,7 @@ $(function() {
 	$( "#amount" ).val( "R$ " + $( "#slider-range" ).slider( "values", 0 ) +
 		" - R$ " + $( "#slider-range" ).slider( "values", 1 ) );
 
-	var inputDemaisFotos = '<input type="file" class="input-field" name="imagens" />'
+	var inputDemaisFotos = '<input type="file" class="input-field" name="imagens" accept="image/*"/>'
 	var labelDemaisFotos = $('#fotos-label');
 
 	$('#btn-fotos').click(function() {
