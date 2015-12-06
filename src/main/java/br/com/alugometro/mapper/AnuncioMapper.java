@@ -1,8 +1,6 @@
 package br.com.alugometro.mapper;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import br.com.alugometro.domain.Anuncio;
 import br.com.alugometro.domain.Anuncio.SituacaoAnuncio;
@@ -48,6 +46,12 @@ public class AnuncioMapper {
 		dto.setDescricaoDetalhada(anuncio.getDescricaoDetalhada());
 		dto.setIdFotoCapa(anuncio.getFotoCapa().getIdFoto());
 		dto.setSituacao(anuncio.getSituacao().toString());
+		
+		dto.setCidade(anuncio.getCidade().getNome());
+		dto.setTipoImovel(anuncio.getTipoImovel().getDescricao());
+		dto.setTipoAcomodacao(anuncio.getTipoAcomodacao().getDescricao());
+		dto.setUrlFotoCapa(anuncio.getFotoCapa().getUrl());
+		
 		return dto;
 	}
 }
