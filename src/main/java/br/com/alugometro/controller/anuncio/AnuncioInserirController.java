@@ -18,7 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import br.com.alugometro.dto.AnuncioDTO;
 import br.com.alugometro.exception.FormatoDeImagemNaoSuportadoException;
 import br.com.alugometro.exception.ImagemNaoRegistradaException;
-import br.com.alugometro.service.AnuncioImagemService;
+import br.com.alugometro.service.AnuncioFotoService;
 import br.com.alugometro.service.AnuncioService;
 import br.com.alugometro.service.CidadeService;
 import br.com.alugometro.service.TipoAcomodacaoService;
@@ -28,16 +28,18 @@ import br.com.alugometro.service.TipoImovelService;
 @RequestMapping("/anuncio")
 public class AnuncioInserirController extends AbstractAnuncioController{
 	
-	private AnuncioImagemService anuncioImagemService;
+	private AnuncioFotoService anuncioFotoService;
 	
 	@Autowired
-	public AnuncioInserirController(AnuncioService anuncioService,
-									TipoImovelService tipoImovelService,
-									TipoAcomodacaoService tipoAcomodacaoService,
-									CidadeService cidadeService,
-									AnuncioImagemService anuncioImagemService) {
+	public AnuncioInserirController(
+			AnuncioService anuncioService,
+			AnuncioFotoService anuncioFotoService,
+			TipoImovelService tipoImovelService,
+			TipoAcomodacaoService tipoAcomodacaoService,
+			CidadeService cidadeService) {
+		
 		super(anuncioService, tipoImovelService, tipoAcomodacaoService, cidadeService);
-		this.anuncioImagemService = anuncioImagemService;
+		this.anuncioFotoService = anuncioFotoService;
 	}
 
 	@RequestMapping(path = "/inserir" , method = RequestMethod.GET)
@@ -68,7 +70,7 @@ public class AnuncioInserirController extends AbstractAnuncioController{
 		}
 		
 		try {
-			anuncioImagemService.validarFormatoImagem(imagem);
+			anuncioFotoService.validarFormatoImagem(imagem);
 		} catch (FormatoDeImagemNaoSuportadoException e) {
 			result.addError(new FieldError("anuncio", "idFotoCapa", e.getMensagem()));
 			return new ModelAndView("anuncio/inserir");
@@ -78,7 +80,7 @@ public class AnuncioInserirController extends AbstractAnuncioController{
 			
 		if(!IMAGENS_OPCIONAIS_VAZIAS){
 			try {
-				anuncioImagemService.validarFormatoVariasImagensEInserir(imagens, idAnuncio, anuncioDTO.getIdUsuario());
+				anuncioFotoService.validarFormatoVariasImagensEInserir(imagens, idAnuncio, anuncioDTO.getIdUsuario());
 			} catch (FormatoDeImagemNaoSuportadoException | ImagemNaoRegistradaException e) {
 				result.addError(new FieldError("anuncio", "idFotoCapa", e.getMensagem()));
 			}

@@ -3,7 +3,6 @@ package br.com.alugometro.dto;
 import java.math.BigDecimal;
 
 import org.hibernate.validator.constraints.NotBlank;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.NumberFormat;
 
 public class AnuncioDTO {
@@ -13,17 +12,19 @@ public class AnuncioDTO {
 	private Long idUsuario;
 	
 	private Long idTipoImovel;
-
+	private String tipoImovel;
+	
 	private Long idTipoAcomodacao;
+	private String tipoAcomodacao;
 	
 	@NumberFormat
 	private int numeroPessoas;
 	
 	private Long idCidade;
-
+	private String cidade;
+	
 	@NotBlank
 	private String dataInicio;
-	
 	@NotBlank
 	private String dataFim;
 	
@@ -32,11 +33,11 @@ public class AnuncioDTO {
 	
 	@NotBlank
 	private String descricaoCapa;
-	
 	@NotBlank
 	private String descricaoDetalhada;
 	
 	private Long idFotoCapa;
+	private String urlFotoCapa;
 	
 	private String situacao;
 
@@ -143,6 +144,37 @@ public class AnuncioDTO {
 	public void setSituacao(String situacao) {
 		this.situacao = situacao;
 	}
+
+	public String getTipoImovel() {
+		return tipoImovel;
+	}
+
+	public void setTipoImovel(String tipoImovel) {
+		this.tipoImovel = tipoImovel;
+	}
+
+	public String getTipoAcomodacao() {
+		return tipoAcomodacao;
+	}
+
+	public void setTipoAcomodacao(String tipoAcomodacao) {
+		this.tipoAcomodacao = tipoAcomodacao;
+	}
+
+	public String getCidade() {
+		return cidade;
+	}
+
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
+	}
+
+	public String getUrlFotoCapa() {
+		return urlFotoCapa;
+	}
+
+	public void setUrlFotoCapa(String urlFotoCapa) {
+		this.urlFotoCapa = urlFotoCapa;
+	}
 	
 }
-

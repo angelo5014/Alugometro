@@ -2,6 +2,8 @@ package br.com.alugometro.service;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletContext;
 
@@ -15,11 +17,12 @@ import br.com.alugometro.dao.FotoDAO;
 import br.com.alugometro.domain.Anuncio;
 import br.com.alugometro.domain.AnuncioFoto;
 import br.com.alugometro.domain.Foto;
+import br.com.alugometro.dto.AnuncioFotoDTO;
 import br.com.alugometro.exception.FormatoDeImagemNaoSuportadoException;
 import br.com.alugometro.exception.ImagemNaoRegistradaException;
 
 @Service
-public class AnuncioImagemService {
+public class AnuncioFotoService {
 	
 	private FotoDAO fotoDAO;
 	private AnuncioFotoDAO anuncioFotoDAO;
@@ -32,11 +35,21 @@ public class AnuncioImagemService {
 	ServletContext context;
 	
 	@Autowired
-	public AnuncioImagemService(FotoDAO fotoDAO, AnuncioFotoDAO anuncioFotoDAO) {
+	public AnuncioFotoService(FotoDAO fotoDAO, AnuncioFotoDAO anuncioFotoDAO) {
 		this.fotoDAO = fotoDAO;
 		this.anuncioFotoDAO = anuncioFotoDAO;
 	}
 	
+	public List<AnuncioFotoDTO> listarPorIdAnuncio(Long idAnuncio) {
+		List<AnuncioFoto> anuncioFotos = anuncioFotoDAO.encontrarPorIdAnuncio(idAnuncio);
+		List<AnuncioFotoDTO> anuncioFotosDTO = new ArrayList<AnuncioFotoDTO>();
+		
+		for (AnuncioFoto anuncioFoto : anuncioFotos) {
+			anuncioFotosDTO.add(new AnuncioFotoDTO(anuncioFoto));
+		}
+		
+		return anuncioFotosDTO;
+	}
 	
 	public void validarFormatoImagem(MultipartFile imagem) throws FormatoDeImagemNaoSuportadoException {
 		if (!imagem.getContentType().startsWith("image/")) {

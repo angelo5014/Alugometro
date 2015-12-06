@@ -5,7 +5,6 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.hibernate.loader.plan.exec.process.spi.ReturnReader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -23,14 +22,14 @@ import br.com.alugometro.mapper.AnuncioMapper;
 public class AnuncioService {
 
 	private AnuncioDAO anuncioDAO;
-	private AnuncioImagemService anuncioImagemService;
+	private AnuncioFotoService anuncioFotoService;
 	private UsuarioService usuarioService;
 
 	@Autowired
-	public AnuncioService(AnuncioDAO anuncioDAO,UsuarioService usuarioService, AnuncioImagemService anuncioImagemService) {
+	public AnuncioService(AnuncioDAO anuncioDAO,UsuarioService usuarioService, AnuncioFotoService anuncioFotoService) {
 		this.anuncioDAO = anuncioDAO;
 		this.usuarioService = usuarioService;
-		this.anuncioImagemService = anuncioImagemService;
+		this.anuncioFotoService = anuncioFotoService;
 	}
 	
 	public AnuncioDTO buscarPorID(Long idAnuncio) {
@@ -61,7 +60,11 @@ public class AnuncioService {
 	}
 	
 	public List<AnuncioResumoDTO> listarPorBuscaDetalhada(
-			BigDecimal precoMenor, BigDecimal precoMaior, Long idTipoImovel, Long idTipoAcomodacao, Long idCidade) {
+			BigDecimal precoMenor, 
+			BigDecimal precoMaior, 
+			Long idTipoImovel, 
+			Long idTipoAcomodacao, 
+			Long idCidade) {
 
 		List<Anuncio> anuncios = anuncioDAO.listarPorPrecoETipoImovelETipoAcomodacaoECidade(
 				precoMenor, precoMaior, idTipoImovel, idTipoAcomodacao, idCidade);
@@ -85,7 +88,7 @@ public class AnuncioService {
 		
 		Foto imagemSalva = null;
 		try {
-			imagemSalva = anuncioImagemService.salvarImagem(imagem.getOriginalFilename(),idUsuario , imagem);
+			imagemSalva = anuncioFotoService.salvarImagem(imagem.getOriginalFilename(),idUsuario , imagem);
 		} catch (ImagemNaoRegistradaException e) {
 			e.printStackTrace();
 		}
