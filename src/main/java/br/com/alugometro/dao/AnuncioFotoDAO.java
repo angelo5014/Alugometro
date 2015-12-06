@@ -12,7 +12,7 @@ import br.com.alugometro.domain.AnuncioFoto;
 public class AnuncioFotoDAO extends AbstractDAO {
 
 	public List<AnuncioFoto> encontrarPorIdAnuncio(Long idAnuncio) {
-		return em.createQuery("FROM AnuncioFoto a WHERE a.idAnuncio = :idAnuncio", AnuncioFoto.class)
+		return em.createQuery("FROM AnuncioFoto a WHERE a.anuncio.idAnuncio = :idAnuncio", AnuncioFoto.class)
 				.setParameter("idAnuncio", idAnuncio)
 				.getResultList();
 	}
