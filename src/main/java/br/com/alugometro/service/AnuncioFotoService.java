@@ -52,7 +52,7 @@ public class AnuncioFotoService {
 	}
 	
 	public void validarFormatoImagem(MultipartFile imagem) throws FormatoDeImagemNaoSuportadoException {
-		if (!imagem.getContentType().equals("image/jpeg")) {
+		if (!imagem.getContentType().startsWith("image/")) {
 			throw new FormatoDeImagemNaoSuportadoException();
 		}
 	}
