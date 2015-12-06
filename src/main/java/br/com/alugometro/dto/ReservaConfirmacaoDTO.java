@@ -1,7 +1,6 @@
 package br.com.alugometro.dto;
 
 import java.math.BigDecimal;
-import java.util.Date;
 
 import br.com.alugometro.domain.TipoAcomodacao;
 import br.com.alugometro.domain.TipoImovel;
