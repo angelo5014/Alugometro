@@ -33,7 +33,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 
 						<label>
 							<span>Nº de Pessoas:</span>
-							<input th:field="*{numeroPessoas}" type="number" class="input-field" id="" placeholder="" />
+							<input th:field="*{numeroPessoas}" type="number" min="0" class="input-field" id="" placeholder="" />
 						</label>
 
 						<label>
@@ -45,43 +45,43 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 
 						<label>
 							<span>Data disponibilidade inicial:</span>
-							<input th:field="*{dataInicio}" type="date" class="input-field" id="" placeholder="" />
-							<span class="content-text-ss help-inline" th:errors="*{dataInicio}"></span>
+							<input th:field="*{dataInicio}" type="date" required="required" class="input-field" id="" placeholder="" />
 						</label>
+						<span th:errors="*{dataInicio}"></span>
 
 						<label>
 							<span>Data disponibilidade final:</span>
-							<input th:field="*{dataFim}" type="date" class="input-field" id="" placeholder="" />
-							<span class="content-text-ss help-inline" th:errors="*{dataFim}"></span>
+							<input th:field="*{dataFim}" type="date" required="required" class="input-field" id="" placeholder="" />
 						</label>
+						<span th:errors="*{dataFim}"></span>
 
 						<label>
 							<span>Preço por dia:</span>
-							<input th:field="*{diaria}" type="number" class="input-field" id="" placeholder="" />
-							<span class="content-text-ss help-inline" th:errors="*{diaria}"></span>
+							<input th:field="*{diaria}" type="number" min="0" class="input-field" id="" placeholder="" />
 						</label>
+						<span  th:errors="*{diaria}"></span>
 
 						<label>
 							<span>Descrição Capa:</span>
-							<input th:field="*{descricaoCapa}" type="text" class="input-field" id="" placeholder="" />
-							<span class="content-text-ss help-inline" th:errors="*{descricaoCapa}"></span>
+							<input th:field="*{descricaoCapa}" type="text" required="required" class="input-field" id="" placeholder="" />
 						</label>
+						<span th:errors="*{descricaoCapa}"></span>
 
 						<label>
 							<span>Descrição Detalhada:</span>
-							<textarea th:field="*{descricaoDetalhada}" class="textarea-field"></textarea>
-							<span class="content-text-ss help-inline" th:errors="*{descricaoDetalhada}"></span>
+							<textarea th:field="*{descricaoDetalhada}" required="required" class="textarea-field"></textarea>
 						</label>
+						<span th:errors="*{descricaoDetalhada}"></span>
 
 						<label>
 							<span>Foto Capa:</span>
-							<input name="imagem" type="file" class="input-field" id="" placeholder="" />
-							<span class="content-text-ss help-inline" th:errors="*{idFotoCapa}"></span>
+							<input name="imagem" type="file" required="required" class="input-field" id="" placeholder="" accept="image/*" />
 						</label>
+						<span th:errors="*{idFotoCapa}"></span>
 
 						<label id="fotos-label">
 							<span>Demais Fotos:</span>
-							<input type="file" class="input-field" id="demais-fotos" name="imagens" />
+							<input type="file" class="input-field" id="demais-fotos" name="imagens" accept="image/*" />
 						</label>
 
 						<label>

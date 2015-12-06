@@ -32,19 +32,18 @@ public class AnuncioImagemService {
 	
 	
 	public void validarFormatoImagem(MultipartFile imagem) throws FormatoDeImagemNaoSuportadoException {
-		if (!imagem.getContentType().equals("image/jpeg")) {
+		if (!imagem.getContentType().equals("image/*")) {
 			throw new FormatoDeImagemNaoSuportadoException();
 		}
 	}
 	
 	public void validarFormatoVariasImagensEInserir(MultipartFile[] imagens, Long idAnuncio) throws FormatoDeImagemNaoSuportadoException, ImagemNaoRegistradaException{
 		for (MultipartFile imagem : imagens) {
-			if (!imagem.getContentType().equals("image/jpeg")) {
-				throw new FormatoDeImagemNaoSuportadoException();
-			}else{
-				Foto foto = salvarImagem(imagem.getOriginalFilename(), imagem);
-				relacionarFotoComAnuncio(foto, idAnuncio);
-			}
+			
+			validarFormatoImagem(imagem);
+			
+			Foto foto = salvarImagem(imagem.getOriginalFilename(), imagem);
+			relacionarFotoComAnuncio(foto, idAnuncio);
 		}
 	}
 	
