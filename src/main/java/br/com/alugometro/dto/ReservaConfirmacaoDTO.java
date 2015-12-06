@@ -1,7 +1,10 @@
 package br.com.alugometro.dto;
 
 import java.math.BigDecimal;
-import java.util.Date;
+
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotBlank;
 
 import br.com.alugometro.domain.TipoAcomodacao;
 import br.com.alugometro.domain.TipoImovel;
