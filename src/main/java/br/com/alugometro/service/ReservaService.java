@@ -1,6 +1,9 @@
 package br.com.alugometro.service;
 
 import java.math.BigDecimal;
+import java.text.ParseException;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,7 +48,7 @@ public class ReservaService {
 		return ReservaMapper.paraDTO(this.reservaDAO.salvar(entidade));
 	}
 
-	public ReservaConfirmacaoDTO confirmarReserva(Long idAnuncio) {
+	public ReservaConfirmacaoDTO confirmacaoReserva(Long idAnuncio) {
 		Anuncio anuncio = this.anuncioDAO.buscarPorId(idAnuncio);
 		
 		StringBuilder nomeLocatario = new StringBuilder();
@@ -64,5 +67,27 @@ public class ReservaService {
 		reservaConfirmacao.setDiaria(diaria);
 		
 		return reservaConfirmacao;
+	}
+
+	public void calcularTotalReserva(ReservaConfirmacaoDTO confirmacaoDTO) {
+		Date dataInicio = new Date();;
+		try {
+			dataInicio = CalendarioService.converterStringParaDate(confirmacaoDTO.getDataInicio());
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Date dataFim = new Date();;
+		try {
+			dataFim = CalendarioService.converterStringParaDate(confirmacaoDTO.getDataFim());
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		int dias = CalendarioService.obterDiasDeDiferenca(dataInicio, dataFim);
+		BigDecimal diaria = confirmacaoDTO.getDiaria();
+		
+		confirmacaoDTO.setTotal(diaria.multiply(new BigDecimal(dias)));
 	}
 }
