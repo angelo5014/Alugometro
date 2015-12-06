@@ -28,7 +28,7 @@ public class AnuncioFotoService {
 	private AnuncioFotoDAO anuncioFotoDAO;
 	
 	private final String CAMINHO_RESOURCES_SERVIDOR = "/anuncioImagens/"; 
-	private final String CAMINHO_SISTEMA = "target/classes/static/anuncioImagens/";
+	private final String CAMINHO_SISTEMA = "src/main/resources/static/anuncioImagens/";
 
 	
 	@Autowired

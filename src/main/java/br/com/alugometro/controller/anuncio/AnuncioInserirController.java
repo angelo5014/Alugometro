@@ -87,6 +87,6 @@ public class AnuncioInserirController extends AbstractAnuncioController{
 		}
 			
 		redirectAttributes.addFlashAttribute("mensagem", "Anuncio criado com sucesso");
-		return new ModelAndView("redirect:/home");
+		return new ModelAndView("redirect:/");
 	}
 }
