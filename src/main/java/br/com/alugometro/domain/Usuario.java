@@ -1,5 +1,7 @@
 package br.com.alugometro.domain;
 
+import java.util.List;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,6 +10,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -56,6 +59,9 @@ public class Usuario {
 	@Basic(optional = false)
 	private PermissaoUsuario permissao;
 	
+	@OneToMany(mappedBy = "usuario")
+	private List<Anuncio> anuncios;
+
 	public Long getIdUsuario() {
 		return idUsuario;
 	}
@@ -110,6 +116,14 @@ public class Usuario {
 
 	public void setPermissao(PermissaoUsuario permissao) {
 		this.permissao = permissao;
+	}
+	
+	public List<Anuncio> getAnuncios() {
+		return anuncios;
+	}
+
+	public void setAnuncios(List<Anuncio> anuncios) {
+		this.anuncios = anuncios;
 	}
 
 	public enum SituacaoUsuario{
