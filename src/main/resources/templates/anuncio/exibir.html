@@ -36,9 +36,13 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 					<p th:text="*{descricaoDetalhada}"></p>
 				</div>
 				<div class="col col-l-12 col-s-12">
-					<div th:each="foto : ${(anuncioFotos)}" class="">
-						<img th:src="${foto.urlFoto}" />
-					</div>
+					<nav class="">
+						<ul class="reset-list ">
+							<li th:each="foto : ${(anuncioFotos)}" class="inline-block image-nav-list">
+								<img th:src="${foto.urlFoto}" class="image-details-list" />
+							</li>
+						</ul>
+					</nav>
 				</div>
 			</div>
 		</div>
