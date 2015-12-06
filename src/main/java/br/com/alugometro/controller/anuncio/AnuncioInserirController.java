@@ -17,7 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import br.com.alugometro.dto.AnuncioDTO;
 import br.com.alugometro.exception.FormatoDeImagemNaoSuportadoException;
 import br.com.alugometro.exception.ImagemNaoRegistradaException;
-import br.com.alugometro.service.AnuncioImagemService;
+import br.com.alugometro.service.AnuncioFotoService;
 import br.com.alugometro.service.AnuncioService;
 import br.com.alugometro.service.CidadeService;
 import br.com.alugometro.service.TipoAcomodacaoService;
@@ -27,14 +27,15 @@ import br.com.alugometro.service.TipoImovelService;
 @RequestMapping("/anuncio")
 public class AnuncioInserirController extends AbstractAnuncioController{
 	
-	private AnuncioImagemService anuncioImagemService;
+	private AnuncioFotoService anuncioImagemService;
 	
 	@Autowired
-	public AnuncioInserirController(AnuncioService anuncioService,
-									TipoImovelService tipoImovelService,
-									TipoAcomodacaoService tipoAcomodacaoService,
-									CidadeService cidadeService,
-									AnuncioImagemService anuncioImagemService) {
+	public AnuncioInserirController(
+			AnuncioService anuncioService,
+			TipoImovelService tipoImovelService,
+			TipoAcomodacaoService tipoAcomodacaoService,
+			CidadeService cidadeService) {
+		
 		super(anuncioService, tipoImovelService, tipoAcomodacaoService, cidadeService);
 		this.anuncioImagemService = anuncioImagemService;
 	}

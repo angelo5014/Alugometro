@@ -21,14 +21,14 @@ import br.com.alugometro.mapper.AnuncioMapper;
 public class AnuncioService {
 
 	private AnuncioDAO anuncioDAO;
-	private AnuncioImagemService anuncioImagemService;
+	private AnuncioFotoService anuncioFotoService;
 	private UsuarioService usuarioService;
 
 	@Autowired
-	public AnuncioService(AnuncioDAO anuncioDAO,UsuarioService usuarioService, AnuncioImagemService anuncioImagemService) {
+	public AnuncioService(AnuncioDAO anuncioDAO,UsuarioService usuarioService, AnuncioFotoService anuncioFotoService) {
 		this.anuncioDAO = anuncioDAO;
 		this.usuarioService = usuarioService;
-		this.anuncioImagemService = anuncioImagemService;
+		this.anuncioFotoService = anuncioFotoService;
 	}
 	
 	public AnuncioDTO buscarPorID(Long idAnuncio) {
@@ -83,7 +83,7 @@ public class AnuncioService {
 		
 		Foto imagemSalva = null;
 		try {
-			imagemSalva = anuncioImagemService.salvarImagem(imagem.getOriginalFilename(), imagem);
+			imagemSalva = anuncioFotoService.salvarImagem(imagem.getOriginalFilename(), imagem);
 		} catch (ImagemNaoRegistradaException e) {
 			e.printStackTrace();
 		}
