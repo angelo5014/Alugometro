@@ -1,5 +1,6 @@
 package br.com.alugometro.controller.anuncio;
 
+import javax.servlet.ServletContext;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +45,9 @@ public class AnuncioInserirController extends AbstractAnuncioController{
 		return new ModelAndView("anuncio/inserir", "anuncio", new AnuncioDTO());
 	}
 
+	@Autowired
+	ServletContext context;
+	
 	@RequestMapping(path = "/inserir", method = RequestMethod.POST)
 	public ModelAndView inserir(@Valid @ModelAttribute("anuncio") AnuncioDTO anuncioDTO,
 								BindingResult result,
@@ -57,7 +61,7 @@ public class AnuncioInserirController extends AbstractAnuncioController{
 		if(result.hasErrors()){
 			return new ModelAndView("anuncio/inserir");
 		}
-		
+
 		if(IMAGEM_CAPA_NULA){
 			result.addError(new FieldError("anuncio", "idFotoCapa", "Por favor insira uma imagem"));
 			return new ModelAndView("anuncio/inserir");
@@ -74,7 +78,7 @@ public class AnuncioInserirController extends AbstractAnuncioController{
 			
 		if(!IMAGENS_OPCIONAIS_VAZIAS){
 			try {
-				anuncioImagemService.validarFormatoVariasImagensEInserir(imagens, idAnuncio);
+				anuncioImagemService.validarFormatoVariasImagensEInserir(imagens, idAnuncio, anuncioDTO.getIdUsuario());
 			} catch (FormatoDeImagemNaoSuportadoException | ImagemNaoRegistradaException e) {
 				result.addError(new FieldError("anuncio", "idFotoCapa", e.getMensagem()));
 			}
