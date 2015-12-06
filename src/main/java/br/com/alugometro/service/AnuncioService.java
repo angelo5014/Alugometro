@@ -2,6 +2,7 @@ package br.com.alugometro.service;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -72,7 +73,7 @@ public class AnuncioService {
 		return anunciosDTO;
 	}
 	
-	public Anuncio inserir(AnuncioDTO dto, MultipartFile imagem) throws RuntimeException, IOException, AbstractException{
+	public Anuncio inserir(AnuncioDTO dto, MultipartFile imagem) throws RuntimeException, IOException, AbstractException, ParseException{
 		
 		Long idUsuario = usuarioService.obterIdDoUsuarioLogado();
 		

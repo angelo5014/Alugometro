@@ -6,16 +6,15 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class CalendarioService {
-
-	public static Date converterStringParaDate(String data){
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-		Date date = new Date();
-		try {
-			date = (Date) formatter.parse(data);
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		return date;
+	
+	private static SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+	
+	public static Date converterStringParaDate(String data) throws ParseException{
+		return formatter.parse(data);
+	}
+	
+	public static String converterDateParaString(Date data){
+		return formatter.format(data);
 	}
 	
 	public static int obterDiasDeDiferenca(Date dataInicial, Date dataFinal){

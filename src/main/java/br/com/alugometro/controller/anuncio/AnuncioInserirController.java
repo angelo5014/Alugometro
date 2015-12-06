@@ -1,6 +1,7 @@
 package br.com.alugometro.controller.anuncio;
 
 import java.io.IOException;
+import java.text.ParseException;
 
 import javax.validation.Valid;
 
@@ -84,7 +85,7 @@ public class AnuncioInserirController extends AbstractAnuncioController{
 			
 			redirectAttributes.addFlashAttribute("mensagem", "Anuncio criado com sucesso");
 			return new ModelAndView("redirect:/home");
-		} catch (IOException | RuntimeException | AbstractException e) {
+		} catch (IOException | RuntimeException | AbstractException | ParseException e) {
 			return new ModelAndView("anuncio/inserir");
 		}
 		

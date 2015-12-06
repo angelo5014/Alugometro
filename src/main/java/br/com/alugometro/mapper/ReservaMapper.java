@@ -1,5 +1,6 @@
 package br.com.alugometro.mapper;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,7 +35,7 @@ public class ReservaMapper {
 		
 	}
 	
-	public static Reserva paraEntidade(ReservaConfirmacaoDTO dto){
+	public static Reserva paraEntidade(ReservaConfirmacaoDTO dto) throws ParseException{
 		Reserva entidade = new Reserva();
 		
 		Anuncio anuncio = new Anuncio();
