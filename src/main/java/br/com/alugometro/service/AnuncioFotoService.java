@@ -20,7 +20,7 @@ import br.com.alugometro.exception.FormatoDeImagemNaoSuportadoException;
 import br.com.alugometro.exception.ImagemNaoRegistradaException;
 
 @Service
-public class AnuncioImagemService {
+public class AnuncioFotoService {
 	
 	private FotoDAO fotoDAO;
 	private AnuncioFotoDAO anuncioFotoDAO;
@@ -28,7 +28,7 @@ public class AnuncioImagemService {
 	private final String CAMINHO_BASE = "C:\\Alugometro\\";
 	
 	@Autowired
-	public AnuncioImagemService(FotoDAO fotoDAO, AnuncioFotoDAO anuncioFotoDAO) {
+	public AnuncioFotoService(FotoDAO fotoDAO, AnuncioFotoDAO anuncioFotoDAO) {
 		this.fotoDAO = fotoDAO;
 		this.anuncioFotoDAO = anuncioFotoDAO;
 	}
