@@ -76,7 +76,7 @@ public class AnuncioService {
 		
 		Long idUsuario = usuarioService.obterIdDoUsuarioLogado();
 		
-		Foto imagemSalva = anuncioImagemService.saveImage(imagem.getOriginalFilename(), imagem);
+		Foto imagemSalva = anuncioImagemService.salvarImagem(imagem.getOriginalFilename(), imagem);
 		Long idFoto = imagemSalva.getIdFoto();
 		
 		dto.setIdUsuario(idUsuario);
