@@ -1,6 +1,7 @@
 package br.com.alugometro.service;
 
 import java.math.BigDecimal;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,7 +60,11 @@ public class AnuncioService {
 	}
 	
 	public List<AnuncioResumoDTO> listarPorBuscaDetalhada(
-			BigDecimal precoMenor, BigDecimal precoMaior, Long idTipoImovel, Long idTipoAcomodacao, Long idCidade) {
+			BigDecimal precoMenor, 
+			BigDecimal precoMaior, 
+			Long idTipoImovel, 
+			Long idTipoAcomodacao, 
+			Long idCidade) {
 
 		List<Anuncio> anuncios = anuncioDAO.listarPorPrecoETipoImovelETipoAcomodacaoECidade(
 				precoMenor, precoMaior, idTipoImovel, idTipoAcomodacao, idCidade);
@@ -83,7 +88,7 @@ public class AnuncioService {
 		
 		Foto imagemSalva = null;
 		try {
-			imagemSalva = anuncioFotoService.salvarImagem(imagem.getOriginalFilename(), imagem);
+			imagemSalva = anuncioFotoService.salvarImagem(imagem.getOriginalFilename(),idUsuario , imagem);
 		} catch (ImagemNaoRegistradaException e) {
 			e.printStackTrace();
 		}
@@ -92,6 +97,11 @@ public class AnuncioService {
 		dto.setIdUsuario(idUsuario);
 		dto.setIdFotoCapa(idFoto);
 		dto.setSituacao("DISPONIVEL");
-		return anuncioDAO.salvar(AnuncioMapper.paraEntidade(dto));
+		try {
+			return anuncioDAO.salvar(AnuncioMapper.paraEntidade(dto));
+		} catch (ParseException e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 }
