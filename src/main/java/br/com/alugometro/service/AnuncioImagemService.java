@@ -2,6 +2,8 @@ package br.com.alugometro.service;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import br.com.alugometro.dao.FotoDAO;
 import br.com.alugometro.domain.Anuncio;
 import br.com.alugometro.domain.AnuncioFoto;
 import br.com.alugometro.domain.Foto;
+import br.com.alugometro.dto.AnuncioFotoDTO;
 import br.com.alugometro.exception.FormatoDeImagemNaoSuportadoException;
 import br.com.alugometro.exception.ImagemNaoRegistradaException;
 
@@ -30,6 +33,16 @@ public class AnuncioImagemService {
 		this.anuncioFotoDAO = anuncioFotoDAO;
 	}
 	
+	public List<AnuncioFotoDTO> listarPorIdAnuncio(Long idAnuncio) {
+		List<AnuncioFoto> anuncioFotos = anuncioFotoDAO.encontrarPorIdAnuncio(idAnuncio);
+		List<AnuncioFotoDTO> anuncioFotosDTO = new ArrayList<AnuncioFotoDTO>();
+		
+		for (AnuncioFoto anuncioFoto : anuncioFotos) {
+			anuncioFotosDTO.add(new AnuncioFotoDTO(anuncioFoto));
+		}
+		
+		return anuncioFotosDTO;
+	}
 	
 	public void validarFormatoImagem(MultipartFile imagem) throws FormatoDeImagemNaoSuportadoException {
 		if (!imagem.getContentType().equals("image/*")) {
