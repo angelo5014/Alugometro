@@ -3,7 +3,6 @@ package br.com.alugometro.dto;
 import java.math.BigDecimal;
 
 import org.hibernate.validator.constraints.NotBlank;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.NumberFormat;
 
 public class AnuncioDTO {
@@ -17,7 +16,6 @@ public class AnuncioDTO {
 	private int numeroPessoas;
 
 	private Long idCidade;
-	private String dataInicio;
 
 	@NotBlank
 	private String dataInicio;
