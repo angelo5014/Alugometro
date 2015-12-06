@@ -25,7 +25,7 @@ public class AnuncioImagemService {
 	private AnuncioFotoDAO anuncioFotoDAO;
 	
 	private final String CAMINHO_RESOURCES_SERVIDOR = "/anuncioImagens/"; 
-	private final String CAMINHO_SISTEMA = "src/main/resources/static/anuncioImagens/";
+	private final String CAMINHO_SISTEMA = "target/classes/static/anuncioImagens/";
 
 	
 	@Autowired
@@ -39,7 +39,7 @@ public class AnuncioImagemService {
 	
 	
 	public void validarFormatoImagem(MultipartFile imagem) throws FormatoDeImagemNaoSuportadoException {
-		if (!imagem.getContentType().equals("image/jpeg")) {
+		if (!imagem.getContentType().startsWith("image/")) {
 			throw new FormatoDeImagemNaoSuportadoException();
 		}
 	}
