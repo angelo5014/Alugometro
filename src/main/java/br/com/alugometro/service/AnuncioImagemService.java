@@ -25,7 +25,7 @@ public class AnuncioImagemService {
 	private AnuncioFotoDAO anuncioFotoDAO;
 	
 	private final String CAMINHO_RESOURCES_SERVIDOR = "/alugometroImagens/"; 
-	private final String CAMINHO_SISTEMA = "C:\\Users\\Angelo\\Documents\\Alugometro\\src\\main\\resources\\alugometroImagens\\";
+	private final String CAMINHO_SISTEMA = "C:\\Users\\Angelo\\Documents\\Alugometro\\src\\main\\resources\\static\\alugometroImagens\\";
 
 	@Autowired
 	ServletContext context;
