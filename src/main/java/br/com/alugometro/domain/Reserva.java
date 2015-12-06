@@ -46,7 +46,7 @@ public class Reserva {
 	@Basic(optional = false)
 	private Date dataFim;
 	
-	@Column(name = "Valor_Dia")
+	@Column(name = "Valor_Diaria")
 	@Basic(optional = false)
 	private BigDecimal valorDia;
 	
