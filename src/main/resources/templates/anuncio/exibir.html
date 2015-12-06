@@ -25,7 +25,14 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 				</div>
 
 				<div class="col col-l-8 col-s-12">
-					<img class="image-details" th:src="*{urlFotoCapa}" />
+					<div class="image-pagination">
+						<div>
+							<img class="image-details" th:src="*{urlFotoCapa}" />
+						</div>
+						<div th:each="foto : ${(anuncioFotos)}">
+							<img class="image-details" th:src="${foto.urlFoto}" />
+						</div>
+					</div>
 				</div>
 
 				<div class="col col-l-4 col-s-12">
@@ -39,6 +46,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 					<p th:text="*{descricaoDetalhada}"></p>
 				</div>
 
+				<!--
 				<div class="col col-l-12 col-s-12">
 					<nav class="">
 						<ul class="reset-list ">
@@ -48,6 +56,8 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 						</ul>
 					</nav>
 				</div>
+				-->
+				
 			</div>
 		</div>
 	</div>
