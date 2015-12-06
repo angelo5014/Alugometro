@@ -3,6 +3,8 @@ package br.com.alugometro.service;
 import java.io.File;
 import java.io.IOException;
 
+import javax.servlet.ServletContext;
+
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,7 +24,11 @@ public class AnuncioImagemService {
 	private FotoDAO fotoDAO;
 	private AnuncioFotoDAO anuncioFotoDAO;
 	
-	private final String CAMINHO_BASE = "C:\\Alugometro\\";
+	private final String CAMINHO_RESOURCES_SERVIDOR = "/alugometroImagens/"; 
+	private final String CAMINHO_SISTEMA = "C:\\Users\\Angelo\\Documents\\Alugometro\\src\\main\\resources\\alugometroImagens\\";
+
+	@Autowired
+	ServletContext context;
 	
 	@Autowired
 	public AnuncioImagemService(FotoDAO fotoDAO, AnuncioFotoDAO anuncioFotoDAO) {
@@ -32,17 +38,17 @@ public class AnuncioImagemService {
 	
 	
 	public void validarFormatoImagem(MultipartFile imagem) throws FormatoDeImagemNaoSuportadoException {
-		if (!imagem.getContentType().equals("image/*")) {
+		if (!imagem.getContentType().equals("image/jpeg")) {
 			throw new FormatoDeImagemNaoSuportadoException();
 		}
 	}
 	
-	public void validarFormatoVariasImagensEInserir(MultipartFile[] imagens, Long idAnuncio) throws FormatoDeImagemNaoSuportadoException, ImagemNaoRegistradaException{
+	public void validarFormatoVariasImagensEInserir(MultipartFile[] imagens, Long idAnuncio, Long idUsuario) throws FormatoDeImagemNaoSuportadoException, ImagemNaoRegistradaException{
 		for (MultipartFile imagem : imagens) {
 			
 			validarFormatoImagem(imagem);
 			
-			Foto foto = salvarImagem(imagem.getOriginalFilename(), imagem);
+			Foto foto = salvarImagem(imagem.getOriginalFilename(), idUsuario, imagem);
 			relacionarFotoComAnuncio(foto, idAnuncio);
 		}
 	}
@@ -54,18 +60,19 @@ public class AnuncioImagemService {
 		return anuncioFotoDAO.salvar(anuncioFoto);
 	}
 
-	public Foto salvarImagem(String filename, MultipartFile image) throws ImagemNaoRegistradaException{
-				String caminhoFinal = CAMINHO_BASE + filename;
+	public Foto salvarImagem(String filename, Long idUsuario,MultipartFile imagem) throws ImagemNaoRegistradaException{
+				String caminhoFinalNoSistema = CAMINHO_SISTEMA + idUsuario + "\\" + filename;
+				String caminhoFinalNoServidor = CAMINHO_RESOURCES_SERVIDOR + idUsuario + "/" + filename;
 				
-				File file = new File(caminhoFinal);
+				File file = new File(caminhoFinalNoSistema);
 			
 				try {
-					FileUtils.writeByteArrayToFile(file, image.getBytes());
+					FileUtils.writeByteArrayToFile(file, imagem.getBytes());
 				} catch (IOException e) {
 					throw new ImagemNaoRegistradaException();
 				}
 			
-				return fotoDAO.salvar(new Foto(caminhoFinal));
+				return fotoDAO.salvar(new Foto(caminhoFinalNoServidor));
 	}
 	
 }
