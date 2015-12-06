@@ -58,7 +58,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 			<div th:if="${ not #lists .isEmpty(anuncios) }" class="col col-l-8 col-s-12">
 				<div th:each="anuncio : ${(anuncios)}" class="section clearfix list-row">
 					<div class="image-list pull-left">
-						<a href="#">
+						<a th:href="${ '/anuncio/' + anuncio.idAnuncio }">
 							<img width="250" height="200" th:src="${anuncio.fotoCapa}" />
 						</a>
 					</div>

@@ -12,19 +12,22 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 	<div th:object="${anuncio}" layout:fragment="content">
 		<div class="row">
 			<div class="section clearfix">
-				<div class="col col-l-12 col-s-12">
+
+				<div class="col col-l-12 col-s-12 details-header">
 					<p class="inline-block">
 						<span th:text="*{tipoImovel}"></span>
 					</p>
 					<p th:text="*{cidade}" class="inline-block">Cidade</p>
 					<p class="inline-block pull-right">
-						<a href="#">Reservar</a>
+						<a th:href="${'/reserva/confirmar/' + anuncio.idAnuncio}" class="link-reserva form-radius">Reservar</a>
 					</p>
 					<p class="inline-block pull-right">R$ <span th:text="*{diaria}"></span></p>
 				</div>
+
 				<div class="col col-l-8 col-s-12">
 					<img class="image-details" th:src="*{urlFotoCapa}" />
 				</div>
+
 				<div class="col col-l-4 col-s-12">
 					<p>Tipo Acomodação: <span th:text="*{tipoAcomodacao}"></span></p>
 					<p>Numero de Pessoas: <span th:text="*{numeroPessoas}"></span></p>
@@ -35,6 +38,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 					</p>
 					<p th:text="*{descricaoDetalhada}"></p>
 				</div>
+
 				<div class="col col-l-12 col-s-12">
 					<nav class="">
 						<ul class="reset-list ">

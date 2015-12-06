@@ -109,6 +109,22 @@
 	margin: 0 10px 11px 0;
 }
 
+.link-reserva {
+	padding: 10px;
+	background-color: #3498db;
+	color: #fff;
+	margin-left: 10px;
+}
+
+.link-reserva:hover {
+	background-color: #2980b9;
+	text-decoration: none;
+}
+
+.details-header {
+	margin-top: 15px;
+}
+
 .link-section-content {
 	margin-right: 10px;
 }
