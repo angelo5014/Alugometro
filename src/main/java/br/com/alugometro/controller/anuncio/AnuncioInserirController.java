@@ -18,7 +18,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.alugometro.dto.AnuncioDTO;
 import br.com.alugometro.exception.AbstractException;
-import br.com.alugometro.exception.MultiplosUsuariosEncontradosException;
+import br.com.alugometro.exception.FormatoDeImagemNaoSuportadoException;
+import br.com.alugometro.exception.ImagemNaoRegistradaException;
 import br.com.alugometro.service.AnuncioImagemService;
 import br.com.alugometro.service.AnuncioService;
 import br.com.alugometro.service.CidadeService;
@@ -60,7 +61,7 @@ public class AnuncioInserirController extends AbstractAnuncioController{
 		if(imagem.getSize() != 0){
 			try{
 				anuncioImagemService.validarFormatoImagem(imagem);
-			}catch (MultiplosUsuariosEncontradosException e) {
+			}catch (FormatoDeImagemNaoSuportadoException e) {
 				result.addError(new FieldError("anuncio", "idFotoCapa", e.getMensagem()));
 				return new ModelAndView("anuncio/inserir");
 			}
@@ -70,11 +71,22 @@ public class AnuncioInserirController extends AbstractAnuncioController{
 		}
 		
 		try {
-			anuncioService.inserir(anuncioDTO, imagem);
+			Long idAnuncio = anuncioService.inserir(anuncioDTO, imagem).getIdAnuncio();
+			
+			if(imagens.length > 0){
+				try {
+					anuncioImagemService.validarFormatoVariasImagensEInserir(imagens, idAnuncio);
+				} catch (FormatoDeImagemNaoSuportadoException | ImagemNaoRegistradaException e) {
+					result.addError(new FieldError("anuncio", "idFotoCapa", e.getMensagem()));
+					return new ModelAndView("anuncio/inserir");
+				}
+			}
+			
 			redirectAttributes.addFlashAttribute("mensagem", "Anuncio criado com sucesso");
 			return new ModelAndView("redirect:/home");
 		} catch (IOException | RuntimeException | AbstractException e) {
 			return new ModelAndView("anuncio/inserir");
 		}
+		
 	}
 }
