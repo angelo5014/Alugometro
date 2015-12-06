@@ -2,6 +2,8 @@ package br.com.alugometro.dao;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.stereotype.Repository;
 
 import br.com.alugometro.domain.Reserva;
@@ -19,6 +21,7 @@ public class ReservaDAO extends AbstractDAO {
 				.getResultList();
 	}
 	
+	@Transactional
 	public Reserva salvar(Reserva entidade){
 		if(entidade.getIdReserva() == null){
 			em.persist(entidade);
