@@ -1,0 +1,15 @@
+.slick-prev {
+	top: 46%;
+	left: 8px;
+	z-index: 1;
+}
+
+.slick-next {
+	top: 46%;
+	right: 8px;
+	z-index: 1;
+}
+
+.slick-dots {
+	position: static;
+}
