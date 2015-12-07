@@ -58,7 +58,7 @@ public class AnuncioInserirController extends AbstractAnuncioController{
 								BindingResult result,
 								final RedirectAttributes redirectAttributes,
 								@RequestParam("imagem") MultipartFile imagem,
-								@RequestParam("imagens") MultipartFile[] imagens) throws AbstractException {
+								@RequestParam("imagens") MultipartFile[] imagens) throws AbstractException	 {
 		
 		final boolean IMAGEM_CAPA_NULA = imagem.getSize() == 0;	
 		final boolean IMAGENS_OPCIONAIS_VAZIAS = imagens.length == 0;
