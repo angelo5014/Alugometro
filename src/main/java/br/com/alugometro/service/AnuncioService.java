@@ -15,7 +15,6 @@ import br.com.alugometro.domain.Anuncio;
 import br.com.alugometro.domain.Foto;
 import br.com.alugometro.dto.AnuncioDTO;
 import br.com.alugometro.dto.AnuncioResumoDTO;
-import br.com.alugometro.exception.AbstractException;
 import br.com.alugometro.exception.ImagemNaoRegistradaException;
 import br.com.alugometro.exception.UsuarioNaoEncontradoException;
 import br.com.alugometro.mapper.AnuncioMapper;
@@ -38,6 +37,10 @@ public class AnuncioService {
 	
 	public AnuncioDTO buscarPorID(Long idAnuncio) {
 		return AnuncioMapper.paraDTO(anuncioDAO.buscarPorId(idAnuncio));
+	}
+	
+	public void desativarAnuncio(Long idAnuncio){
+		anuncioDAO.desativar(idAnuncio);
 	}
 	
 	public List<AnuncioResumoDTO> listarTodos() {
@@ -97,11 +100,7 @@ public class AnuncioService {
 	public Anuncio inserir(AnuncioDTO dto, MultipartFile imagem) {
 		
 		Long idUsuario = null;
-		try {
-			idUsuario = usuarioService.obterIdDoUsuarioLogado();
-		} catch (AbstractException e) {
-			e.printStackTrace();
-		}
+		idUsuario = usuarioService.obterIdDoUsuarioLogado();
 		
 		Foto imagemSalva = null;
 		try {

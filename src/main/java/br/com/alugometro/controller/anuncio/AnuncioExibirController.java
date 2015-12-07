@@ -18,6 +18,7 @@ import br.com.alugometro.service.AnuncioService;
 import br.com.alugometro.service.CidadeService;
 import br.com.alugometro.service.TipoAcomodacaoService;
 import br.com.alugometro.service.TipoImovelService;
+import br.com.alugometro.service.UsuarioService;
 
 @Controller
 @RequestMapping("/anuncio")
@@ -26,12 +27,16 @@ public class AnuncioExibirController extends AbstractAnuncioController {
 	private AnuncioFotoService anuncioFotoService;
 
 	@Autowired
-	public AnuncioExibirController(AnuncioService anuncioService, AnuncioFotoService anuncioFotoService,
-			TipoImovelService tipoImovelService, TipoAcomodacaoService tipoAcomodacaoService,
-			CidadeService cidadeService) {
-
-		super(anuncioService, tipoImovelService, tipoAcomodacaoService, cidadeService);
-		this.anuncioFotoService = anuncioFotoService;
+	public AnuncioExibirController(
+			AnuncioService anuncioService,
+			AnuncioFotoService anuncioFotoService,
+			TipoImovelService tipoImovelService,
+			TipoAcomodacaoService tipoAcomodacaoService, 
+			CidadeService cidadeService,
+			UsuarioService usuarioService) {
+		
+		super(anuncioService, tipoImovelService, tipoAcomodacaoService, cidadeService, usuarioService);
+		this.anuncioFotoService = anuncioFotoService; 
 	}
 
 	@RequestMapping(path = "/{idAnuncio}", method = RequestMethod.GET)

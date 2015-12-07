@@ -13,6 +13,7 @@ import br.com.alugometro.service.AnuncioService;
 import br.com.alugometro.service.CidadeService;
 import br.com.alugometro.service.TipoAcomodacaoService;
 import br.com.alugometro.service.TipoImovelService;
+import br.com.alugometro.service.UsuarioService;
 
 @Controller
 public abstract class AbstractAnuncioController {
@@ -21,18 +22,21 @@ public abstract class AbstractAnuncioController {
 	protected TipoImovelService tipoImovelService;
 	protected TipoAcomodacaoService tipoAcomodacaoService;
 	protected CidadeService cidadeService;
+	protected UsuarioService usuarioService;
 
 	@Autowired
 	public AbstractAnuncioController(
 			AnuncioService anuncioService,
 			TipoImovelService tipoImovelService,
 			TipoAcomodacaoService tipoAcomodacaoService,
-			CidadeService cidadeService) {
+			CidadeService cidadeService,
+			UsuarioService usuarioService) {
 		
 		this.anuncioService = anuncioService;
 		this.tipoImovelService = tipoImovelService;
 		this.cidadeService = cidadeService;
 		this.tipoAcomodacaoService = tipoAcomodacaoService;
+		this.usuarioService = usuarioService;
 	}
 
 	@ModelAttribute("tiposImoveis")
