@@ -26,6 +26,13 @@ public class ReservaDAO extends AbstractDAO {
 		return em.createQuery("FROM Reserva WHERE Id_Usuario = :idUsuario", Reserva.class)
 				.setParameter("idUsuario", idUsuario).getResultList();
 	}
+	
+	public List<Reserva> buscarPorEmailUsuario(String email) {
+		return em.createNativeQuery("SELECT * FROM Reserva WHERE Id_Usuario ="
+					+ " (SELECT Id_Usuario FROM Usuario"
+					+ " WHERE email = :email)", Reserva.class)
+					.setParameter("email", email).getResultList();
+	}
 
 	public List<Reserva> listarPorDataESituacao(Date dataInicio, Date dataFim, Long situacaoReserva) {
 

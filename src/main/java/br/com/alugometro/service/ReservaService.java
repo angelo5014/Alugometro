@@ -37,6 +37,11 @@ public class ReservaService {
 	public List<ReservaDTO> buscarPorUsuario(Long idUsuario) {
 		return ReservaMapper.paraListaDTO(this.reservaDAO.buscarPorIdUsuario(idUsuario));
 	}
+	
+	public List<ReservaDTO> buscarPorEmailUsuario(String email) {
+		
+		return ReservaMapper.paraListaDTO(this.reservaDAO.buscarPorEmailUsuario(email));
+	}
 
 	public List<ReservaDTO> buscarPorDataESituacao(Date dataInicio, Date dataFim, Long situacaoReserva) {
 
