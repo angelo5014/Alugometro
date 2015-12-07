@@ -1,7 +1,6 @@
 package br.com.alugometro.controller.reserva;
 
 import java.text.ParseException;
-import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import br.com.alugometro.domain.Reserva.SituacaoReserva;
 import br.com.alugometro.dto.ReservaDTO;
-import br.com.alugometro.service.CalendarioService;
 import br.com.alugometro.service.ReservaService;
 import br.com.alugometro.service.UsuarioService;
 
@@ -43,13 +42,13 @@ public class ReservaUsuarioController extends AbstractReservaController {
 	public ModelAndView listarReservasPorBusca (
 			@RequestParam("dataInicio") String dataInicio,
 			@RequestParam("dataFim") String dataFim,
-			@RequestParam("situacao") Long situacaoReserva) throws ParseException {
+			@RequestParam("situacao") SituacaoReserva situacaoReserva) throws ParseException {
 		
-		Date dataInicioDate = CalendarioService.converterStringParaDate(dataInicio);
-		Date dataFimDate = CalendarioService.converterStringParaDate(dataFim);
+		//Date dataInicioDate = CalendarioService.converterStringParaDate(dataInicio);
+		//Date dataFimDate = CalendarioService.converterStringParaDate(dataFim);
 		
-		return new ModelAndView("reserva/listar", "reservas", reservaService.buscarPorDataESituacao(dataInicioDate, 
-				dataFimDate, situacaoReserva));
+		return new ModelAndView("reserva/listar", "reservas", reservaService.buscarPorDataESituacao(dataInicio, 
+				dataFim, situacaoReserva));
 	}
 	
 }

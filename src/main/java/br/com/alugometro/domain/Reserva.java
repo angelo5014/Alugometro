@@ -59,7 +59,7 @@ public class Reserva {
 	@Basic(optional = false)
 	private SituacaoReserva situacao;
 	
-	public enum SituacaoReserva{
+	public enum SituacaoReserva {
 		PENDENTE, PROCESSANDO, ENCERRADA, CANCELADA;
 	}
 	
