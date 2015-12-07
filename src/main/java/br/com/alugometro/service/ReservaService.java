@@ -2,6 +2,7 @@ package br.com.alugometro.service;
 
 import java.math.BigDecimal;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -24,7 +25,7 @@ public class ReservaService {
 	private AnuncioDAO anuncioDAO;
 	
 	@Autowired
-	public ReservaService(ReservaDAO reservaDao, AnuncioDAO anuncioDAO){
+	public ReservaService(ReservaDAO reservaDao, AnuncioDAO anuncioDAO) {
 		this.reservaDAO = reservaDao;
 		this.anuncioDAO = anuncioDAO;
 	}
@@ -35,6 +36,19 @@ public class ReservaService {
 	
 	public List<ReservaDTO> buscarPorUsuario(Long idUsuario){
 		return ReservaMapper.paraListaDTO(this.reservaDAO.buscarPorIdUsuario(idUsuario));
+	}
+	
+	public List<ReservaDTO> buscarPorDataESituacao(Date dataInicio, 
+			Date dataFim, Long situacaoReserva) {
+
+		List<Reserva> reservas = reservaDAO.listarPorDataESituacao(dataInicio, dataFim, situacaoReserva);
+
+		List<ReservaDTO> reservasDTO = new ArrayList<ReservaDTO>();
+		for (Reserva reserva : reservas) {
+			reservasDTO.add(ReservaMapper.paraDTO(reserva));
+		}
+
+		return reservasDTO;
 	}
 	
 	public ReservaDTO salvar(ReservaDTO dto){
@@ -92,6 +106,15 @@ public class ReservaService {
 	
 	public void cancelarReserva(Long idReserva) {
 		reservaDAO.cancelar(idReserva);
+	}
+	
+	public List<SituacaoReserva> listarSituacoes() {
+		List<SituacaoReserva> situacoes = new ArrayList<SituacaoReserva>();
+		situacoes.add(SituacaoReserva.PROCESSANDO);
+		situacoes.add(SituacaoReserva.PENDENTE);
+		situacoes.add(SituacaoReserva.ENCERRADA);
+		situacoes.add(SituacaoReserva.CANCELADA);
+		return situacoes;
 	}
 	
 }
