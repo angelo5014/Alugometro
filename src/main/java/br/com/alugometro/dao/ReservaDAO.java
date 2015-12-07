@@ -22,6 +22,14 @@ public class ReservaDAO extends AbstractDAO {
 	}
 	
 	@Transactional
+	public void cancelar(Long idReserva){
+		em.createQuery("UPDATE Reserva SET Id_Situacao_Reserva=3 "
+				+ "WHERE Id_Reserva = :idReserva")
+				.setParameter("idReserva", idReserva)
+				.executeUpdate();
+	}
+	
+	@Transactional
 	public Reserva salvar(Reserva entidade){
 		if(entidade.getIdReserva() == null){
 			em.persist(entidade);

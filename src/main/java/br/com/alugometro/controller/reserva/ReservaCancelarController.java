@@ -21,10 +21,10 @@ public class ReservaCancelarController extends AbstractReservaController{
 	
 	@RequestMapping(path = "/cancelar", method = RequestMethod.POST)
 	public ModelAndView cancelarReserva(@ModelAttribute ReservaSegurancaDTO reservaSegurancaDTO) {
-		//TODO adicionar cancelamento de reserva
-		//reservaService.cancelarReserva(reservaSegurancaDTO);
+
+		reservaService.cancelarReserva(reservaSegurancaDTO.getIdReserva());
 		
-		return new ModelAndView();
+		return new ModelAndView("redirect:/reserva/usuario/" + reservaSegurancaDTO.getIdUsuario());
 	}
 	
 }
