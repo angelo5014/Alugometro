@@ -33,7 +33,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 					<li class="inline-block">
 						<a class="nav-link inline-block" href="/anuncio/insere" th:href="@{'/anuncio/inserir'}">Anunciar</a>
 					</li>
-					<li class="inline-block">
+					<li class="inline-block" sec:authorize="!isAuthenticated()">
 						<a class="nav-link inline-block" th:href="@{|/login|}">Login</a>
 					</li>
 					<li class="inline-block">
