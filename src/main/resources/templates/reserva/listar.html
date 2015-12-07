@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-BR"
+xmlns="http://www.w3.org/1999/xhtml" 
+xmlns:th="http://www.thymeleaf.org" 
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorator="template"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+	<title>Anunciar</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<div class="row">
+			<div th:if="${ not #lists .isEmpty(reservas) }" class="col col-l-8 col-s-12">
+				<div th:each="reserva : ${(reservas)}" class="section clearfix list-row">
+					<div class="pull-left">	
+						<p th:text="${reserva.descricaoCapaAnuncio}">Apartamento</p>
+						<p th:text="${reserva.dataInicio}"></p>
+						<p th:text="${reserva.dataFim}"></p>
+						<p th:text="${reserva.situacao}"></p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
