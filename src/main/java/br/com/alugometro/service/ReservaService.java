@@ -90,8 +90,8 @@ public class ReservaService {
 		confirmacaoDTO.setTotal(diaria.multiply(new BigDecimal(dias)));
 	}
 	
-	public void cancelarReserva() {
-		
+	public void cancelarReserva(Long idReserva) {
+		reservaDAO.cancelar(idReserva);
 	}
 	
 }

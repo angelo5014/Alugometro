@@ -18,6 +18,11 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 						<p th:text="${reserva.dataInicio}"></p>
 						<p th:text="${reserva.dataFim}"></p>
 						<p th:text="${reserva.situacao}"></p>
+						<form th:action="@{/reserva/cancelar}" method="POST">
+							<input type="hidden" name="idReserva" th:value="${reserva.idReserva}"/>
+							<input type="hidden" name="idUsuario" th:value="${reserva.idUsuario}"/>
+							<button type="submit" class="btn btn-primary" >CANCELAR</button>
+						</form>
 					</div>
 				</div>
 			</div>
