@@ -60,7 +60,7 @@ public class ReservaMapperTest {
 		dtoEsperado.setDataFim(dataFim);
 		dtoEsperado.setValorDia(new BigDecimal(10));
 		dtoEsperado.setValorTotal(new BigDecimal(10));
-		dtoEsperado.setSituacao(SituacaoReserva.PENDENTE);
+		dtoEsperado.setSituacao("PENDENTE");
 		
 		// Act
 		ReservaDTO dtoObtido = ReservaMapper.paraDTO(entidade);
@@ -99,7 +99,7 @@ public class ReservaMapperTest {
 		dto.setDataFim(dataFim);
 		dto.setValorDia(new BigDecimal(10));
 		dto.setValorTotal(new BigDecimal(10));
-		dto.setSituacao(SituacaoReserva.PENDENTE);
+		dto.setSituacao("PENDENTE");
 		
 		Reserva entidadeEsperada = new Reserva();
 		entidadeEsperada.setIdReserva(1L);

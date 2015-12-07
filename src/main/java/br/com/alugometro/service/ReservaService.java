@@ -39,7 +39,7 @@ public class ReservaService {
 	
 	public ReservaDTO salvar(ReservaDTO dto){
 		if(dto.getIdReserva() == null){
-			dto.setSituacao(SituacaoReserva.PENDENTE);
+			dto.setSituacao("PENDENTE");
 		}
 		
 		Reserva entidade = ReservaMapper.paraEntidade(dto);
@@ -84,9 +84,14 @@ public class ReservaService {
 			e.printStackTrace();
 		}
 		
-		Long dias = CalendarioService.obterDiasDeDiferenca(dataInicio, dataFim);
+		int dias = CalendarioService.obterDiasDeDiferenca(dataInicio, dataFim);
 		BigDecimal diaria = confirmacaoDTO.getDiaria();
 		
 		confirmacaoDTO.setTotal(diaria.multiply(new BigDecimal(dias)));
 	}
+	
+	public void cancelarReserva() {
+		
+	}
+	
 }
