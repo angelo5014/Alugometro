@@ -18,7 +18,7 @@ $(function() {
 		" - R$ " + $( "#slider-range" ).slider( "values", 1 ) );
 
 	var divDemaisFotos = $('#fotos-div');
-	var labelDemaisFotos = '<label><span>Demais Fotos:</span><input type="file" class="input-field" name="imagens" accept="image/*" /></label>';
+	var labelDemaisFotos = '<label><span>Demais Fotos:</span><input type="file" data-max-size="5242880" class="upload-file input-field" name="imagens" accept="image/*" /></label>';
 
 	$('#btn-fotos').click(function() {
 		$(divDemaisFotos).append($(labelDemaisFotos));
