@@ -15,6 +15,7 @@ import br.com.alugometro.domain.Anuncio;
 import br.com.alugometro.domain.Foto;
 import br.com.alugometro.dto.AnuncioDTO;
 import br.com.alugometro.dto.AnuncioResumoDTO;
+import br.com.alugometro.exception.AbstractException;
 import br.com.alugometro.exception.ImagemNaoRegistradaException;
 import br.com.alugometro.exception.UsuarioNaoEncontradoException;
 import br.com.alugometro.mapper.AnuncioMapper;
@@ -97,7 +98,7 @@ public class AnuncioService {
 		return anunciosDTO;
 	}
 	
-	public Anuncio inserir(AnuncioDTO dto, MultipartFile imagem) {
+	public Anuncio inserir(AnuncioDTO dto, MultipartFile imagem) throws AbstractException {
 		
 		Long idUsuario = null;
 		idUsuario = usuarioService.obterIdDoUsuarioLogado();

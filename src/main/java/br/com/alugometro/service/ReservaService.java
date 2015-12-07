@@ -84,7 +84,7 @@ public class ReservaService {
 			e.printStackTrace();
 		}
 		
-		Long dias = CalendarioService.obterDiasDeDiferenca(dataInicio, dataFim);
+		int dias = CalendarioService.obterDiasDeDiferenca(dataInicio, dataFim);
 		BigDecimal diaria = confirmacaoDTO.getDiaria();
 		
 		confirmacaoDTO.setTotal(diaria.multiply(new BigDecimal(dias)));
