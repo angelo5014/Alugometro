@@ -17,14 +17,18 @@ public class CalendarioService {
 		return formatter.format(data);
 	}
 	
-	public static int obterDiasDeDiferenca(Date dataInicial, Date dataFinal){
+	public static Long obterDiasDeDiferenca(Date dataInicial, Date dataFinal){
 		Calendar dataInicio = Calendar.getInstance();
 		dataInicio.setTime(dataInicial);
 		
 		Calendar dataFim = Calendar.getInstance();
 		dataFim.setTime(dataFinal);
 		
-		return dataFim.get(Calendar.DAY_OF_YEAR) - dataInicio.get(Calendar.DAY_OF_YEAR);
+		Long milisegundos = dataFim.getTimeInMillis() - dataInicio.getTimeInMillis();
+		
+		Long dias = (milisegundos / (1000*60*60*24));
+		
+		return dias;
 	}
 	
 	public static String[] verificarDatas(Date dataMenor, Date dataMaior) throws ParseException{

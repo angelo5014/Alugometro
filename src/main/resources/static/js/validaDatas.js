@@ -1,5 +1,20 @@
 $(document).ready(function(){
 	
+	function validarPeriodo(){
+		var dataInicio = $("#dataInicio").val();
+		var dataFim = $("#dataFim").val();
+		var idAnuncio = $("#idAnuncio").val();
+		
+		$.ajax({
+		    url: '/reserva/verificardisponibilidade?idAnuncio=' +idAnuncio+ '&dataInicio=' +dataInicio+ '&dataFim=' +dataFim,
+		    type: 'GET',
+		    success: function(data){ 
+		    	$("#dataInicio").val(data[0]);
+		    	$("#dataFim").val(data[1]);
+		    }
+		});
+	}
+	
 	function verificarDataInicio(){
 		var dataInicio = moment( $("#dataInicio").val(), 'YYYY-MM-DD' );
 		var dataFim = moment( $("#dataFim").val(), 'YYYY-MM-DD' );
@@ -22,28 +37,30 @@ $(document).ready(function(){
 		}
 	}
 	
-	$("#dataInicio").ready(function(){
+	function validacoesDataInicio(){
 		verificarDataInicio();
-	});
+		validarPeriodo();
+	}
+	
+	function validacoesDataFim(){
+		verificarDataFim();
+		validarPeriodo();
+	}
 	
 	$("#dataInicio").blur(function(){
-		verificarDataInicio();
+		validacoesDataInicio();
 	});
 	
 	$("#dataInicio").change(function(){
-		verificarDataInicio();
+		validacoesDataInicio();
 	});
 	
 	$("#dataFim").blur(function(){
-			verificarDataFim();
+		validacoesDataFim();
 		});
 
 	$("#dataFim").change(function(){
-		verificarDataFim();
-	});
-	
-	$("#dataFim").ready(function(){
-		verificarDataFim();
+		validacoesDataFim();
 	});
 	
 });

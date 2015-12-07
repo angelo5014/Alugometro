@@ -49,7 +49,7 @@ public class AnuncioDesativarController extends AbstractAnuncioController {
 				redirectAttributes.addFlashAttribute("mensagem", "Voce não tem permissão para isso");
 				return new ModelAndView("redirect:/");
 			}
-		return new ModelAndView("redirect:/anuncio");
+		return new ModelAndView("redirect:/anuncio/usuario/" + anuncioSegurancaDTO.getIdUsuario());
 	}
 	
 }

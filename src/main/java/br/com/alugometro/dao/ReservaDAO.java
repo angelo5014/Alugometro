@@ -78,4 +78,11 @@ public class ReservaDAO extends AbstractDAO {
 
 		return em.merge(entidade);
 	}
+	
+	public List<Reserva> buscarReservaPorPeriodoESituacao(Reserva reserva){
+		return em.createQuery("FROM Reserva WHERE Data_Inicio = :dataInicio AND Data_Fim = :dataFim AND Id_Situacao_Reserva != 4")
+				  .setParameter("dataInicio", reserva.getDataInicio())
+				  .setParameter("dataFim", reserva.getDataFim())
+			   	  .getResultList();
+	}
 }

@@ -11,6 +11,7 @@ public class AnuncioResumoDTO {
 	private String fotoCapa;
 	private String descricaoCapa;
 	private String cidade;
+	private String situacao;
 	
 	public AnuncioResumoDTO() {
 		
@@ -24,6 +25,7 @@ public class AnuncioResumoDTO {
 		this.fotoCapa = anuncio.getFotoCapa().getUrl();
 		this.descricaoCapa = anuncio.getDescricaoCapa();
 		this.cidade = anuncio.getCidade().getNome();
+		this.setSituacao(anuncio.getSituacao().toString());
 	}
 
 	public Long getIdUsuario() {
@@ -80,6 +82,14 @@ public class AnuncioResumoDTO {
 
 	public void setCidade(String cidade) {
 		this.cidade = cidade;
+	}
+
+	public String getSituacao() {
+		return situacao;
+	}
+
+	public void setSituacao(String situacao) {
+		this.situacao = situacao;
 	}
 	
 }

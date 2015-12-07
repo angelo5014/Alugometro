@@ -23,6 +23,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 						<p th:text="${anuncio.preco}"></p>
 						<p th:text="${anuncio.descricaoCapa}"></p>
 						<p th:text="${anuncio.cidade}"></p>
+						<p th:text="${anuncio.situacao}"></p>
 					</div>
 					<div class="pull-right link-section-content">
 						<a th:href="${ '/anuncio/' + anuncio.idAnuncio }" class="link-section">

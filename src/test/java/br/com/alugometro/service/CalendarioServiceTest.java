@@ -57,10 +57,10 @@ public class CalendarioServiceTest {
 		calendario.set(2015, 9, 20, 0, 0, 0);
 		Date data20102015 = calendario.getTime();
 		
-		int quantidadeEsperada = 10;
+		Long quantidadeEsperada = 10L;
 		
 		// Act
-		int quantidadeObtida = CalendarioService.obterDiasDeDiferenca(data10102015, data20102015);
+		Long quantidadeObtida = CalendarioService.obterDiasDeDiferenca(data10102015, data20102015);
 		
 		// Assert
 		assertEquals(quantidadeEsperada, quantidadeObtida);
