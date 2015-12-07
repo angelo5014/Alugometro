@@ -2,67 +2,71 @@
 <html lang="pt-BR"
 xmlns="http://www.w3.org/1999/xhtml" 
 xmlns:th="http://www.thymeleaf.org" 
-xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-layout:decorator="template"
 xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
-	<title>Cadastre-se</title>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<title>Alugômetro - Cadastre-se</title>
+
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css' />
+	<link rel="stylesheet" href="/css/normalize.css" />
+	<link rel="stylesheet" href="/css/grid.css" />
+	<link rel="stylesheet" href="/css/content.css" />
+	<link rel="stylesheet" href="/css/modules.css" />
+	<link rel="stylesheet" href="/css/colors.css" />
+	<link rel="stylesheet" href="/css/header.css" />
+	<link rel="stylesheet" href="/css/background.css" />
+	<link rel="stylesheet" href="/css/forms.css" />
+	<link rel="stylesheet" href="/css/footer.css" />
 </head>
 <body>
-	<div layout:fragment="content">
-		<div class="container">
-			<h2 class="text-center content-title-s">Cadastre-se</h2>
+	<div class="bg-index">
+		<!-- HEADER -->
+		<div th:include="fragments/_header-simple :: header"></div>
 
-			<form th:action="@{/usuario/inserir}" th:object="${usuario}" method="POST" class="form-horizontal">
+		<div class="content">
+			<div class="container">
+				<div class="row">
+					<div class="col col-l-12 col-m-12 col-s-12">
+						<h2 class="text-center content-title-s">Cadastre-se</h2>
+						<p class="no-padding text-center content-text-s">
+							Encontre agora mesmo o lugar que você procura, ou comece anunciando seu imóvel.
+						</p>
+						<form th:action="@{/usuario/inserir}" th:object="${usuario}" method="POST" class="form-container">
+							<div th:classappend="${#fields.hasErrors('nome')} ? 'has-error'">
+								<input th:field="*{nome}" type="text" class="block form-radius" placeholder="Nome" />
+								<span class="content-text-ss help-inline" th:errors="*{nome}"></span>
+							</div>
 
-				<div class="form-group form-group-lg" th:classappend="${#fields.hasErrors('nome')} ? 'has-error'">
-					<label for="" class="col-sm-2 control-label">Nome:</label>
-					<div class="col-sm-10">
-						<input th:field="*{nome}" type="text" class="form-control" placeholder="Nome" />
-						<span class="content-text-ss help-inline" th:errors="*{nome}"></span>
-					</div>
-					
-				</div>
 
-				<div class="form-group form-group-lg" th:classappend="${#fields.hasErrors('sobrenome')} ? 'has-error'">
-					<label for="" class="col-sm-2 control-label" >Sobrenome:</label>
-					<div class="col-sm-10">
-						<input th:field="*{sobrenome}" type="text" class="form-control" placeholder="Sobrenome" />
-						<span class="content-text-ss help-inline" th:errors="*{sobrenome}"></span>
-					</div>
-				</div>
+							<div th:classappend="${#fields.hasErrors('sobrenome')} ? 'has-error'">
+								<input th:field="*{sobrenome}" type="text" class="block form-radius" placeholder="Sobrenome" />
+								<span class="content-text-ss help-inline" th:errors="*{sobrenome}"></span>
+							</div>
 
-				<div class="form-group form-group-lg" th:classappend="${#fields.hasErrors('email')} ? 'has-error'">
-					<label for="" class="col-sm-2 control-label">Email:</label>
-					<div class="col-sm-10">
-						<input th:field="*{email}" type="email" class="form-control" placeholder="exemplo@exemplo.com" />
-						<span class="content-text-ss help-inline" th:errors="*{email}"></span>
-					</div>
-				</div>
-				
-				<div class="form-group form-group-lg" th:classappend="${#fields.hasErrors('senha')} ? 'has-error'">
-					<label for="" class="col-sm-2 control-label">Senha:</label>
-					<div class="col-sm-10">
-						<input th:field="*{senha}" type="password" class="form-control" placeholder="Senha" />
-						<span class="content-text-ss help-inline" th:errors="*{senha}"></span>
-					</div>
-				</div>
-				
-				<div class="form-group form-group-lg">
-					<label for="" class="col-sm-2 control-label">Repita a Senha:</label>
-					<div class="col-sm-10">
-						<input th:field="*{confirmacaoSenha}" type="password" class="form-control" placeholder="Repita a Senha" />
-					</div>
-				</div>
-				
-				<div class="form-group form-group-lg">
-					<div class="col-sm-10">
-						<input type="submit" class="btn btn-default" value="Cadastrar" />
-					</div>
-				</div>
+							<div th:classappend="${#fields.hasErrors('email')} ? 'has-error'">
+								<input th:field="*{email}" type="email" class="block form-radius" placeholder="exemplo@exemplo.com" />
+								<span class="content-text-ss help-inline" th:errors="*{email}"></span>
+							</div>
 
-			</form>
+							<div th:classappend="${#fields.hasErrors('senha')} ? 'has-error'">
+								<input th:field="*{senha}" type="password" class="block form-radius" placeholder="Senha" />
+								<span class="content-text-ss help-inline" th:errors="*{senha}"></span>
+							</div>
+
+							<input th:field="*{confirmacaoSenha}" type="password" class="block form-radius" placeholder="Repita a Senha" />
+
+							<button class="block btn-default form-radius">Cadastrar</button>
+						</form>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
+
+	<!-- FOOTER -->
+	<div th:include="fragments/_footer :: footer"></div>
 </body>
 </html>

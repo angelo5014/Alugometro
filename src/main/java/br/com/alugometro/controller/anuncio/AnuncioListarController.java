@@ -13,6 +13,7 @@ import br.com.alugometro.service.AnuncioService;
 import br.com.alugometro.service.CidadeService;
 import br.com.alugometro.service.TipoAcomodacaoService;
 import br.com.alugometro.service.TipoImovelService;
+import br.com.alugometro.service.UsuarioService;
 
 @Controller
 @RequestMapping("/anuncio")
@@ -20,8 +21,9 @@ public class AnuncioListarController extends AbstractAnuncioController {
 
 	@Autowired
 	public AnuncioListarController(AnuncioService anuncioService, TipoImovelService tipoImovelService,
-			TipoAcomodacaoService tipoAcomodacaoService, CidadeService cidadeService) {
-		super(anuncioService, tipoImovelService, tipoAcomodacaoService, cidadeService);
+			TipoAcomodacaoService tipoAcomodacaoService, CidadeService cidadeService,
+			UsuarioService usuarioService) {
+		super(anuncioService, tipoImovelService, tipoAcomodacaoService, cidadeService, usuarioService);
 	}
 	
 	@RequestMapping(method=RequestMethod.GET)

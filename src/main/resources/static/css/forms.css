@@ -54,11 +54,9 @@
 /* Form Cadastro e Consulta */
 
 .form-insert {
-    max-width: 600px;
-    padding: 20px;
+    padding: 15px 0;
     font-size: 14px;
     line-height: 18px;
-    display: inline-block;
     margin: 0 auto;
     color: #5C5E5E;
 }
@@ -137,11 +135,3 @@
     margin-top: 26px !important;
     margin-bottom: 5px !important;
 }
-
-/*
-
-Snnipet input para telefone
-
-<label><span>Telephone</span><input type="text" class="tel-number-field" name="tel_no_1" value="" maxlength="4" />-<input type="text" class="tel-number-field" name="tel_no_2" value="" maxlength="4"  />-<input type="text" class="tel-number-field" name="tel_no_3" value="" maxlength="10"  /></label>
-
-*/

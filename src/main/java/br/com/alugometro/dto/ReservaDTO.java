@@ -3,18 +3,17 @@ package br.com.alugometro.dto;
 import java.math.BigDecimal;
 import java.util.Date;
 
-import br.com.alugometro.domain.Reserva.SituacaoReserva;
-
 public class ReservaDTO {
 	
 	private Long idReserva;
 	private Long idUsuario;
 	private Long idAnuncio;
+	private String descricaoCapaAnuncio;
 	private Date dataInicio;
 	private Date dataFim;
 	private BigDecimal valorDia;
 	private BigDecimal valorTotal;
-	private SituacaoReserva situacao;
+	private String situacao;
 	
 	public Long getIdReserva() {
 		return idReserva;
@@ -38,6 +37,14 @@ public class ReservaDTO {
 
 	public void setIdAnuncio(Long idAnuncio) {
 		this.idAnuncio = idAnuncio;
+	}
+
+	public String getDescricaoCapaAnuncio() {
+		return descricaoCapaAnuncio;
+	}
+
+	public void setDescricaoCapaAnuncio(String descricaoCapaAnuncio) {
+		this.descricaoCapaAnuncio = descricaoCapaAnuncio;
 	}
 
 	public Date getDataInicio() {
@@ -72,11 +79,11 @@ public class ReservaDTO {
 		this.valorTotal = valorTotal;
 	}
 
-	public SituacaoReserva getSituacao() {
+	public String getSituacao() {
 		return situacao;
 	}
 
-	public void setSituacao(SituacaoReserva situacao) {
+	public void setSituacao(String situacao) {
 		this.situacao = situacao;
 	}
 

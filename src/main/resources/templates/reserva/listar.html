@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR"
+xmlns="http://www.w3.org/1999/xhtml" 
+xmlns:th="http://www.thymeleaf.org" 
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorator="template"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+	<title>Minhas Reservas</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<div class="row">
+
+			<aside class="col col-l-3 col-m-12 col-s-12">
+				<div class="form-insert section clearfix box-shadow padding-m">
+					<div class="form-insert-heading">
+						Filtre suas reservas
+					</div>
+					<form th:action="@{/}" method="GET">
+						<label>
+							<span>Data:</span>
+							<input th:field="*{}" type="date" name="" class="input-field" />
+						</label>
+
+						<label>
+							<span>Situação:</span>
+							<select class="select-field form-input-aside" name="">
+								<option th:each="situacao : ${situacoes}" th:text="${situacao.descricao}" th:value="${situacao}" >[option]</option>
+							</select>
+						</label>
+
+						<label class="button-aside">
+							<input type="submit" value="Filtrar" class="form-input-aside" />
+						</label>
+					</form>
+				</div>
+			</aside>
+
+			<div th:if="${ not #lists .isEmpty(reservas) }" class="col col-l-8 col-m-12 col-s-12">
+				<div th:each="reserva : ${(reservas)}" class="section clearfix list-row box-shadow">
+					<div class="pull-left">	
+						<p th:text="${reserva.descricaoCapaAnuncio}">Apartamento</p>
+						<p th:text="${reserva.dataInicio}"></p>
+						<p th:text="${reserva.dataFim}"></p>
+						<p th:text="${reserva.situacao}"></p>
+						<form th:action="@{/reserva/cancelar}" method="POST">
+							<input type="hidden" name="idReserva" th:value="${reserva.idReserva}"/>
+							<input type="hidden" name="idUsuario" th:value="${reserva.idUsuario}"/>
+							<button type="submit" class="btn btn-primary" >Cancelar</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

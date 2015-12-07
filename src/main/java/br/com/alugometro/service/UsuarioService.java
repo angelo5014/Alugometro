@@ -26,10 +26,15 @@ public class UsuarioService {
 		this.senhaService = senhaService;
 	}
 	
-	public Long obterIdDoUsuarioLogado() throws AbstractException{
+	public Long obterIdDoUsuarioLogado() {
 		User usuario = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 	
-		Usuario usuarioLogado = this.usuarioDAO.buscarPorEmail(usuario.getUsername());
+		Usuario usuarioLogado = null;
+		try {
+			usuarioLogado = this.usuarioDAO.buscarPorEmail(usuario.getUsername());
+		} catch (AbstractException e) {
+			e.printStackTrace();
+		}
 		
 		return usuarioLogado.getIdUsuario();
 	}

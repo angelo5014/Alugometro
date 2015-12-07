@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.alugometro.dto.AnuncioDTO;
+import br.com.alugometro.exception.AbstractException;
 import br.com.alugometro.exception.FormatoDeImagemNaoSuportadoException;
 import br.com.alugometro.exception.ImagemNaoRegistradaException;
 import br.com.alugometro.service.AnuncioFotoService;
@@ -23,6 +24,7 @@ import br.com.alugometro.service.AnuncioService;
 import br.com.alugometro.service.CidadeService;
 import br.com.alugometro.service.TipoAcomodacaoService;
 import br.com.alugometro.service.TipoImovelService;
+import br.com.alugometro.service.UsuarioService;
 
 @Controller
 @RequestMapping("/anuncio")
@@ -36,9 +38,10 @@ public class AnuncioInserirController extends AbstractAnuncioController{
 			AnuncioFotoService anuncioFotoService,
 			TipoImovelService tipoImovelService,
 			TipoAcomodacaoService tipoAcomodacaoService,
-			CidadeService cidadeService) {
+			CidadeService cidadeService,
+			UsuarioService usuarioService) {
 		
-		super(anuncioService, tipoImovelService, tipoAcomodacaoService, cidadeService);
+		super(anuncioService, tipoImovelService, tipoAcomodacaoService, cidadeService, usuarioService);
 		this.anuncioFotoService = anuncioFotoService;
 	}
 
@@ -55,7 +58,7 @@ public class AnuncioInserirController extends AbstractAnuncioController{
 								BindingResult result,
 								final RedirectAttributes redirectAttributes,
 								@RequestParam("imagem") MultipartFile imagem,
-								@RequestParam("imagens") MultipartFile[] imagens){
+								@RequestParam("imagens") MultipartFile[] imagens) throws AbstractException	 {
 		
 		final boolean IMAGEM_CAPA_NULA = imagem.getSize() == 0;	
 		final boolean IMAGENS_OPCIONAIS_VAZIAS = imagens.length == 0;

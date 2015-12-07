@@ -12,7 +12,6 @@ import br.com.alugometro.dao.AnuncioDAO;
 import br.com.alugometro.dao.ReservaDAO;
 import br.com.alugometro.domain.Anuncio;
 import br.com.alugometro.domain.Reserva;
-import br.com.alugometro.domain.Reserva.SituacaoReserva;
 import br.com.alugometro.dto.ReservaConfirmacaoDTO;
 import br.com.alugometro.dto.ReservaDTO;
 import br.com.alugometro.mapper.ReservaMapper;
@@ -39,7 +38,7 @@ public class ReservaService {
 	
 	public ReservaDTO salvar(ReservaDTO dto){
 		if(dto.getIdReserva() == null){
-			dto.setSituacao(SituacaoReserva.PENDENTE);
+			dto.setSituacao("PENDENTE");
 		}
 		
 		Reserva entidade = ReservaMapper.paraEntidade(dto);
@@ -122,5 +121,9 @@ public class ReservaService {
 		
 		reservaConfirmacaoDTO.setDataInicio(CalendarioService.converterDateParaString(dataInicio));
 		reservaConfirmacaoDTO.setDataFim(CalendarioService.converterDateParaString(dataFim));
+	}
+
+	public void cancelarReserva(Long idReserva) {
+		reservaDAO.cancelar(idReserva);
 	}
 }

@@ -27,12 +27,12 @@ import br.com.alugometro.service.UsuarioService;
 @RequestMapping("/reserva")
 public class ReservaConfirmarController extends AbstractReservaController{
 	
-	private UsuarioService ususarioService;
+	private UsuarioService usuarioService;
 	
 	@Autowired
-	public ReservaConfirmarController(ReservaService reservaService, UsuarioService ususarioService){
+	public ReservaConfirmarController(ReservaService reservaService, UsuarioService usuarioService){
 		super(reservaService);
-		this.ususarioService = ususarioService;
+		this.usuarioService = usuarioService;
 	}
 	
 	@RequestMapping(path = "/confirmar/{idAnuncio}", method = RequestMethod.GET)
@@ -60,12 +60,8 @@ public class ReservaConfirmarController extends AbstractReservaController{
 		this.reservaService.verificarPeriodoDisponivel(reservaConfirmacaoDTO);
 		this.reservaService.calcularTotalReserva(reservaConfirmacaoDTO);
 		
-		try {
-			Long idUsuarioLogado = this.ususarioService.obterIdDoUsuarioLogado();
-			reservaConfirmacaoDTO.setIdUsuarioLocando(idUsuarioLogado);
-		} catch (AbstractException e) {
-			redirectAttributes.addFlashAttribute("mensagem", e.getMensagem());
-		}
+		Long idUsuarioLogado = this.usuarioService.obterIdDoUsuarioLogado();
+		reservaConfirmacaoDTO.setIdUsuarioLocando(idUsuarioLogado);
 		
 		return new ModelAndView("reserva/confirmar", "reservaConfirmacao", reservaConfirmacaoDTO);
 	}
@@ -73,6 +69,7 @@ public class ReservaConfirmarController extends AbstractReservaController{
 	@RequestMapping(path = "/confirmar", method = RequestMethod.POST)
 	public ModelAndView confirmarReserva(@ModelAttribute("reservaConfirmacao") ReservaConfirmacaoDTO reservaConfirmacaoDto,
 											RedirectAttributes redirectAttributes){
+
 		
 		ReservaDTO reserva = new ReservaDTO();
 		
@@ -93,8 +90,8 @@ public class ReservaConfirmarController extends AbstractReservaController{
 	@ResponseBody
 	@RequestMapping(path = "/calculartotal", method = RequestMethod.GET)
 	public BigDecimal teste(@RequestParam(value="dataInicio", required = true) String dataInicio,
-													@RequestParam(value = "dataFim", required = true) String dataFim,
-														@RequestParam(value = "diaria", required = true) BigDecimal diaria){
+							@RequestParam(value = "dataFim", required = true) String dataFim,
+							@RequestParam(value = "diaria", required = true) BigDecimal diaria){
 			
 		ReservaConfirmacaoDTO confirmacaoDTO = new ReservaConfirmacaoDTO();
 		confirmacaoDTO.setDataInicio(dataInicio);

@@ -53,3 +53,15 @@
 .fixed {
 	position: fixed;
 }
+
+.box-shadow {
+	box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.2);
+}
+
+.no-padding {
+	padding: 0;
+}
+
+.padding-m {
+	padding: 20px;
+}

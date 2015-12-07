@@ -40,6 +40,10 @@ public class AnuncioService {
 		return AnuncioMapper.paraDTO(anuncioDAO.buscarPorId(idAnuncio));
 	}
 	
+	public void desativarAnuncio(Long idAnuncio){
+		anuncioDAO.desativar(idAnuncio);
+	}
+	
 	public List<AnuncioResumoDTO> listarTodos() {
 		List<Anuncio> anuncios = anuncioDAO.listarTodos();
 		
@@ -94,14 +98,10 @@ public class AnuncioService {
 		return anunciosDTO;
 	}
 	
-	public Anuncio inserir(AnuncioDTO dto, MultipartFile imagem) {
+	public Anuncio inserir(AnuncioDTO dto, MultipartFile imagem) throws AbstractException {
 		
 		Long idUsuario = null;
-		try {
-			idUsuario = usuarioService.obterIdDoUsuarioLogado();
-		} catch (AbstractException e) {
-			e.printStackTrace();
-		}
+		idUsuario = usuarioService.obterIdDoUsuarioLogado();
 		
 		Foto imagemSalva = null;
 		try {
