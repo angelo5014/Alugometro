@@ -67,22 +67,21 @@ public class ReservaConfirmarController extends AbstractReservaController{
 	}
 	
 	@RequestMapping(path = "/confirmar", method = RequestMethod.POST)
-	public ModelAndView confirmarReserva(@ModelAttribute("reservaConfirmacao") ReservaConfirmacaoDTO reservaConfirmacaoDto,
+	public ModelAndView confirmarReserva(@ModelAttribute("reservaConfirmacao") ReservaConfirmacaoDTO reservaConfirmacaoDTO,
 											RedirectAttributes redirectAttributes){
 
-		
-		ReservaDTO reserva = new ReservaDTO();
-		
 		try {
-			reserva = ReservaMapper.paraDTO(reservaConfirmacaoDto);
+			if(this.reservaService.verificarDataConflitante(reservaConfirmacaoDTO)){
+				ReservaDTO reserva = ReservaMapper.paraDTO(reservaConfirmacaoDTO);
+				this.reservaService.salvar(reserva);
+				redirectAttributes.addFlashAttribute("mensagem", "Reserva efetuada com sucesso!");
+			}else{
+				redirectAttributes.addFlashAttribute("mensagem", "As datas selecionadas já estão reservadas!");
+			}
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		this.reservaService.salvar(reserva);
-		
-		redirectAttributes.addFlashAttribute("mensagem", "Reserva efetuada com sucesso!");
 		
 		return new ModelAndView("redirect:/");
 	}

@@ -126,4 +126,18 @@ public class ReservaService {
 	public void cancelarReserva(Long idReserva) {
 		reservaDAO.cancelar(idReserva);
 	}
+	
+	public boolean verificarDataConflitante(ReservaConfirmacaoDTO reservaConfirmacaoDTO) throws ParseException{
+		Reserva reserva = ReservaMapper.paraEntidade(reservaConfirmacaoDTO);
+		List<Reserva> reservasComADataRequisitada = reservaDAO.buscarReservaPorPeriodoESituacao(reserva);
+		
+		boolean disponivel = false;
+		
+		if(reservasComADataRequisitada.isEmpty()){
+			disponivel = true;
+		}
+		
+		return disponivel;
+	}
+	
 }
