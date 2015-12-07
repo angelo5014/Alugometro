@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 import java.text.ParseException;
 import java.util.Date;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -81,7 +83,7 @@ public class ReservaConfirmarController extends AbstractReservaController{
 	}
 	
 	@ResponseBody
-	@RequestMapping(path = "/calculartotal", method = RequestMethod.POST)
+	@RequestMapping(path = "/calculartotal", method = RequestMethod.GET)
 	public BigDecimal teste(@RequestParam(value="dataInicio", required = true) String dataInicio,
 													@RequestParam(value = "dataFim", required = true) String dataFim,
 														@RequestParam(value = "diaria", required = true) BigDecimal diaria){

@@ -36,13 +36,13 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 					<tr>
 						<td>DATA INICIO</td>
 						<td>
-							<input type="date" th:field="*{dataInicio}" />
+							<input type="date" required="required" th:field="*{dataInicio}" />
 						</td>
 					</tr>
 					<tr>
 						<td>DATA FIM</td>
 						<td>
-							<input type="date" th:field="*{dataFim}" />
+							<input type="date" required="required" th:field="*{dataFim}" />
 						</td>
 					</tr>
 					<tr>
@@ -52,7 +52,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 					</tr>
 					<tr>
 						<td>TOTAL</td>
-						<td th:text="*{total}">Valor Total</td>
+						<td><span th:text="*{total}" id="exibicaoTotal">Valor Total</span></td>
 						<input type="hidden" th:field="*{total}" />
 					</tr>
 					<tr>
