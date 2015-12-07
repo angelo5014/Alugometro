@@ -38,7 +38,7 @@ public class ReservaService {
 		return ReservaMapper.paraListaDTO(this.reservaDAO.buscarPorIdUsuario(idUsuario));
 	}
 
-	public List<ReservaDTO> buscarPorDataESituacao(Date dataInicio, Date dataFim, Long situacaoReserva) {
+	public List<ReservaDTO> buscarPorDataESituacao(String dataInicio, String dataFim, SituacaoReserva situacaoReserva) {
 
 		List<Reserva> reservas = reservaDAO.listarPorDataESituacao(dataInicio, dataFim, situacaoReserva);
 

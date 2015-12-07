@@ -31,7 +31,8 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 						<label>
 							<span>Situação:</span>
 							<select class="select-field form-input-aside" name="situacao">
-								<option th:each="situacao : ${situacoes}" th:text="${situacao}" th:value="${situacao}">[option]</option>
+								<option value="">Selecione uma Situação</option>
+								<option th:each="s : ${situacoes}" th:text="${s}" th:value="${s}">[option]</option>
 							</select>
 						</label>
 

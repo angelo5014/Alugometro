@@ -27,23 +27,25 @@ public class ReservaDAO extends AbstractDAO {
 				.setParameter("idUsuario", idUsuario).getResultList();
 	}
 
-	public List<Reserva> listarPorDataESituacao(Date dataInicio, Date dataFim, Long situacaoReserva) {
+	public List<Reserva> listarPorDataESituacao(String dataInicio, String dataFim, SituacaoReserva situacaoReserva) {
 
 		StringBuilder sql = new StringBuilder("FROM Reserva r WHERE 1=1");
 
 		HashMap<String, Object> parameters = new HashMap<String, Object>();
 
+		// AND r.data_FIM <= TO_DATE('2015-12-18', 'yyyy-MM-dd');
+		
 		if (dataInicio != null) {
-			sql.append(" AND a.dataInicio = :dataInicio");
+			sql.append(" AND r.dataInicio >= TO_DATE(:dataInicio, 'yyyy-MM-dd')");
 			parameters.put("dataInicio", dataInicio);
 		}
 		if (dataFim != null) {
-			sql.append(" AND a.dataFim = :dataFim");
+			sql.append(" AND r.dataFim <= TO_DATE(:dataFim, 'yyyy-MM-dd')");
 			parameters.put("dataFim", dataFim);
 		}
 		if (situacaoReserva != null) {
-			sql.append(" AND a.situacao = :situacaoReserva");
-			parameters.put("situacaoReserva", situacaoReserva);
+			sql.append(" AND r.situacao = :situacaoReserva");
+			parameters.put("situacaoReserva", Enum.valueOf(SituacaoReserva.class, situacaoReserva.name()));
 		}
 
 		TypedQuery<Reserva> query = em.createQuery(sql.toString(), Reserva.class);
