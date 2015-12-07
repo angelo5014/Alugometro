@@ -17,16 +17,21 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 					<div class="form-insert-heading">
 						Filtre suas reservas
 					</div>
-					<form th:action="@{/}" method="GET">
+					<form th:action="@{/reserva/listarReservasPorBusca}" method="GET">
 						<label>
-							<span>Data:</span>
-							<input th:field="*{}" type="date" name="" class="input-field" />
+							<span>Data Inicial:</span>
+							<input name="dataInicio" type="date" class="input-field" />
+						</label>
+
+						<label>
+							<span>Data Final:</span>
+							<input name="dataFim" type="date" class="input-field" />
 						</label>
 
 						<label>
 							<span>Situação:</span>
-							<select class="select-field form-input-aside" name="">
-								<option th:each="situacao : ${situacoes}" th:text="${situacao.descricao}" th:value="${situacao}" >[option]</option>
+							<select class="select-field form-input-aside" name="situacao">
+								<option th:each="situacao : ${situacoes}" th:text="${situacao}" th:value="${situacao}">[option]</option>
 							</select>
 						</label>
 
