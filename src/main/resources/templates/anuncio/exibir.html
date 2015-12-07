@@ -10,9 +10,9 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 </head>
 <body>
 	<div th:object="${anuncio}" layout:fragment="content">
+		<input type="hidden" th:field="*{idAnuncio}" />
 		<div class="row">
-			<div class="section clearfix">
-
+			<div class="section clearfix box-shadow">
 				<div class="col col-l-12 col-s-12 details-header">
 					<p class="inline-block">
 						<span th:text="*{tipoImovel}"></span>
@@ -57,7 +57,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 					</nav>
 				</div>
 				-->
-				
+
 			</div>
 		</div>
 	</div>
