@@ -34,6 +34,10 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 						<td th:text="*{local}">Local</td>
 					</tr>
 					<tr>
+						<td>PERÍODO DISPONÍVEL</td>
+						<td th:text="*{periodoDisponivel}">Periodo</td>
+					</tr>
+					<tr>
 						<td>DATA INICIO</td>
 						<td>
 							<input type="date" required="required" th:field="*{dataInicio}" />

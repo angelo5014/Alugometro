@@ -4,8 +4,6 @@ import java.math.BigDecimal;
 import java.text.ParseException;
 import java.util.Date;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -20,6 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import br.com.alugometro.dto.ReservaConfirmacaoDTO;
 import br.com.alugometro.dto.ReservaDTO;
 import br.com.alugometro.exception.AbstractException;
+import br.com.alugometro.mapper.ReservaMapper;
 import br.com.alugometro.service.CalendarioService;
 import br.com.alugometro.service.ReservaService;
 import br.com.alugometro.service.UsuarioService;
@@ -50,32 +49,41 @@ public class ReservaConfirmarController extends AbstractReservaController{
 			dataInicio = CalendarioService.converterStringParaDate(strDataInicio);
 			dataFim = CalendarioService.converterStringParaDate(strDataFim);
 			datas = CalendarioService.verificarDatas(dataInicio, dataFim);
-		} catch (ParseException e2) {
-			// TODO Auto-generated catch block
-			e2.printStackTrace();
+		} catch (ParseException e) {
+			e.printStackTrace();
 		}
 		
-		ReservaConfirmacaoDTO confirmacaoDTO = this.reservaService.confirmacaoReserva(idAnuncio);
-		confirmacaoDTO.setDataInicio(datas[0]);
-		confirmacaoDTO.setDataFim(datas[1]);
+		ReservaConfirmacaoDTO reservaConfirmacaoDTO = this.reservaService.obterDadosParaConfirmacao(idAnuncio);
+		reservaConfirmacaoDTO.setDataInicio(datas[0]);
+		reservaConfirmacaoDTO.setDataFim(datas[1]);
 		
-		this.reservaService.calcularTotalReserva(confirmacaoDTO);
+		this.reservaService.verificarPeriodoDisponivel(reservaConfirmacaoDTO);
+		this.reservaService.calcularTotalReserva(reservaConfirmacaoDTO);
 		
 		try {
 			Long idUsuarioLogado = this.ususarioService.obterIdDoUsuarioLogado();
-			confirmacaoDTO.setIdUsuarioLocando(idUsuarioLogado);
+			reservaConfirmacaoDTO.setIdUsuarioLocando(idUsuarioLogado);
 		} catch (AbstractException e) {
 			redirectAttributes.addFlashAttribute("mensagem", e.getMensagem());
 		}
 		
-		return new ModelAndView("reserva/confirmar", "reservaConfirmacao", confirmacaoDTO);
+		return new ModelAndView("reserva/confirmar", "reservaConfirmacao", reservaConfirmacaoDTO);
 	}
 	
 	@RequestMapping(path = "/confirmar", method = RequestMethod.POST)
-	public ModelAndView confirmarReserva(@ModelAttribute("reservaConfirmacao") ReservaDTO reservaDto,
+	public ModelAndView confirmarReserva(@ModelAttribute("reservaConfirmacao") ReservaConfirmacaoDTO reservaConfirmacaoDto,
 											RedirectAttributes redirectAttributes){
 		
-		this.reservaService.salvar(reservaDto);
+		ReservaDTO reserva = new ReservaDTO();
+		
+		try {
+			reserva = ReservaMapper.paraDTO(reservaConfirmacaoDto);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		this.reservaService.salvar(reserva);
 		
 		redirectAttributes.addFlashAttribute("mensagem", "Reserva efetuada com sucesso!");
 		
@@ -96,5 +104,24 @@ public class ReservaConfirmarController extends AbstractReservaController{
 		this.reservaService.calcularTotalReserva(confirmacaoDTO);
 			
 		return confirmacaoDTO.getTotal();
+	}
+	
+	@ResponseBody
+	@RequestMapping(path = "/verificardisponibilidade", method = RequestMethod.GET)
+	public String[] verificarDisponibilidade(@RequestParam(value = "idAnuncio") Long idAnuncio,
+															@RequestParam(value = "dataInicio") String dataInicio,
+															@RequestParam(value = "dataFim") String dataFim){
+		ReservaConfirmacaoDTO dto = new ReservaConfirmacaoDTO();
+		dto.setIdAnuncio(idAnuncio);
+		dto.setDataInicio(dataInicio);
+		dto.setDataFim(dataFim);
+		
+		this.reservaService.verificarPeriodoDisponivel(dto);
+		
+		String[] datas = new String[2];
+		datas[0] = dto.getDataInicio();
+		datas[1] = dto.getDataFim();
+		
+		return datas;
 	}
 }

@@ -47,7 +47,7 @@ public class ReservaService {
 		return ReservaMapper.paraDTO(this.reservaDAO.salvar(entidade));
 	}
 
-	public ReservaConfirmacaoDTO confirmacaoReserva(Long idAnuncio) {
+	public ReservaConfirmacaoDTO obterDadosParaConfirmacao(Long idAnuncio) {
 		Anuncio anuncio = this.anuncioDAO.buscarPorId(idAnuncio);
 		
 		StringBuilder nomeLocatario = new StringBuilder();
@@ -57,12 +57,21 @@ public class ReservaService {
 		
 		String local = anuncio.getCidade().getNome();
 		
+		String dataInicio = CalendarioService.converterDateParaString(anuncio.getDataInicio());
+		String dataFim = CalendarioService.converterDateParaString(anuncio.getDataFim());
+		
+		StringBuilder periodo = new StringBuilder();
+		periodo.append(dataInicio);
+		periodo.append(" à ");
+		periodo.append(dataFim);
+		
 		BigDecimal diaria = anuncio.getDiaria();
 		
 		ReservaConfirmacaoDTO reservaConfirmacao = new ReservaConfirmacaoDTO();
 		reservaConfirmacao.setIdAnuncio(anuncio.getIdAnuncio());
 		reservaConfirmacao.setNomeLocador(nomeLocatario.toString());
 		reservaConfirmacao.setLocal(local);
+		reservaConfirmacao.setPeriodoDisponivel(periodo.toString());
 		reservaConfirmacao.setDiaria(diaria);
 		
 		return reservaConfirmacao;
@@ -88,5 +97,30 @@ public class ReservaService {
 		BigDecimal diaria = confirmacaoDTO.getDiaria();
 		
 		confirmacaoDTO.setTotal(diaria.multiply(new BigDecimal(dias)));
+	}
+	
+	public void verificarPeriodoDisponivel(ReservaConfirmacaoDTO reservaConfirmacaoDTO){
+		Anuncio anuncio = this.anuncioDAO.buscarPorId(reservaConfirmacaoDTO.getIdAnuncio());
+		
+		Date dataInicio = new Date();
+		Date dataFim = new Date();
+		
+		try {
+			dataInicio = CalendarioService.converterStringParaDate(reservaConfirmacaoDTO.getDataInicio());
+			dataFim = CalendarioService.converterStringParaDate(reservaConfirmacaoDTO.getDataFim());
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		if(dataInicio.compareTo(anuncio.getDataInicio()) < 0){
+			dataInicio = anuncio.getDataInicio();
+		}
+		if(dataFim.compareTo(anuncio.getDataFim()) > 0){
+			dataFim = anuncio.getDataFim();
+		}
+		
+		reservaConfirmacaoDTO.setDataInicio(CalendarioService.converterDateParaString(dataInicio));
+		reservaConfirmacaoDTO.setDataFim(CalendarioService.converterDateParaString(dataFim));
 	}
 }

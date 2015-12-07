@@ -68,6 +68,18 @@ public class ReservaMapper {
 		
 		return dto;
 	}
+	
+	public static ReservaDTO paraDTO(ReservaConfirmacaoDTO reservaConfirmacaoDTO) throws ParseException{
+		ReservaDTO dto = new ReservaDTO();
+		dto.setIdAnuncio(reservaConfirmacaoDTO.getIdAnuncio());
+		dto.setIdUsuario(reservaConfirmacaoDTO.getIdUsuarioLocando());
+		dto.setDataInicio(CalendarioService.converterStringParaDate(reservaConfirmacaoDTO.getDataInicio()));
+		dto.setDataFim(CalendarioService.converterStringParaDate(reservaConfirmacaoDTO.getDataFim()));
+		dto.setValorDia(reservaConfirmacaoDTO.getDiaria());
+		dto.setValorTotal(reservaConfirmacaoDTO.getTotal());
+		
+		return dto;
+	}
 
 	public static List<ReservaDTO> paraListaDTO(List<Reserva> listaEntidade) {
 		List<ReservaDTO> listaDTO = new ArrayList<ReservaDTO>();

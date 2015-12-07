@@ -13,6 +13,7 @@ public class ReservaConfirmacaoDTO {
 	private String local;
 	private TipoImovel tipoImovel;
 	private TipoAcomodacao tipoAcomodacao;
+	private String periodoDisponivel;
 	private String dataInicio;
 	private String dataFim;
 	private BigDecimal diaria;
@@ -54,6 +55,12 @@ public class ReservaConfirmacaoDTO {
 	}
 	public void setTipoAcomodacao(TipoAcomodacao tipoAcomodacao) {
 		this.tipoAcomodacao = tipoAcomodacao;
+	}
+	public String getPeriodoDisponivel() {
+		return periodoDisponivel;
+	}
+	public void setPeriodoDisponivel(String periodoDisponivel) {
+		this.periodoDisponivel = periodoDisponivel;
 	}
 	public String getDataInicio() {
 		return dataInicio;
