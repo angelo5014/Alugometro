@@ -5,6 +5,7 @@ import br.com.alugometro.domain.Anuncio;
 public class AnuncioResumoDTO {
 
 	private Long idAnuncio;
+	private Long idUsuario;
 	private String tipoImovel;
 	private String preco;
 	private String fotoCapa;
@@ -17,11 +18,20 @@ public class AnuncioResumoDTO {
 	
 	public AnuncioResumoDTO(Anuncio anuncio) {
 		this.idAnuncio = anuncio.getIdAnuncio();
+		this.idUsuario = anuncio.getUsuario().getIdUsuario();
 		this.tipoImovel = anuncio.getTipoImovel().getDescricao();
 		this.preco = anuncio.getDiaria().toString();
 		this.fotoCapa = anuncio.getFotoCapa().getUrl();
 		this.descricaoCapa = anuncio.getDescricaoCapa();
 		this.cidade = anuncio.getCidade().getNome();
+	}
+
+	public Long getIdUsuario() {
+		return idUsuario;
+	}
+
+	public void setIdUsuario(Long idUsuario) {
+		this.idUsuario = idUsuario;
 	}
 
 	public Long getIdAnuncio() {
