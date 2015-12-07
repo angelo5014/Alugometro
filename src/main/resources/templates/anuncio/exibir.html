@@ -19,7 +19,11 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 					</p>
 					<p th:text="*{cidade}" class="inline-block">Cidade</p>
 					<p class="inline-block pull-right">
-						<a th:href="${'/reserva/confirmar/' + anuncio.idAnuncio}" class="link-reserva form-radius">Reservar</a>
+						<form th:action="${'/reserva/confirmar/' + anuncio.idAnuncio}" method="GET">
+							<input type="hidden" name="dataInicio" th:value="${anuncio.dataInicio}"/>
+							<input type="hidden" name="dataFim" th:value="${anuncio.dataFim}"/>
+							 <button class="link-reserva form-radius">Reservar</button>
+						 </form>
 					</p>
 					<p class="inline-block pull-right">R$ <span th:text="*{diaria}"></span></p>
 				</div>
