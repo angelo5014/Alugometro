@@ -109,16 +109,17 @@
 	margin: 0 10px 11px 0;
 }
 
-.link-reserva {
+.button-reserva {
 	padding: 10px;
 	background-color: #3498db;
 	color: #fff;
 	margin-left: 10px;
+	border: 0;
+	cursor: pointer;
 }
 
-.link-reserva:hover {
+.button-reserva:hover {
 	background-color: #2980b9;
-	text-decoration: none;
 }
 
 .details-header {
