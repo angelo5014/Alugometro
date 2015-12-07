@@ -11,8 +11,8 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <body>
 	<div layout:fragment="content">
 		<div class="row">
-			<aside class="col col-l-3 col-s-12">
-				<div class="form-insert section">
+			<aside class="col col-l-3 col-m-12 col-s-12">
+				<div class="form-insert section clearfix box-shadow padding-m">
 					<div class="form-insert-heading">
 						Filtre sua busca
 					</div>
@@ -55,8 +55,8 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 				</div>
 			</aside>
 
-			<div th:if="${ not #lists .isEmpty(anuncios) }" class="col col-l-8 col-s-12">
-				<div th:each="anuncio : ${(anuncios)}" class="section clearfix list-row">
+			<div th:if="${ not #lists .isEmpty(anuncios) }" class="col col-l-8 col-m-12 col-s-12">
+				<div th:each="anuncio : ${(anuncios)}" class="section clearfix list-row box-shadow">
 					<div class="image-list pull-left">
 						<a th:href="${ '/anuncio/' + anuncio.idAnuncio }">
 							<img width="250" height="200" th:src="${anuncio.fotoCapa}" />

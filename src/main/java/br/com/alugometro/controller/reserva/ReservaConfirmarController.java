@@ -17,6 +17,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.alugometro.dto.ReservaConfirmacaoDTO;
 import br.com.alugometro.dto.ReservaDTO;
+import br.com.alugometro.exception.AbstractException;
+import br.com.alugometro.mapper.ReservaMapper;
 import br.com.alugometro.service.CalendarioService;
 import br.com.alugometro.service.ReservaService;
 import br.com.alugometro.service.UsuarioService;
@@ -47,29 +49,39 @@ public class ReservaConfirmarController extends AbstractReservaController{
 			dataInicio = CalendarioService.converterStringParaDate(strDataInicio);
 			dataFim = CalendarioService.converterStringParaDate(strDataFim);
 			datas = CalendarioService.verificarDatas(dataInicio, dataFim);
-		} catch (ParseException e2) {
-			e2.printStackTrace();
+		} catch (ParseException e) {
+			e.printStackTrace();
 		}
 		
-		ReservaConfirmacaoDTO confirmacaoDTO = this.reservaService.confirmacaoReserva(idAnuncio);
-		confirmacaoDTO.setDataInicio(datas[0]);
-		confirmacaoDTO.setDataFim(datas[1]);
+		ReservaConfirmacaoDTO reservaConfirmacaoDTO = this.reservaService.obterDadosParaConfirmacao(idAnuncio);
+		reservaConfirmacaoDTO.setDataInicio(datas[0]);
+		reservaConfirmacaoDTO.setDataFim(datas[1]);
 		
-		this.reservaService.calcularTotalReserva(confirmacaoDTO);
+		this.reservaService.verificarPeriodoDisponivel(reservaConfirmacaoDTO);
+		this.reservaService.calcularTotalReserva(reservaConfirmacaoDTO);
 		
 		Long idUsuarioLogado = this.usuarioService.obterIdDoUsuarioLogado();
-		confirmacaoDTO.setIdUsuarioLocando(idUsuarioLogado);
+		reservaConfirmacaoDTO.setIdUsuarioLocando(idUsuarioLogado);
 		
-		return new ModelAndView("reserva/confirmar", "reservaConfirmacao", confirmacaoDTO);
+		return new ModelAndView("reserva/confirmar", "reservaConfirmacao", reservaConfirmacaoDTO);
 	}
 	
 	@RequestMapping(path = "/confirmar", method = RequestMethod.POST)
-	public ModelAndView confirmarReserva(@ModelAttribute("reservaConfirmacao") ReservaDTO reservaDto,
-										RedirectAttributes redirectAttributes){
-		
-		this.reservaService.salvar(reservaDto);
-		
-		redirectAttributes.addFlashAttribute("mensagem", "Reserva efetuada com sucesso!");
+	public ModelAndView confirmarReserva(@ModelAttribute("reservaConfirmacao") ReservaConfirmacaoDTO reservaConfirmacaoDTO,
+											RedirectAttributes redirectAttributes){
+
+		try {
+			if(this.reservaService.verificarDataConflitante(reservaConfirmacaoDTO)){
+				ReservaDTO reserva = ReservaMapper.paraDTO(reservaConfirmacaoDTO);
+				this.reservaService.salvar(reserva);
+				redirectAttributes.addFlashAttribute("mensagem", "Reserva efetuada com sucesso!");
+			}else{
+				redirectAttributes.addFlashAttribute("mensagem", "As datas selecionadas já estão reservadas!");
+			}
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		return new ModelAndView("redirect:/");
 	}
@@ -88,5 +100,24 @@ public class ReservaConfirmarController extends AbstractReservaController{
 		this.reservaService.calcularTotalReserva(confirmacaoDTO);
 			
 		return confirmacaoDTO.getTotal();
+	}
+	
+	@ResponseBody
+	@RequestMapping(path = "/verificardisponibilidade", method = RequestMethod.GET)
+	public String[] verificarDisponibilidade(@RequestParam(value = "idAnuncio") Long idAnuncio,
+															@RequestParam(value = "dataInicio") String dataInicio,
+															@RequestParam(value = "dataFim") String dataFim){
+		ReservaConfirmacaoDTO dto = new ReservaConfirmacaoDTO();
+		dto.setIdAnuncio(idAnuncio);
+		dto.setDataInicio(dataInicio);
+		dto.setDataFim(dataFim);
+		
+		this.reservaService.verificarPeriodoDisponivel(dto);
+		
+		String[] datas = new String[2];
+		datas[0] = dto.getDataInicio();
+		datas[1] = dto.getDataFim();
+		
+		return datas;
 	}
 }

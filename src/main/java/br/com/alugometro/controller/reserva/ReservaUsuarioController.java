@@ -26,6 +26,7 @@ public class ReservaUsuarioController extends AbstractReservaController{
 		super(reservaService);
 		this.usuarioService = usuarioService;
 	}
+	
 	@RequestMapping(path = "/usuario/{idUsuario}", method = RequestMethod.GET)
 	public ModelAndView listarReservasDoUsuario(@PathVariable("idUsuario") Long idUsuario) {
 		List<ReservaDTO> reservas = new ArrayList<>();

@@ -63,3 +63,14 @@
 .fade {
     opacity: 0;
 }
+
+.input-link {
+	background: none;
+    border: 0;
+    cursor: pointer;
+    color: #fff;
+}
+
+.input-link-inverse {
+	color: #5C5E5E;
+}
