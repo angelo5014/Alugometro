@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.alugometro.dto.AnuncioDTO;
+import br.com.alugometro.exception.AbstractException;
 import br.com.alugometro.exception.FormatoDeImagemNaoSuportadoException;
 import br.com.alugometro.exception.ImagemNaoRegistradaException;
 import br.com.alugometro.service.AnuncioFotoService;
@@ -57,7 +58,7 @@ public class AnuncioInserirController extends AbstractAnuncioController{
 								BindingResult result,
 								final RedirectAttributes redirectAttributes,
 								@RequestParam("imagem") MultipartFile imagem,
-								@RequestParam("imagens") MultipartFile[] imagens){
+								@RequestParam("imagens") MultipartFile[] imagens) throws AbstractException	 {
 		
 		final boolean IMAGEM_CAPA_NULA = imagem.getSize() == 0;	
 		final boolean IMAGENS_OPCIONAIS_VAZIAS = imagens.length == 0;

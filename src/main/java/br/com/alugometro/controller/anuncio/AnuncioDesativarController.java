@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import br.com.alugometro.dto.AnuncioResumoDTO;
 import br.com.alugometro.dto.AnuncioSegurancaDTO;
+import br.com.alugometro.exception.AbstractException;
 import br.com.alugometro.exception.UsuarioNaoEncontradoException;
 import br.com.alugometro.service.AnuncioService;
 import br.com.alugometro.service.CidadeService;
@@ -30,9 +30,10 @@ public class AnuncioDesativarController extends AbstractAnuncioController {
 									UsuarioService usuarioService) {
 		super(anuncioService, tipoImovelService, tipoAcomodacaoService, cidadeService, usuarioService);
 	}
+	
 	@RequestMapping(path = "/desativar", method = RequestMethod.POST)
 	public ModelAndView desativarAnuncio(@ModelAttribute AnuncioSegurancaDTO anuncioSegurancaDTO,
-										final RedirectAttributes redirectAttributes){
+										final RedirectAttributes redirectAttributes) throws AbstractException {
 
 		Long idUsuarioLogado = usuarioService.obterIdDoUsuarioLogado();
 		Long idUsuarioEsperado = null;
