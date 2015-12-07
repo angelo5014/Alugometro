@@ -4,7 +4,6 @@
 		<a href="/" th:href="@{'/'}">
 			<h1 class="logo logo-inverse inline-block pull-left">Alugômetro</h1>
 		</a>
-		
 
 		<nav class="pull-right">
 			<ul class="reset-list">
@@ -13,6 +12,20 @@
 				</li>
 				<li class="inline-block">
 					<a class="nav-link nav-link-inverse inline-block" th:href="@{|/login|}">Login</a>
+				</li>
+				<li class="inline-block">
+					<div sec:authorize="isAuthenticated()">
+						<a class="nav-link nav-link-inverse inline-block" th:href="@{/anuncio/inserir}">
+							<span sec:authentication="name">Usuario</span>
+						</a>
+					</div>
+				</li>
+				<li class="inline-block">
+					<div sec:authorize="isAuthenticated()">
+						<form th:action="@{/logout}" method="POST">
+							<input class="nav-link nav-link-inverse inline-block input-link input-link-inverse" type="submit" value="Logout" />
+						</form>
+					</div>
 				</li>
 			</ul>
 		</nav>

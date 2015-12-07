@@ -36,6 +36,20 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 					<li class="inline-block">
 						<a class="nav-link inline-block" th:href="@{|/login|}">Login</a>
 					</li>
+					<li class="inline-block">
+						<div sec:authorize="isAuthenticated()">
+							<a class="nav-link inline-block" th:href="@{/anuncio/inserir}">
+								<span sec:authentication="name">Usuario</span>
+							</a>
+						</div>
+					</li>
+					<li class="inline-block">
+						<div sec:authorize="isAuthenticated()">
+							<form th:action="@{/logout}" method="POST">
+								<input class="nav-link inline-block input-link" type="submit" value="Logout" />
+							</form>
+						</div>
+					</li>
 				</ul>
 			</nav>
 		</header>
