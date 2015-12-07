@@ -18,13 +18,11 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 						<span th:text="*{tipoImovel}"></span>
 					</p>
 					<p th:text="*{cidade}" class="inline-block">Cidade</p>
-					<p class="inline-block pull-right">
-						<form th:action="${'/reserva/confirmar/' + anuncio.idAnuncio}" method="GET">
-							<input type="hidden" name="dataInicio" th:value="${anuncio.dataInicio}"/>
-							<input type="hidden" name="dataFim" th:value="${anuncio.dataFim}"/>
-							 <button class="link-reserva form-radius">Reservar</button>
-						 </form>
-					</p>
+					<form th:action="${'/reserva/confirmar/' + anuncio.idAnuncio}" method="GET" class="inline-block pull-right">
+						<input type="hidden" name="dataInicio" th:value="${anuncio.dataInicio}"/>
+						<input type="hidden" name="dataFim" th:value="${anuncio.dataFim}"/>
+						<button class="button-reserva form-radius">Reservar</button>
+					</form>
 					<p class="inline-block pull-right">R$ <span th:text="*{diaria}"></span></p>
 				</div>
 
@@ -60,10 +58,10 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 						</ul>
 					</nav>
 				</div>
-				-->
+			-->
 
-			</div>
 		</div>
 	</div>
+</div>
 </body>
 </html>

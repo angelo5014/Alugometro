@@ -17,16 +17,13 @@ $(function() {
 	$( "#amount" ).val( "R$ " + $( "#slider-range" ).slider( "values", 0 ) +
 		" - R$ " + $( "#slider-range" ).slider( "values", 1 ) );
 
-	var inputDemaisFotos = '<input type="file" class="input-field" name="imagens" accept="image/*"/>'
-	var labelDemaisFotos = $('#fotos-label');
+	var divDemaisFotos = $('#fotos-div');
+	var labelDemaisFotos = '<label><span>Demais Fotos:</span><input type="file" class="input-field" name="imagens" accept="image/*" /></label>';
 
 	$('#btn-fotos').click(function() {
-		$(labelDemaisFotos).append($(inputDemaisFotos));
+		$(divDemaisFotos).append($(labelDemaisFotos));
 	});
 
-});
-
-$(document).ready(function(){
 	$('.image-pagination').slick({
 		dots: true,
 		infinite: true,
@@ -34,4 +31,22 @@ $(document).ready(function(){
 		slidesToShow: 1,
 		adaptiveHeight: true
 	});
+
+	// Scritp paginação ajax
+	/*
+	var jsonFotos = '/anuncio/rest/';
+	var idAnuncio = $('#idAnuncio').val();
+	var image = '<img class="image-details" />';
+
+	var fotos = $.getJSON(jsonFotos + idAnuncio, function(data) {
+		var length = data.length;
+		console.log(length);
+		for (var i = 0; i < length; i++) {
+			$('#image-pagination').append($('<div></div>')
+				.append($(image).attr('src', data[i].urlFoto))
+				);
+		}
+	});
+	*/
+
 });

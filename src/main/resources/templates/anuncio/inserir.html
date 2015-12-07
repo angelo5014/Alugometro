@@ -79,10 +79,12 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 						</label>
 						<span th:errors="*{idFotoCapa}"></span>
 
-						<label id="fotos-label">
-							<span>Demais Fotos:</span>
-							<input type="file" class="input-field" id="demais-fotos" name="imagens" accept="image/*" />
-						</label>
+						<div id="fotos-div">
+							<label>
+								<span>Demais Fotos:</span>
+								<input type="file" class="input-field" id="demais-fotos" name="imagens" accept="image/*" />
+							</label>
+						</div>
 
 						<label>
 							<span>&nbsp;</span>
