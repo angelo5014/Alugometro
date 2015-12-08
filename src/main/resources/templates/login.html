@@ -31,15 +31,15 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 			<div class="container">
 				<div class="row">
 					<div class="col col-l-6 col-m-12 col-s-12">
-						<h2 class="content-title-s">Bem vindo ao Alugômetro.</h2>
+						<h2 class="content-title-s text-shadow">Bem vindo ao Alugômetro.</h2>
 
-						<p class="content-text-s">
+						<p class="content-text-s text-shadow">
 							Disponibilize seu imóvel para aluguel ou encontre o lugar que você procura.
 						</p>
 					</div>
 
 					<div class="col col-l-6 col-m-12 col-s-12">
-						<h2 class="content-title-s content-title-login">Login</h2>
+						<h2 class="content-title-s content-title-login text-shadow">Login</h2>
 						<form th:action="@{/login}" action="/login" method="POST" class="form-container">
 							<input type="text" name="username" placeholder="Usuario" class="block form-radius" />
 							<input type="password" name="password" placeholder="Senha" class="block form-radius" />
@@ -47,11 +47,11 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 
 							<ul class="reset-list link-list text-center">
 								<li class="inline-block">
-									<a href="#" class="text-center link-s">Esqueceu sua senha?</a>	
+									<a href="#" class="text-center link-s text-shadow">Esqueceu sua senha?</a>	
 								</li>
 								<li class="inline-block">
-									<span class="content-text-ss">Ainda não possui conta?</span>
-									<a th:href="@{/usuario/inserir}" class="text-center link-s">Cadastre-se!</a>
+									<span class="content-text-ss text-shadow">Ainda não possui conta?</span>
+									<a th:href="@{/usuario/inserir}" class="text-center link-s text-shadow">Cadastre-se!</a>
 								</li>
 							</ul>
 						</form>

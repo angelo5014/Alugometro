@@ -1,6 +1,5 @@
 package br.com.alugometro.dao;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -13,7 +12,7 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Repository;
 
 import br.com.alugometro.domain.Reserva;
-import br.com.alugometro.domain.Reserva.SituacaoReserva;
+import br.com.alugometro.domain.SituacaoReserva;
 
 @Repository
 public class ReservaDAO extends AbstractDAO {
@@ -52,7 +51,7 @@ public class ReservaDAO extends AbstractDAO {
 		}
 		if (situacaoReserva != null) {
 			sql.append(" AND r.situacao = :situacaoReserva");
-			parameters.put("situacaoReserva", Enum.valueOf(SituacaoReserva.class, situacaoReserva.name()));
+			parameters.put("situacaoReserva", situacaoReserva);
 		}
 
 		TypedQuery<Reserva> query = em.createQuery(sql.toString(), Reserva.class);
@@ -63,7 +62,7 @@ public class ReservaDAO extends AbstractDAO {
 			Map.Entry mentry = (Map.Entry) iterator.next();
 			query.setParameter(mentry.getKey().toString(), mentry.getValue());
 		}
-
+		
 		return query.getResultList();
 	}
 	

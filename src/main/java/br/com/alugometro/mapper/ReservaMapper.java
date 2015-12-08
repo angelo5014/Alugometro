@@ -7,7 +7,7 @@ import java.util.List;
 import br.com.alugometro.domain.Anuncio;
 import br.com.alugometro.domain.Reserva;
 import br.com.alugometro.domain.Usuario;
-import br.com.alugometro.domain.Reserva.SituacaoReserva;
+import br.com.alugometro.domain.SituacaoReserva;
 import br.com.alugometro.dto.ReservaConfirmacaoDTO;
 import br.com.alugometro.dto.ReservaDTO;
 import br.com.alugometro.service.CalendarioService;
