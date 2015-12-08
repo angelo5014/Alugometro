@@ -59,6 +59,10 @@ public class Reserva {
 	@Basic(optional = false)
 	private SituacaoReserva situacao;
 	
+	public enum SituacaoReserva {
+		PENDENTE, PROCESSANDO, ENCERRADA, CANCELADA;
+	}
+	
 	public Long getIdReserva() {
 		return idReserva;
 	}
