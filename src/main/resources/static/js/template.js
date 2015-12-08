@@ -4,8 +4,8 @@ $(function() {
 	$( "#slider-range" ).slider({
 		range: true,
 		min: 1,
-		max: 999,
-		values: [ 99, 899 ],
+		max: 1000,
+		values: [ 100, 900 ],
 		slide: function( event, ui ) {
 			$( "#amount" ).val( "R$ " + ui.values[ 0 ] + " - R$ " + ui.values[ 1 ] );
 
