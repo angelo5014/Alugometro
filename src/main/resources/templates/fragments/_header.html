@@ -12,32 +12,34 @@
 				</li>
 				
 				<li class="inline-block" sec:authorize="isAuthenticated()">
-						<div class="nav-link inline-block" >
-							<form th:action="@{/reserva/usuario}" method="POST">
-								<input type="hidden"  name="email" th:value="${#authentication.name}" />
-								<button class="nav-link nav-link-inverse inline-block input-link input-link-inverse">Minhas Reservas</button>
-							</form>
-						</div>
-					</li>
-					
-					<li class="inline-block" sec:authorize="isAuthenticated()">
-						<div class="nav-link inline-block" >
-							<form th:action="@{/anuncio/usuario}" method="POST">
-								<input type="hidden" name="email" th:value="${#authentication.name}"/>
-								<button class="nav-link nav-link-inverse inline-block input-link input-link-inverse">Meus Anucios</button>
-							</form>
-						</div>
-					</li>
-									
+					<form th:action="@{/reserva/usuario}" method="POST">
+						<input type="hidden"  name="email" th:value="${#authentication.name}" />
+						<button class="nav-link nav-link-inverse inline-block input-link input-link-inverse">Minhas Reservas</button>
+					</form>
+				</li>
+
+				<li class="inline-block" sec:authorize="isAuthenticated()">
+					<form th:action="@{/anuncio/usuario}" method="POST">
+						<input type="hidden" name="email" th:value="${#authentication.name}"/>
+						<button class="nav-link nav-link-inverse inline-block input-link input-link-inverse">Meus Anucios</button>
+					</form>
+				</li>
+
 				<li class="inline-block" sec:authorize="!isAuthenticated()">
 					<a class="nav-link nav-link-inverse inline-block" th:href="@{|/login|}">Login</a>
 				</li>
+
 				<li class="inline-block">
 					<div sec:authorize="isAuthenticated()">
 						<form th:action="@{/logout}" method="POST">
 							<input class="nav-link nav-link-inverse inline-block input-link input-link-inverse" type="submit" value="Logout" />
 						</form>
 					</div>
+				</li>
+				<li class="inline-block">
+					<form th:action="@{'/anuncio/listarPorCidade'}" method="GET">
+						<input id="textPesquisa" class="nav-link nav-link-inverse inline-block nav-input" type="text" placeholder="Pesquisar..." name="cidade" />
+					</form>
 				</li>
 			</ul>
 		</nav>

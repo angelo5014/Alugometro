@@ -1,6 +1,7 @@
 package br.com.alugometro.dto;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.format.annotation.NumberFormat;
@@ -25,8 +26,11 @@ public class AnuncioDTO {
 	
 	@NotBlank
 	private String dataInicio;
+	private Date dataInicioExibe;
+	
 	@NotBlank
 	private String dataFim;
+	private Date dataFimExibe;
 	
 	@NumberFormat
 	private BigDecimal diaria;
@@ -175,6 +179,22 @@ public class AnuncioDTO {
 
 	public void setUrlFotoCapa(String urlFotoCapa) {
 		this.urlFotoCapa = urlFotoCapa;
+	}
+
+	public Date getDataInicioExibe() {
+		return dataInicioExibe;
+	}
+
+	public void setDataInicioExibe(Date dataInicioExibe) {
+		this.dataInicioExibe = dataInicioExibe;
+	}
+
+	public Date getDataFimExibe() {
+		return dataFimExibe;
+	}
+
+	public void setDataFimExibe(Date dataFimExibe) {
+		this.dataFimExibe = dataFimExibe;
 	}
 	
 }

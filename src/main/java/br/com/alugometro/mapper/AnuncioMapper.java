@@ -51,6 +51,8 @@ public class AnuncioMapper {
 		dto.setTipoImovel(anuncio.getTipoImovel().getDescricao());
 		dto.setTipoAcomodacao(anuncio.getTipoAcomodacao().getDescricao());
 		dto.setUrlFotoCapa(anuncio.getFotoCapa().getUrl());
+		dto.setDataInicioExibe(anuncio.getDataInicio());
+		dto.setDataFimExibe(anuncio.getDataFim());
 		
 		return dto;
 	}

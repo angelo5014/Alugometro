@@ -19,11 +19,10 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 					<form th:action="@{/anuncio/listarPorBuscaDetalhada}" action="/anuncio/buscar" method="GET">
 						<input type="hidden" id="minval" name="precoMenor" />
 						<input type="hidden" id="maxval" name="precoMaior" />
+						
 						<label>
-							<p>
-								<span for="amount">Faixa de Preço:</span>
-								<input type="text" id="amount" readonly="true" />
-							</p>
+							<span for="amount">Faixa de Preço:</span>
+							<input type="text" id="amount" readonly="true" />
 							<div id="slider-range"></div>
 						</label>
 
@@ -57,20 +56,24 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 
 			<div th:if="${ not #lists .isEmpty(anuncios) }" class="col col-l-8 col-m-12 col-s-12">
 				<div th:each="anuncio : ${(anuncios)}" class="section clearfix list-row box-shadow">
-					<div class="image-list pull-left">
+					<div class="image-list pull-left grow img-hover">
 						<a th:href="${ '/anuncio/' + anuncio.idAnuncio }">
 							<img width="250" height="200" th:src="${anuncio.fotoCapa}" />
 						</a>
 					</div>
+
 					<div class="pull-left">	
-						<p th:text="${anuncio.tipoImovel}">Apartamento</p>
-						<p th:text="${anuncio.preco}"></p>
-						<p th:text="${anuncio.descricaoCapa}"></p>
-						<p th:text="${anuncio.cidade}"></p>
+						<p th:text="${anuncio.tipoImovel}" class="list-title">Tipo Imovel</p>
+						<p class="list-text">Diária: R$ 
+							<span th:text="${#numbers.formatDecimal(anuncio.preco,3,'POINT',2,'COMMA')}">25,50</span>
+						</p>
+						<p th:text="${anuncio.descricaoCapa}" class="list-text">Descrição Capa</p>
+						<p th:text="${anuncio.cidade}" class="list-text">Cidade</p>
 					</div>
+
 					<div class="pull-right link-section-content">
 						<a th:href="${ '/anuncio/' + anuncio.idAnuncio }" class="link-section">
-							<p>Ver anuncio!</p>
+							<p class="list-title">Ver anuncio!</p>
 						</a>
 					</div>
 				</div>

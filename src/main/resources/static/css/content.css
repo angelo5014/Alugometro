@@ -17,6 +17,21 @@
 .list-row {
 	margin-left: 11px;
 	margin-bottom: -1px;
+	color: #5C5E5E;
+}
+
+.list-title {
+	font-size: 16px;
+	line-height: 20px;
+	margin-top: 7px;
+	font-weight: 700;
+}
+
+.list-text {
+	font-size: 14px;
+	line-height: 18px;
+	margin-top: 0;
+	font-weight: 600;	
 }
 
 /* Titulo Grande */
@@ -68,12 +83,12 @@
 .link-s {
 	font-size: 16px;
 	line-height: 20px;
-	color: #3498db;
+	color: #34495e;
 	padding: 10px 10px;
 }
 
 .link-s:hover {
-	color: #2980b9;
+	color: #3f5973;
 }
 
 .link-l {
@@ -90,8 +105,9 @@
 .image-list {
 	width: 250px;
 	height: 200px;
-	padding: 10px;
+	margin: 10px;
 	display: inline-block;
+	background-position: center;
 }
 
 .image-details {
@@ -126,11 +142,21 @@
 	margin-top: 15px;
 }
 
+.title-details {
+	font-size: 18px;
+	line-height: 22px;
+	font-weight: 800;
+	color: #5C5E5E;
+}
+
 .link-section-content {
 	margin-right: 10px;
 }
 
 .link-section {
+	font-size: 16px;
+	line-height: 20px;
+	
 	color: #3498db;
 }
 

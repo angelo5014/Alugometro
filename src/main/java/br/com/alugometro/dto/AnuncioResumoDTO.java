@@ -7,7 +7,7 @@ public class AnuncioResumoDTO {
 	private Long idAnuncio;
 	private Long idUsuario;
 	private String tipoImovel;
-	private String preco;
+	private Number preco;
 	private String fotoCapa;
 	private String descricaoCapa;
 	private String cidade;
@@ -21,7 +21,7 @@ public class AnuncioResumoDTO {
 		this.idAnuncio = anuncio.getIdAnuncio();
 		this.idUsuario = anuncio.getUsuario().getIdUsuario();
 		this.tipoImovel = anuncio.getTipoImovel().getDescricao();
-		this.preco = anuncio.getDiaria().toString();
+		this.preco = anuncio.getDiaria().toBigInteger();
 		this.fotoCapa = anuncio.getFotoCapa().getUrl();
 		this.descricaoCapa = anuncio.getDescricaoCapa();
 		this.cidade = anuncio.getCidade().getNome();
@@ -52,11 +52,11 @@ public class AnuncioResumoDTO {
 		this.tipoImovel = tipoImovel;
 	}
 
-	public String getPreco() {
+	public Number getPreco() {
 		return preco;
 	}
 
-	public void setPreco(String preço) {
+	public void setPreco(Number preço) {
 		this.preco = preço;
 	}
 

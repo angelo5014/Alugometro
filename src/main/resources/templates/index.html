@@ -18,6 +18,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 
 	<!-- STYLES -->
 	<link rel="stylesheet" href="/css/normalize.css" />
+	<link rel="stylesheet" href="/css/hover.css" />
 	<link rel="stylesheet" href="/css/modules.css" />
 	<link rel="stylesheet" href="/css/colors.css" />
 	<link rel="stylesheet" href="/css/header.css" />
@@ -41,29 +42,25 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 					<li class="inline-block">
 						<a class="nav-link inline-block" href="/anuncio/insere" th:href="@{'/anuncio/inserir'}">Anunciar</a>
 					</li>
-					
+
 					<li class="inline-block" sec:authorize="isAuthenticated()">
-						<div class="nav-link inline-block" >
-							<form th:action="@{/reserva/usuario}" method="POST">
-								<input type="hidden"  name="email" th:value="${#authentication.name}" />
-								<button class="nav-link inline-block input-link">Minhas Reservas</button>
-							</form>
-						</div>
+						<form th:action="@{/reserva/usuario}" method="POST">
+							<input type="hidden"  name="email" th:value="${#authentication.name}" />
+							<button class="nav-link inline-block input-link">Minhas Reservas</button>
+						</form>
 					</li>
-					
+
 					<li class="inline-block" sec:authorize="isAuthenticated()">
-						<div class="nav-link inline-block" >
-							<form th:action="@{/anuncio/usuario}" method="POST">
-								<input type="hidden" name="email" th:value="${#authentication.name}"/>
-								<button class="nav-link inline-block input-link">Meus Anucios</button>
-							</form>
-						</div>
+						<form th:action="@{/anuncio/usuario}" method="POST">
+							<input type="hidden" name="email" th:value="${#authentication.name}"/>
+							<button class="nav-link inline-block input-link">Meus Anucios</button>
+						</form>
 					</li>
-					
+
 					<li class="inline-block" sec:authorize="!isAuthenticated()">
 						<a class="nav-link inline-block" th:href="@{|/login|}">Login</a>
 					</li>
-					
+
 					<li class="inline-block">
 						<div sec:authorize="isAuthenticated()">
 							<form th:action="@{/logout}" method="POST">
@@ -75,16 +72,16 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 			</nav>
 		</header>
 		<div class="header-bg fade"></div>
-		
+
 		<!-- CONTEUDO -->
 		<div class="content">
-			<h1 class="text-center content-title-l text-shadow">Alugômetro</h1>
+			<h1 class="text-center content-title-l title-shadow">Alugômetro</h1>
 
 			<p class="text-center content-text-l text-shadow">Você procura, nós encontramos.</p>
 
 			<form th:action="@{'/anuncio/listarPorCidade'}" method="GET" class="form-container">
 				<input id="textPesquisa" type="text" placeholder="Ex.: Rio de Janeiro..." name="cidade" class="block index-search form-radius" />
-				<button id="btn-pesquisar" class="block btn-default form-radius">Pesquisar</button>
+				<button id="btn-pesquisar" class="block btn-default form-radius hvr-float">Pesquisar</button>
 			</form>
 		</div>
 	</div>

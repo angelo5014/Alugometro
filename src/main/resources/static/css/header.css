@@ -51,13 +51,21 @@
 }
 
 .nav-link:hover {
-	background-color: rgba(255, 255, 255, 0.3);
+	background-color: rgba(255, 255, 255, 0.2);
 	text-decoration: none;
 }
 
 .nav-link-inverse:hover {
 	background-color: rgba(0, 0, 0, 0.2);
 	text-decoration: none;
+}
+
+.nav-input {
+	margin-left: 15px;
+	background-image: url('/img/icons/search-icon.png');
+	background-repeat: no-repeat;
+	background-position: 225px 10px;
+	border: 1px solid #bdc3c7;
 }
 
 .fade {
