@@ -24,17 +24,19 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 
 							<label>
 								<span>Locatario:</span>
-								<input th:field="*{nomeLocador}" readonly="true" class="input-field" />
+								<p th:text="*{nomeLocador}" class="inline-block input-disponibilidade-text"></p>
 							</label>
 
 							<label>
 								<span>Cidade:</span>
-								<input th:field="*{local}" readonly="true" class="input-field" />
+								<p th:text="*{local}" class="inline-block input-disponibilidade-text"></p>
 							</label>
 
 							<label>
 								<span>Disponibilidade:</span>
-								<input th:field="*{periodoDisponivel}" readonly="true" class="input-field" />
+								<p th:text="*{#dates.format(periodoDisponivelInicio, 'dd/MM/yyyy')}" readonly="true" class="inline-block input-disponibilidade-text"></p>
+								<p class="inline-block input-disponibilidade-text">  à  </p>
+								<p th:text="*{#dates.format(periodoDisponivelFim, 'dd/MM/yyyy')}" readonly="true" class="inline-block input-disponibilidade-text"></p>
 							</label>
 
 							<label>
@@ -49,12 +51,14 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 
 							<label>
 								<span>Diária:</span>
-								<input th:field="*{diaria}" readonly="true" class="input-field" />
+								<p class="inline-block input-disponibilidade-text">R$</p>
+								<p th:text="*{#numbers.formatDecimal(diaria,3,'POINT',2,'COMMA')}" class="inline-block input-disponibilidade-text"></p>
 							</label>
 
 							<label>
 								<span>Total:</span>
-								<input th:field="*{total}" readonly="true" class="input-field" />
+								<p class="inline-block input-disponibilidade-text">R$</p>
+								<p th:text="*{#numbers.formatDecimal(total,3,'POINT',2,'COMMA')}" readonly="true" class="inline-block input-disponibilidade-text"></p>
 							</label>
 
 							<label>

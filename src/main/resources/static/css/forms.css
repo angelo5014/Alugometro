@@ -156,3 +156,11 @@
 .date-aside {
     width: 100% !important;
 }
+
+.input-disponibilidade {
+    width: 23.2% !important;
+}
+
+.input-disponibilidade-text {
+    margin-top: 8px;
+}
