@@ -51,7 +51,7 @@ public class CalendarioServiceTest {
 		// Arrage
 		Calendar calendario = Calendar.getInstance();
 		
-		calendario.set(2015, 9, 10, 0, 0, 0);
+		calendario.set(2015, 9, 9, 0, 0, 0);
 		Date data10102015 = calendario.getTime();
 		
 		calendario.set(2015, 9, 20, 0, 0, 0);
