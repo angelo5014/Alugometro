@@ -14,32 +14,21 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 		<input type="hidden" th:field="*{idAnuncio}" />
 
 		<div class="row">
-
 			<div class="section clearfix box-shadow">
-
 				<div class="col col-l-12 col-s-12 details-header">
 
 					<p class="inline-block title-details">
 						<span th:text="*{tipoImovel}">Tipo Imovel</span>
 					</p>
 
-					<p th:text="*{cidade}" class="inline-block title-details">
-						Cidade
-					</p>
+					<p th:text="*{cidade}" class="inline-block title-details">Cidade</p>
 
-					<form th:action="${'/reserva/confirmar/' + anuncio.idAnuncio}" method="GET" class="inline-block pull-right">
-						<input type="hidden" name="dataInicio" th:value="${anuncio.dataInicio}"/>
-						<input type="hidden" name="dataFim" th:value="${anuncio.dataFim}"/>
-						<button class="button-reserva form-radius">Reservar</button>
-					</form>
-
-					<p class="inline-block pull-right">Diária - R$ 
+					<p class="inline-block pull-right title-details">Diária - R$ 
 						<span th:text="${#numbers.formatDecimal(anuncio.diaria,3,'POINT',2,'COMMA')}"></span>
 					</p>
 				</div>
 
 				<div class="col col-l-8 col-s-12">
-
 					<div class="image-pagination">
 						<div>
 							<img class="image-details" th:src="*{urlFotoCapa}" />
@@ -51,14 +40,22 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 				</div>
 
 				<div class="col col-l-4 col-s-12">
-					<p>Tipo Acomodação: <span th:text="*{tipoAcomodacao}"></span></p>
-					<p>Numero de Pessoas: <span th:text="*{numeroPessoas}"></span></p>
-					<p>
+					<p class="text-details">Tipo Acomodação: <span th:text="*{tipoAcomodacao}"></span></p>
+					<p class="text-details">Acomoda até: <span th:text="*{numeroPessoas}"></span> pessoas</p>
+					<p class="text-details">
 						Disponibilidade: 
 						<span th:text="${#dates.format(anuncio.dataInicioExibe, 'dd/MM/yyyy')}"></span> - 
 						<span th:text="${#dates.format(anuncio.dataFimExibe, 'dd/MM/yyyy')}"></span>
 					</p>
-					<p th:text="*{descricaoDetalhada}"></p>
+					<p th:text="*{descricaoDetalhada}" class="text-details">
+						Descrição detalhada
+					</p>
+
+					<form th:action="${'/reserva/confirmar/' + anuncio.idAnuncio}" method="GET">
+						<input type="hidden" name="dataInicio" th:value="${anuncio.dataInicio}"/>
+						<input type="hidden" name="dataFim" th:value="${anuncio.dataFim}"/>
+						<button class="button-reserva form-radius">Reservar</button>
+					</form>
 				</div>
 
 				<div class="col col-l-12 col-s-12">

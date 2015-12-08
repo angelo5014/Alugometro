@@ -61,7 +61,7 @@
 }
 
 .nav-input {
-	margin-left: 15px;
+	margin: 0 15px;
 	background-image: url('/img/icons/search-icon.png');
 	background-repeat: no-repeat;
 	background-position: 225px 10px;

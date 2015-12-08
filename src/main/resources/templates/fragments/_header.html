@@ -8,7 +8,7 @@
 		<nav class="pull-right">
 			<ul class="reset-list">
 				<li class="inline-block">
-					<a class="nav-link nav-link-inverse inline-block" th:href="@{/anuncio/inserir}">Anunciar</a>
+					<a class="nav-link nav-link-inverse inline-block" th:href="@{/anuncio/inserir}">Anúnciar</a>
 				</li>
 				
 				<li class="inline-block" sec:authorize="isAuthenticated()">
@@ -21,7 +21,7 @@
 				<li class="inline-block" sec:authorize="isAuthenticated()">
 					<form th:action="@{/anuncio/usuario}" method="POST">
 						<input type="hidden" name="email" th:value="${#authentication.name}"/>
-						<button class="nav-link nav-link-inverse inline-block input-link input-link-inverse">Meus Anucios</button>
+						<button class="nav-link nav-link-inverse inline-block input-link input-link-inverse">Meus Anúncios</button>
 					</form>
 				</li>
 
@@ -30,16 +30,17 @@
 				</li>
 
 				<li class="inline-block">
+					<form th:action="@{'/anuncio/listarPorCidade'}" method="GET">
+						<input id="textPesquisa" class="nav-link nav-link-inverse inline-block nav-input" type="text" placeholder="Pesquisar..." name="cidade" />
+					</form>
+				</li>
+
+				<li class="inline-block">
 					<div sec:authorize="isAuthenticated()">
 						<form th:action="@{/logout}" method="POST">
 							<input class="nav-link nav-link-inverse inline-block input-link input-link-inverse" type="submit" value="Logout" />
 						</form>
 					</div>
-				</li>
-				<li class="inline-block">
-					<form th:action="@{'/anuncio/listarPorCidade'}" method="GET">
-						<input id="textPesquisa" class="nav-link nav-link-inverse inline-block nav-input" type="text" placeholder="Pesquisar..." name="cidade" />
-					</form>
 				</li>
 			</ul>
 		</nav>
