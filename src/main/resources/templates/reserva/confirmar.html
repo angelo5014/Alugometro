@@ -14,43 +14,49 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 			<div class="row">
 				<div class="form-insert section clearfix box-shadow">
 					<div class="col col-l-12 col-m-12 col-s-12">
+
 						<div class="form-insert-heading">Confirmar Reserva</div>
-	
+
 						<form th:action="@{/reserva/confirmar}" th:object="${reservaConfirmacao}" method="POST">
-	
+
 							<input type="hidden" th:field="*{idAnuncio}" />
 							<input type="hidden" th:field="*{idUsuarioLocando}" />
-	
+
 							<label>
-								<p>
-									ID Anuncio: <span th:text="*{idAnuncio}" class=""></span>
-								</p>
+								<span>Locatario:</span>
+								<input th:field="*{nomeLocador}" readonly="true" class="input-field" />
 							</label>
-							<p>
-								Locatario: <span th:text="*{nomeLocador}" class=""></span>
-							</p>
-							<p>
-								Cidade: <span th:text="*{local}" class=""></span>
-							</p>
-							<p>
-								Disponibilidade: <span th:text="*{periodoDisponivel}"></span>
-							</p>
+
+							<label>
+								<span>Cidade:</span>
+								<input th:field="*{local}" readonly="true" class="input-field" />
+							</label>
+
+							<label>
+								<span>Disponibilidade:</span>
+								<input th:field="*{periodoDisponivel}" readonly="true" class="input-field" />
+							</label>
+
 							<label>
 								<span>Data Inicio:</span>
 								<input th:field="*{dataInicio}" type="date" required="required" class="input-field" />
 							</label>
+
 							<label>
 								<span>Data Fim:</span>
 								<input th:field="*{dataFim}" type="date" required="required" class="input-field" />
 							</label>
-							<p>
-								Diária: <span th:text="*{diaria}"></span>
-								<input type="hidden" th:field="*{diaria}" />
-							</p>
-							<p>
-								Total: <span th:text="*{total}" id="exibicaoTotal"></span>
-								<input type="hidden" th:field="*{total}" />
-							</p>
+
+							<label>
+								<span>Diária:</span>
+								<input th:field="*{diaria}" class="input-field" />
+							</label>
+
+							<label>
+								<span>Total:</span>
+								<input th:field="*{total}" class="input-field" />
+							</label>
+
 							<label>
 								<span>&nbsp;</span>
 								<input type="submit" value="Confirmar" />	
