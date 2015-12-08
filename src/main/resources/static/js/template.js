@@ -26,6 +26,11 @@ $(function() {
 		$(divDemaisFotos).append($(labelDemaisFotos));
 	});
 
+	$('#close').click(function(e) {
+		$('#alert').addClass('hidden');
+		console.log('teste');
+		console.log($('#alert'));
+	});
 
 	// Paginação Slick
 	$('.image-pagination').slick({

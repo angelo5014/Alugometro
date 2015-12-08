@@ -10,6 +10,14 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 </head>
 <body>
 	<div layout:fragment="content">
+
+		<div th:if="${mensagem}">
+			<div id="alert" class="alert">
+				<button id="close" type="button" class="close"></button>
+				<p th:text="${mensagem}"></p>
+			</div>
+		</div>
+
 		<div class="row">
 			<aside class="col col-l-3 col-m-12 col-s-12">
 				<div class="form-insert section clearfix box-shadow padding-m">
@@ -59,7 +67,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 
 			<div th:if="${ not #lists .isEmpty(anuncios) }" class="col col-l-8 col-m-12 col-s-12">
 				<div th:each="anuncio : ${(anuncios)}" class="section clearfix list-row box-shadow">
-				
+
 					<div class="image-list pull-left grow img-hover">
 						<a th:href="${ '/anuncio/' + anuncio.idAnuncio }">
 							<img width="250" height="200" th:src="${anuncio.fotoCapa}" />
