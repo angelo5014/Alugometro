@@ -91,6 +91,9 @@ public class ReservaService {
 		reservaConfirmacao.setLocal(local);
 		reservaConfirmacao.setPeriodoDisponivel(periodo.toString());
 		reservaConfirmacao.setDiaria(diaria);
+		
+		reservaConfirmacao.setPeriodoDisponivelInicio(anuncio.getDataInicio());
+		reservaConfirmacao.setPeriodoDisponivelFim(anuncio.getDataFim());
 
 		return reservaConfirmacao;
 	}

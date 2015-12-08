@@ -1,6 +1,7 @@
 package br.com.alugometro.dto;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
 import br.com.alugometro.domain.TipoAcomodacao;
 import br.com.alugometro.domain.TipoImovel;
@@ -14,6 +15,10 @@ public class ReservaConfirmacaoDTO {
 	private TipoImovel tipoImovel;
 	private TipoAcomodacao tipoAcomodacao;
 	private String periodoDisponivel;
+	
+	private Date periodoDisponivelInicio;
+	private Date periodoDisponivelFim;
+	
 	private String dataInicio;
 	private String dataFim;
 	private BigDecimal diaria;
@@ -85,6 +90,18 @@ public class ReservaConfirmacaoDTO {
 	}
 	public void setTotal(BigDecimal total) {
 		this.total = total;
+	}
+	public Date getPeriodoDisponivelInicio() {
+		return periodoDisponivelInicio;
+	}
+	public void setPeriodoDisponivelInicio(Date periodoDisponivelInicio) {
+		this.periodoDisponivelInicio = periodoDisponivelInicio;	
+	}
+	public Date getPeriodoDisponivelFim() {
+		return periodoDisponivelFim;
+	}
+	public void setPeriodoDisponivelFim(Date periodoDisponivelFim) {
+		this.periodoDisponivelFim = periodoDisponivelFim;
 	}
 	
 }
