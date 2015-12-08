@@ -36,7 +36,7 @@ public class AnuncioService {
 		this.anuncioFotoService = anuncioFotoService;
 	}
 	
-	public AnuncioDTO buscarPorID(Long idAnuncio) {
+	public AnuncioDTO buscarPorId(Long idAnuncio) {
 		return AnuncioMapper.paraDTO(anuncioDAO.buscarPorId(idAnuncio));
 	}
 	

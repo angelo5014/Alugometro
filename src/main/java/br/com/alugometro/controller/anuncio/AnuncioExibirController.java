@@ -42,7 +42,7 @@ public class AnuncioExibirController extends AbstractAnuncioController {
 	@RequestMapping(path = "/{idAnuncio}", method = RequestMethod.GET)
 	public ModelAndView exibir(@PathVariable("idAnuncio") Long idAnuncio) {
 
-		ModelAndView model = new ModelAndView("anuncio/exibir", "anuncio", anuncioService.buscarPorID(idAnuncio));
+		ModelAndView model = new ModelAndView("anuncio/exibir", "anuncio", anuncioService.buscarPorId(idAnuncio));
 		model.addObject("anuncioFotos", listaFotos(idAnuncio));
 		return model;
 	}
