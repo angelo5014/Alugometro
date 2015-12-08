@@ -24,4 +24,25 @@ public class TokenService {
 		this.tokenDAO.salvarTokenRecuperacaoSenha(token);
 	}
 	
+	public void invalidarToken(TokenDTO dto) throws Exception{
+		if(dto.getSituacao() != SituacaoToken.INATIVO){
+			Token token = new Token();
+			token.setIdToken(dto.getIdToken());
+			token.setUsuario(UsuarioMapper.paraEntidade(dto.getUsuario()));
+			token.setToken(dto.getToken());
+			token.setSituacao(SituacaoToken.INATIVO);
+			
+			this.tokenDAO.anularToken(token);
+		}else{
+			throw new Exception("Token inválido!");
+		}
+	}
+
+	public TokenDTO buscarToken(String tokenUsuario) {
+		Token token = this.tokenDAO.buscarToken(tokenUsuario);
+		TokenDTO tokenDTO = new TokenDTO(token);
+		
+		return tokenDTO;
+	}
+	
 }

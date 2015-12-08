@@ -8,7 +8,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-	<title>Alugômetro - Recuperar Senha</title>
+	<title>Alugômetro - Cadastre-se</title>
 
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css' />
 	<link rel="stylesheet" href="/css/normalize.css" />
@@ -30,10 +30,22 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 			<div class="container">
 				<div class="row">
 					<div class="col col-l-12 col-m-12 col-s-12">
-						<h2 class="text-center content-title-s">Recuperar Senha</h2>
-						<form th:action="@{/recuperarsenha}" th:object="${usuario}"  method="POST" class="form-container">
-								<input  type="email" th:field="*{email}" class="block form-radius" placeholder="Email" />
-								<button class="block btn-default form-radius">Recuperar</button>
+						<h2 class="text-center content-title-s">Digite a nova senha!</h2>
+						<form th:action="@{/recuperarsenha/redefinirsenha}" th:object="${redefinirSenha}" method="POST" class="form-container">
+							
+							<input type="hidden" th:field="*{idUsuario}" />
+
+							<div th:classappend="${#fields.hasErrors('senha')} ? 'has-error'">
+								<input th:field="*{senha}" type="password" class="block form-radius" placeholder="Senha" />
+								<span class="content-text-ss help-inline" th:errors="*{senha}"></span>
+							</div>
+							
+							<div th:classappend="${#fields.hasErrors('senha')} ? 'has-error'">
+								<input th:field="*{confirmacaoSenha}" type="password" class="block form-radius" placeholder="Repita a Senha" />
+								<span class="content-text-ss help-inline" th:errors="*{senha}"></span>
+							</div>
+
+							<input type="submit" class="block btn-default form-radius" value="Salvar Nova Senha" />
 						</form>
 					</div>
 				</div>

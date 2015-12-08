@@ -27,7 +27,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers(
                 		"/", 
-                		"/usuario/inserir", 
+                		"/usuario/inserir",
+                		"/recuperarsenha",
+                		"/recuperarsenha/verificartoken",
+                		"/recuperarsenha/redefinirsenha",
                 		"/css/**", 
                 		"/js/**", 
                 		"/img/**",

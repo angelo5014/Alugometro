@@ -1,5 +1,7 @@
 package br.com.alugometro.dao;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
@@ -15,8 +17,15 @@ public class TokenDAO extends AbstractDAO{
 	}
 	
 	public Token buscarToken(String token){
-		return this.em.createQuery("FROM Token WHERE Token = :token", Token.class)
+		List<Token> lista = this.em.createQuery("FROM Token WHERE token = :token")
 					.setParameter("token", token)
-					.getSingleResult();
+					.getResultList();
+		
+		return lista.get(0);
+	}
+	
+	@Transactional
+	public void anularToken(Token token) {
+		this.em.merge(token);
 	}
 }
