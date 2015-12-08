@@ -7,6 +7,7 @@ import br.com.alugometro.dao.TokenDAO;
 import br.com.alugometro.domain.Token;
 import br.com.alugometro.domain.Token.SituacaoToken;
 import br.com.alugometro.dto.TokenDTO;
+import br.com.alugometro.exception.TokenInvalidoException;
 import br.com.alugometro.mapper.UsuarioMapper;
 
 @Service
@@ -24,7 +25,7 @@ public class TokenService {
 		this.tokenDAO.salvarTokenRecuperacaoSenha(token);
 	}
 	
-	public void invalidarToken(TokenDTO dto) throws Exception{
+	public void invalidarToken(TokenDTO dto) throws TokenInvalidoException{
 		if(dto.getSituacao() != SituacaoToken.INATIVO){
 			Token token = new Token();
 			token.setIdToken(dto.getIdToken());
@@ -34,7 +35,7 @@ public class TokenService {
 			
 			this.tokenDAO.anularToken(token);
 		}else{
-			throw new Exception("Token inválido!");
+			throw new TokenInvalidoException();
 		}
 	}
 
