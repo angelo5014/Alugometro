@@ -1,0 +1,13 @@
+{
+  "name": "alugometro",
+  "version": "1.0.0",
+  "description": "TCC para o projeto crescer da empresa CWI",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/angelo5014/Alugometro.git"
+  }
+}
