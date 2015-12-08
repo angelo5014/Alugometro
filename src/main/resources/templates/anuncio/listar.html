@@ -29,6 +29,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 						<label>
 							<span>Cidade:</span>
 							<select class="select-field form-input-aside" name="idCidade">
+								<option th:value="${null}">Selecione uma cidade</option>
 								<option th:each="c : ${cidades}" th:text="${c.nome}" th:value="${c.idCidade}" >[option]</option>
 							</select>
 						</label>
@@ -36,6 +37,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 						<label>
 							<span>Tipo de Imóvel:</span>
 							<select class="select-field form-input-aside" name="idTipoImovel">
+								<option th:value="${null}">Selecione um tipo de imóvel</option>
 								<option th:each="tipoImovel : ${tiposImoveis}" th:text="${tipoImovel.descricao}" th:value="${tipoImovel.idTipoImovel}" >[option]</option>
 							</select>
 						</label>
@@ -43,6 +45,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 						<label>
 							<span>Tipo de Acomodação:</span>
 							<select class="select-field form-input-aside" name="idTipoAcomodacao">
+								<option th:value="${null}">Selecione um tipo de acomodação</option>
 								<option th:each="tipoAcomodacao : ${tiposAcomodacoes}" th:text="${tipoAcomodacao.descricao}" th:value="${tipoAcomodacao.idTipoAcomodacao}" >[option]</option>
 							</select>
 						</label>
