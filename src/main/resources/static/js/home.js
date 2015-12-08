@@ -14,3 +14,10 @@ $(function() {
         }); 
     });
 });
+
+$("document").ready(function() {
+    $("#textPesquisa").autocomplete({
+        source: '/cidades/rest/',
+        select: function() { $("#btnPesquisar").click(); }
+    });
+});

@@ -11,6 +11,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 	<title>Alugômetro - Home</title>
 
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css' />
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
 	<link rel="stylesheet" href="/css/normalize.css" />
 	<link rel="stylesheet" href="/css/modules.css" />
 	<link rel="stylesheet" href="/css/colors.css" />
@@ -61,8 +62,8 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 			<p class="text-center content-text-l text-shadow">Você procura, nós encontramos.</p>
 
 			<form th:action="@{'/anuncio/listarPorCidade'}" method="GET" class="form-container">
-				<input type="text" placeholder="Ex.: Rio de Janeiro..." name="cidade" class="block index-search form-radius" />
-				<button class="block btn-default form-radius">Pesquisar</button>
+				<input id="textPesquisa" type="text" placeholder="Ex.: Rio de Janeiro..." name="cidade" class="block index-search form-radius" />
+				<button id="btn-pesquisar" class="block btn-default form-radius">Pesquisar</button>
 			</form>
 		</div>
 	</div>
@@ -70,6 +71,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 	<div th:include="fragments/_footer :: footer"></div>
 
 	<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 	<script src="/js/home.js"></script>
 </body>
 </html>
