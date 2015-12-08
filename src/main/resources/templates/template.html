@@ -39,6 +39,13 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <body>
 	<!-- HEADER -->
 	<div th:include="fragments/_header :: header"></div>
+	
+			<div th:if="${mensagem}">
+				<div id="alert" class="alert">
+					<button id="close" type="button" class="close"></button>
+					<p th:text="${mensagem}"></p>
+				</div>
+			</div>
 
 	<!-- CONTEUDO -->
 	<div class="bg-color">

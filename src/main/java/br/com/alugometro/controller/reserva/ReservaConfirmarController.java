@@ -82,7 +82,7 @@ public class ReservaConfirmarController extends AbstractReservaController{
 			e.printStackTrace();
 		}
 		
-		return new ModelAndView("redirect:/");
+		return new ModelAndView("redirect:/anuncio/"+reservaConfirmacaoDTO.getIdAnuncio());
 	}
 	
 	@ResponseBody

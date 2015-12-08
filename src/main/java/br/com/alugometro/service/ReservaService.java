@@ -55,14 +55,14 @@ public class ReservaService {
 		return reservasDTO;
 	}
 
-	public ReservaDTO salvar(ReservaDTO dto) {
+	public void salvar(ReservaDTO dto) {
 		if (dto.getIdReserva() == null) {
 			dto.setSituacao("PENDENTE");
 		}
 
 		Reserva entidade = ReservaMapper.paraEntidade(dto);
 
-		return ReservaMapper.paraDTO(this.reservaDAO.salvar(entidade));
+		this.reservaDAO.salvar(entidade);
 	}
 
 	public ReservaConfirmacaoDTO obterDadosParaConfirmacao(Long idAnuncio) {
@@ -161,10 +161,10 @@ public class ReservaService {
 		Reserva reserva = ReservaMapper.paraEntidade(reservaConfirmacaoDTO);
 		List<Reserva> reservasComADataRequisitada = reservaDAO.buscarReservaPorPeriodoESituacao(reserva);
 
-		boolean disponivel = false;
+		boolean disponivel = true;
 
-		if (reservasComADataRequisitada.isEmpty()) {
-			disponivel = true;
+		if (reservasComADataRequisitada.size() > 0) {
+			disponivel = false;
 		}
 
 		return disponivel;
