@@ -68,6 +68,19 @@ public class AnuncioService {
 		return anunciosDTO;
 	}
 	
+	public List<AnuncioResumoDTO> buscarAnunciosDoUsuarioEmail(String email) {
+		List<AnuncioResumoDTO> anunciosDTO = new ArrayList<>();
+		
+		try {
+			for (Anuncio anuncio : usuarioDAO.buscarPorEmail(email).getAnuncios()) {
+				anunciosDTO.add(new AnuncioResumoDTO(anuncio));
+			}
+		} catch ( AbstractException e) {
+			e.printStackTrace();
+		}
+		return anunciosDTO;
+	}
+	
 	public List<AnuncioResumoDTO> listarPorCidade(String cidade) {
 
 		List<Anuncio> anuncios = anuncioDAO.listarPorCidade(cidade);
