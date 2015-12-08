@@ -5,7 +5,7 @@ $(function() {
 		range: true,
 		min: 1,
 		max: 999,
-		values: [ 1, 4909 ],
+		values: [ 99, 899 ],
 		slide: function( event, ui ) {
 			$( "#amount" ).val( "R$ " + ui.values[ 0 ] + " - R$ " + ui.values[ 1 ] );
 
@@ -57,7 +57,7 @@ $(function() {
 				);
 		}
 	});
-	*/
+*/
 
 });
 
@@ -74,12 +74,10 @@ $(document).ready(function() {
 	$('#owl-demo').owlCarousel({
 		jsonPath : jsonFotos + idAnuncio,
 		jsonSuccess : customDataSuccess,
-		autoPlay : 3000,
-		stopOnHover : true,
-		navigation:true,
-		paginationSpeed : 1000,
-		goToFirstSpeed : 2000,
-		singleItem : true,
+		navigation : true,
+		slideSpeed : 300,
+		paginationSpeed : 400,
+		singleItem:true,
 		autoHeight : true,
 		transitionStyle:"fade"
 	});

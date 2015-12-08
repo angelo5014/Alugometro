@@ -1,3 +1,15 @@
 .ui-front {
 	z-index: 1000;
 }
+
+.ui-slider {
+	background: #ecf0f1;
+}
+
+.ui-widget-header {
+	background: #3498db;
+}
+
+.ui-slider-handle {
+	border-radius: 100%;
+}
