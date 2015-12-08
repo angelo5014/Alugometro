@@ -56,14 +56,15 @@ public class AnuncioExibirController extends AbstractAnuncioController {
 	public String buscarAnuncioFotos(@PathVariable("idAnuncio") Long idAnuncio) {
 		
 		JSONArray anuncioFotosArray = new JSONArray();
+		JSONObject anuncioFotos = new JSONObject();
 		
 		for (AnuncioFotoDTO anuncioFotoDTO : listaFotos(idAnuncio)) {
 			JSONObject userJSON = new JSONObject();
-			userJSON.put("urlFoto", anuncioFotoDTO.getUrlFoto());
-			anuncioFotosArray.put(userJSON);
+			userJSON.put("url", anuncioFotoDTO.getUrlFoto());
+			anuncioFotos.put("fotos", anuncioFotosArray.put(userJSON));
 		}
 		
-		return anuncioFotosArray.toString();
+		return anuncioFotos.toString();
 	}
 	
 }
