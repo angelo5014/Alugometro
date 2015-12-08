@@ -11,31 +11,40 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <body>
 	<div layout:fragment="content">
 		<div class="row">
-			<div th:if="${ not #lists .isEmpty(anuncios) }" class="col col-l-8 col-s-12">
-				<div th:each="anuncio : ${(anuncios)}" class="section clearfix list-row">
-					<div class="image-list pull-left">
+			<div th:if="${ not #lists .isEmpty(anuncios) }" class="col col-l-12 col-m-12 col-s-12">
+				<div th:each="anuncio : ${(anuncios)}" class="section clearfix list-row box-shadow">
+
+					<div class="image-list pull-left grow img-hover">
 						<a th:href="${ '/anuncio/' + anuncio.idAnuncio }">
 							<img width="250" height="200" th:src="${anuncio.fotoCapa}" />
 						</a>
 					</div>
+
 					<div class="pull-left">	
-						<p th:text="${anuncio.tipoImovel}">Apartamento</p>
-						<p th:text="${anuncio.preco}"></p>
-						<p th:text="${anuncio.descricaoCapa}"></p>
-						<p th:text="${anuncio.cidade}"></p>
-						<p th:text="${anuncio.situacao}"></p>
-					</div>
-					<div class="pull-right link-section-content">
-						<a th:href="${ '/anuncio/' + anuncio.idAnuncio }" class="link-section">
-							<p>Ver anuncio!</p>
-						</a>
-						
+						<p th:text="${anuncio.tipoImovel}" class="list-title">Tipo Imovel</p>
+						<p class="list-text">Diária: R$ 
+							<span th:text="${#numbers.formatDecimal(anuncio.preco,3,'POINT',2,'COMMA')}">25,50</span>
+						</p>
+						<p th:text="${anuncio.descricaoCapa}" class="list-text">Descrição Capa</p>
+						<p th:text="${anuncio.cidade}" class="list-text">Cidade</p>
+						<p class="list-text">
+							Situação: 
+							<span th:text="${anuncio.situacao}"></span>
+						</p>
+
 						<form th:action="@{/anuncio/desativar}" method="POST">
 							<input type="hidden" th:name="idAnuncio" th:value="${anuncio.idAnuncio}"/>
 							<input type="hidden" th:name="idUsuario" th:value="${anuncio.idUsuario}"/>
-							<button class="btn btn-default" type="submit">Desativar</button>
+							<button class="btn form-radius" type="submit">Desativar</button>
 						</form>
 					</div>
+
+					<div class="pull-right link-section-content">
+						<a th:href="${ '/anuncio/' + anuncio.idAnuncio }" class="link-section">
+							<p class="list-title">Visualizar Anúncio</p>
+						</a>
+					</div>
+
 				</div>
 			</div>
 		</div>
