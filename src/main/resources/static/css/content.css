@@ -145,6 +145,10 @@
 	margin-top: 15px;
 }
 
+.details-list {
+	padding: 10px;
+}
+
 .title-details {
 	font-size: 22px;
 	line-height: 26px;

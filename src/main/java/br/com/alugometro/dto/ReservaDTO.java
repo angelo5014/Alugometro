@@ -8,6 +8,8 @@ public class ReservaDTO {
 	private Long idReserva;
 	private Long idUsuario;
 	private Long idAnuncio;
+	private String tipoImovel;
+	private String cidade;
 	private String descricaoCapaAnuncio;
 	private Date dataInicio;
 	private Date dataFim;
@@ -85,6 +87,22 @@ public class ReservaDTO {
 
 	public void setSituacao(String situacao) {
 		this.situacao = situacao;
+	}
+	
+	public String getTipoImovel() {
+		return tipoImovel;
+	}
+
+	public void setTipoImovel(String tipoImovel) {
+		this.tipoImovel = tipoImovel;
+	}
+
+	public String getCidade() {
+		return cidade;
+	}
+
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
 	}
 
 	@Override

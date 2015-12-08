@@ -18,15 +18,15 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 						Filtre suas reservas
 					</div>
 					<form th:action="@{/reserva/listarReservasPorBusca}" method="GET">
-					
+
 						<label>
 							<span>Data Inicial:</span>
-							<input name="dataInicio" type="date" class="input-field" />
+							<input name="dataInicio" type="date" class="input-field date-aside" />
 						</label>
 
 						<label>
 							<span>Data Final:</span>
-							<input name="dataFim" type="date" class="input-field" />
+							<input name="dataFim" type="date" class="input-field date-aside" />
 						</label>
 
 						<label>
@@ -46,19 +46,49 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 
 			<div th:if="${ not #lists .isEmpty(reservas) }" class="col col-l-8 col-m-12 col-s-12">
 				<div th:each="reserva : ${(reservas)}" class="section clearfix list-row box-shadow">
-					<div class="pull-left">	
-						<p th:text="${reserva.descricaoCapaAnuncio}">Apartamento</p>
-						<p th:text="${reserva.dataInicio}"></p>
-						<p th:text="${reserva.dataFim}"></p>
-						<p th:text="${reserva.situacao}"></p>
+
+					<div class="details-list">
+						<p th:text="${reserva.tipoImovel}" class="inline-block list-title">Tipo Imovel</p>
+
+						<p th:text="${reserva.cidade}" class="inline-block list-title">Cidade</p>
+
+						<p th:text="${reserva.descricaoCapaAnuncio}" class="list-text">Descrição capa</p>
+
+						<p class="list-text">
+							Data Inicial: 
+							<span th:text="${#dates.format(reserva.dataInicio, 'dd/MM/yyyy')}"></span>
+						</p>
+
+						<p class="list-text">
+							Data Final: 
+							<span th:text="${#dates.format(reserva.dataFim, 'dd/MM/yyyy')}"></span>
+						</p>
+
+						<p class="list-text">
+							Diária: 
+							<span th:text="${#numbers.formatDecimal(reserva.valorDia,3,'POINT',2,'COMMA')}"></span>
+						</p> 
+
+						<p class="list-text">
+							Valor Total: 
+							<span th:text="${#numbers.formatDecimal(reserva.valorTotal,3,'POINT',2,'COMMA')}"></span>
+						</p>
+
+						<p class="list-text">
+							Situação: 
+							<span th:text="${reserva.situacao}"></span>
+						</p>
+
 						<form th:action="@{/reserva/cancelar}" method="POST">
 							<input type="hidden" name="idReserva" th:value="${reserva.idReserva}"/>
 							<input type="hidden" name="idUsuario" th:value="${reserva.idUsuario}"/>
-							<button type="submit" class="btn btn-primary" >Cancelar</button>
+							<input type="submit" value="Cancelar" class="btn form-radius" />
 						</form>
 					</div>
+
 				</div>
 			</div>
+
 		</div>
 	</div>
 </body>

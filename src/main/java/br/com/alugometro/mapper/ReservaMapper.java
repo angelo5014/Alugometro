@@ -68,6 +68,9 @@ public class ReservaMapper {
 		dto.setValorTotal(entidade.getValorTotal());
 		dto.setSituacao(entidade.getSituacao().toString());
 		
+		dto.setTipoImovel(entidade.getAnuncio().getTipoImovel().getDescricao());
+		dto.setCidade(entidade.getAnuncio().getCidade().getNome());
+		
 		return dto;
 	}
 	
