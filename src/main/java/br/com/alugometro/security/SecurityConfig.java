@@ -29,14 +29,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 		"/", 
                 		"/usuario/inserir",
                 		"/recuperarsenha",
-                		"/recuperarsenha/verificartoken",
-                		"/recuperarsenha/redefinirsenha",
+                		"/recuperarsenha/verificartoken", 
+                		"/recuperarsenha/redefinirsenha", 
+                		"/anuncio/rest/**", 
+                		"/cidades/rest/**", 
                 		"/css/**", 
                 		"/js/**", 
                 		"/img/**",
                 		"/anuncioImagens/**", 
                 		"/vendor/**",
-                		"/slick/**").permitAll()
+                		"/slick/**",
+                		"/owl/**").permitAll()
                 .anyRequest().fullyAuthenticated()
                 .and()
                 .formLogin()
