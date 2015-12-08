@@ -5,7 +5,7 @@ $(function() {
 		range: true,
 		min: 1,
 		max: 1000,
-		values: [ 100, 900 ],
+		values: [ 49, 949 ],
 		slide: function( event, ui ) {
 			$( "#amount" ).val( "R$ " + ui.values[ 0 ] + " - R$ " + ui.values[ 1 ] );
 
@@ -94,4 +94,23 @@ $(document).ready(function() {
 	}
 
 });
+*/
+
+/*
+var json = '/anuncio/rest';
+var dados = $.getJSON(json);
+
+var itens = 2;
+var pagina = 0;
+
+var imagem = '<div class="image-list pull-left grow img-hover"><a th:href="${ '/anuncio/' + anuncio.idAnuncio }" id="imagem"><img width="250" height="200" src="" /></a></div>';
+
+function paginar() {
+	var anuncio = $('#anuncio');
+	for (var i = pagina * tamanhoPagina; i < dados.length && i < (pagina + 1) *  tamanhoPagina; i++) {
+		anuncio.append(
+			$(imagem))
+	}
+	$('#numeracao').text('Página ' + (pagina + 1) + ' de ' + Math.ceil(dados.length / tamanhoPagina));
+}
 */

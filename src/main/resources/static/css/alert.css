@@ -1,10 +1,10 @@
 .alert {
 	width: 600px;
-	height: 60px;
+	height: 22px;
 	position: absolute;
-	color: #fff;
-	background-color: #2ecc71;
-	border: 1px solid #27ae60;
+	color: #2ecc71;
+	background-color: #d6f5e4;
+	border: 1px solid #adebc9;
 	padding: 20px;
 	text-align: center;
 	font-size: 16px;
@@ -13,7 +13,6 @@
 	top: 160px;
 	left: 25%;
 	border-radius: 3px;
-	
 	z-index: 3;
 }
 
@@ -22,12 +21,16 @@
 	right: 0;
 	top: 0;
 	margin: 5px;
-	padding: 10px;
-	background-image: url('/img/icons/close-icon.png');
+	padding: 5px;
+	background-image: url('/img/icons/close-icon.svg');
 	background-repeat: no-repeat;
 	background-position: center;
 	background-color: transparent;
-	background-size: 20px;
+	background-size: 12px;
 	border: 0;
 	cursor: pointer;
+}
+
+.alert p {
+	margin: 0;
 }
