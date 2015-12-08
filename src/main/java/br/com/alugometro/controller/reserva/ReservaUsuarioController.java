@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -29,14 +30,11 @@ public class ReservaUsuarioController extends AbstractReservaController {
 		this.usuarioService = usuarioService;
 	}
 	
-	@RequestMapping(path = "/usuario/{idUsuario}", method = RequestMethod.GET)
-	public ModelAndView listarReservasDoUsuario(@PathVariable("idUsuario") Long idUsuario) {
+	@RequestMapping(path = "/usuario", method = RequestMethod.POST)
+	public ModelAndView listarReservasDoUsuario(@ModelAttribute("email") String email) {
+		
 		List<ReservaDTO> reservas = new ArrayList<>();
-		if(usuarioService.obterIdDoUsuarioLogado() == idUsuario){
-			reservas = reservaService.buscarPorUsuario(idUsuario);
-		}else{
-			return new ModelAndView("redirect:/");
-		}
+			reservas = reservaService.buscarPorEmailUsuario(email);
 		return new ModelAndView("reserva/listar", "reservas", reservas);
 	}
 	
