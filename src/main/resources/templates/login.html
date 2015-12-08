@@ -10,16 +10,11 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 
 	<title>Alugômetro - Login</title>
 
+	<!-- FONTS -->
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css' />
-	<link rel="stylesheet" href="/css/normalize.css" />
-	<link rel="stylesheet" href="/css/grid.css" />
-	<link rel="stylesheet" href="/css/modules.css" />
-	<link rel="stylesheet" href="/css/colors.css" />
-	<link rel="stylesheet" href="/css/header.css" />
-	<link rel="stylesheet" href="/css/background.css" />
-	<link rel="stylesheet" href="/css/content.css" />
-	<link rel="stylesheet" href="/css/forms.css" />
-	<link rel="stylesheet" href="/css/footer.css" />
+
+	<!-- STYLES -->
+	<link rel="stylesheet" href="/css/main-min.css" />
 </head>
 <body>
 	<div class="bg-index">
@@ -27,6 +22,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 		<!-- HEADER -->
 		<div th:include="fragments/_header-simple :: header"></div>
 		
+		<!-- CONTEUDO -->
 		<div class="content">
 			<div class="container">
 				<div class="row">
@@ -48,7 +44,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 
 							<ul class="reset-list link-list text-center">
 								<li class="inline-block">
-									<a href="#" class="text-center link-s">Esqueceu sua senha?</a>	
+									<a href="@{/recuperarsenha}" class="text-center link-s">Esqueceu sua senha?</a>	
 								</li>
 								<li class="inline-block">
 									<span class="content-text-ss text-shadow">Ainda não possui conta?</span>
@@ -62,7 +58,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 		</div>
 	</div>
 
-	<!-- FOOTER -->
+	<!-- RODAPE -->
 	<div th:include="fragments/_footer :: footer"></div>
 
 </body>

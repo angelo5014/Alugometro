@@ -10,22 +10,19 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 
 	<title>Alugômetro - Cadastre-se</title>
 
+	<!-- FONTS -->
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css' />
-	<link rel="stylesheet" href="/css/normalize.css" />
-	<link rel="stylesheet" href="/css/grid.css" />
-	<link rel="stylesheet" href="/css/content.css" />
-	<link rel="stylesheet" href="/css/modules.css" />
-	<link rel="stylesheet" href="/css/colors.css" />
-	<link rel="stylesheet" href="/css/header.css" />
-	<link rel="stylesheet" href="/css/background.css" />
-	<link rel="stylesheet" href="/css/forms.css" />
-	<link rel="stylesheet" href="/css/footer.css" />
+	
+	<!-- STYLES -->
+	<link rel="stylesheet" href="/css/main-min.css" />
 </head>
 <body>
 	<div class="bg-index">
+
 		<!-- HEADER -->
 		<div th:include="fragments/_header-simple :: header"></div>
 
+		<!-- CONTEUDO -->
 		<div class="content">
 			<div class="container">
 				<div class="row">
@@ -66,7 +63,8 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 		</div>
 	</div>
 
-	<!-- FOOTER -->
+	<!-- RODAPE -->
 	<div th:include="fragments/_footer :: footer"></div>
+	
 </body>
 </html>
