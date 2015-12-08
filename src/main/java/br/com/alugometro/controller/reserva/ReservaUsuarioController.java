@@ -16,18 +16,14 @@ import org.springframework.web.servlet.ModelAndView;
 import br.com.alugometro.domain.Reserva.SituacaoReserva;
 import br.com.alugometro.dto.ReservaDTO;
 import br.com.alugometro.service.ReservaService;
-import br.com.alugometro.service.UsuarioService;
 
 @Controller
 @RequestMapping("/reserva")
 public class ReservaUsuarioController extends AbstractReservaController {
 
-	private UsuarioService usuarioService;
-	
 	@Autowired
-	public ReservaUsuarioController(ReservaService reservaService, UsuarioService usuarioService) {
+	public ReservaUsuarioController(ReservaService reservaService) {
 		super(reservaService);
-		this.usuarioService = usuarioService;
 	}
 	
 	@RequestMapping(path = "/usuario", method = RequestMethod.POST)
@@ -43,9 +39,6 @@ public class ReservaUsuarioController extends AbstractReservaController {
 			@RequestParam("dataInicio") String dataInicio,
 			@RequestParam("dataFim") String dataFim,
 			@RequestParam("situacao") SituacaoReserva situacaoReserva) throws ParseException {
-		
-		//Date dataInicioDate = CalendarioService.converterStringParaDate(dataInicio);
-		//Date dataFimDate = CalendarioService.converterStringParaDate(dataFim);
 		
 		return new ModelAndView("reserva/listar", "reservas", reservaService.buscarPorDataESituacao(dataInicio, 
 				dataFim, situacaoReserva));
