@@ -24,7 +24,7 @@ public class CalendarioService {
 		Calendar dataFim = Calendar.getInstance();
 		dataFim.setTime(dataFinal);
 		
-		Long milisegundos = dataFim.getTimeInMillis() - dataInicio.getTimeInMillis();
+		Long milisegundos = dataFim.getTimeInMillis() - (dataInicio.getTimeInMillis() - (1000*60*60*24));
 		
 		Long dias = (milisegundos / (1000*60*60*24));
 		
