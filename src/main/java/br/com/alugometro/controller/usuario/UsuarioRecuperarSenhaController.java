@@ -22,6 +22,7 @@ import br.com.alugometro.dto.TokenDTO;
 import br.com.alugometro.dto.UsuarioDTO;
 import br.com.alugometro.email.AlugometroEmailSender;
 import br.com.alugometro.exception.AbstractException;
+import br.com.alugometro.exception.TokenInvalidoException;
 import br.com.alugometro.exception.UsuarioNaoEncontradoException;
 import br.com.alugometro.service.TokenService;
 import br.com.alugometro.service.UsuarioSenhaService;
@@ -56,13 +57,13 @@ public class UsuarioRecuperarSenhaController {
 		try {
 			usuario = this.usuarioService.buscarPorEmail(email);
 		} catch (AbstractException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			attributes.addFlashAttribute("mensagem", e.getMensagem());
+			return new ModelAndView("redirect:/");
 		}
 		
 		if(usuario == null){
 			attributes.addFlashAttribute("mensagem", "Usuário não existe.");
-			return new ModelAndView("redirect:/recuperarsenha");
+			return new ModelAndView("redirect:/");
 		}
 		
 		String token = UUID.randomUUID().toString();
@@ -87,25 +88,25 @@ public class UsuarioRecuperarSenhaController {
 		
 		try {
 			emailSender.sendSSLMessage(usuario.getEmail(), "Redefinir Senha", mensagem.toString());
+			attributes.addFlashAttribute("mensagem", "Lhe enviamos um email para redefinição de sua senha!");
 		} catch (MessagingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			attributes.addFlashAttribute("mensagem", "Não foi possível enviar o email de redefiniçao de senha, tente novamente mais tarde.");
 		}
 		
-		return new ModelAndView("redirect:/recuperarsenha");
+		return new ModelAndView("redirect:/");
 	}
 	
 	@RequestMapping(path = "/verificartoken", method = RequestMethod.GET)
 	public ModelAndView verificarToken(@RequestParam(value = "id", required = true) Long idUsuario,
-										@RequestParam(value = "token", required = true) String tokenUsuario){
+										@RequestParam(value = "token", required = true) String tokenUsuario,
+										RedirectAttributes attributes){
 		
 		UsuarioDTO usuario = null;
 		
 		try {
 			usuario = this.usuarioService.buscarPorId(idUsuario);
 		} catch (UsuarioNaoEncontradoException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			attributes.addFlashAttribute("mensagem", e.getMensagem());
 		}
 		
 		TokenDTO token = this.tokenService.buscarToken(tokenUsuario);
@@ -116,9 +117,9 @@ public class UsuarioRecuperarSenhaController {
 				redefinirSenha.setIdUsuario(usuario.getIdUsuario());
 				this.tokenService.invalidarToken(token);
 				return new ModelAndView("usuario/redefinirsenha", "redefinirSenha", redefinirSenha);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			} catch (TokenInvalidoException e) {
+				attributes.addFlashAttribute("mensagem", e.getMensagem());
+				return new ModelAndView("redirect:/recuperarsenha");
 			}
 		}
 		
@@ -144,8 +145,8 @@ public class UsuarioRecuperarSenhaController {
 			usuario = usuarioService.buscarPorId(redefinirSenha.getIdUsuario());
 			usuario.setSenha(redefinirSenha.getSenha());
 		} catch (UsuarioNaoEncontradoException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			redirectAttributes.addFlashAttribute("mensagem", e.getMensagem());
+			return new ModelAndView("redirect:/");
 		}
 		
 		usuarioService.salvar(usuario);
