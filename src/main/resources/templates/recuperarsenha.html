@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR"
+xmlns="http://www.w3.org/1999/xhtml" 
+xmlns:th="http://www.thymeleaf.org" 
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<title>Alugômetro - Recuperar Senha</title>
+
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css' />
+	<link rel="stylesheet" href="/css/normalize.css" />
+	<link rel="stylesheet" href="/css/grid.css" />
+	<link rel="stylesheet" href="/css/content.css" />
+	<link rel="stylesheet" href="/css/modules.css" />
+	<link rel="stylesheet" href="/css/colors.css" />
+	<link rel="stylesheet" href="/css/header.css" />
+	<link rel="stylesheet" href="/css/background.css" />
+	<link rel="stylesheet" href="/css/forms.css" />
+	<link rel="stylesheet" href="/css/footer.css" />
+</head>
+<body>
+	<div class="bg-index">
+		<!-- HEADER -->
+		<div th:include="fragments/_header-simple :: header"></div>
+
+		<div class="content">
+			<div class="container">
+				<div class="row">
+					<div class="col col-l-12 col-m-12 col-s-12">
+						<h2 class="text-center content-title-s">Recuperar Senha</h2>
+						<form th:action="@{/usuario/recuperarsenha}" th:object="${usuario}"  method="POST" class="form-container">
+								<input  type="email" th:field="*{email}" class="block form-radius" placeholder="Email" />
+								<button class="block btn-default form-radius">Recuperar</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- FOOTER -->
+	<div th:include="fragments/_footer :: footer"></div>
+</body>
+</html>
