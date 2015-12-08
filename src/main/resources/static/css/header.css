@@ -62,10 +62,11 @@
 
 .nav-input {
 	margin: 0 15px;
-	background-image: url('/img/icons/search-icon.png');
+	background-image: url('/img/icons/search-icon.svg');
 	background-repeat: no-repeat;
-	background-position: 225px 10px;
+	background-position: 225px 12px;
 	border: 1px solid #bdc3c7;
+	background-size: 20px;
 }
 
 .fade {

@@ -24,7 +24,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 					<p th:text="*{cidade}" class="inline-block title-details">Cidade</p>
 
 					<p class="inline-block pull-right title-details">Diária - R$ 
-						<span th:text="${#numbers.formatDecimal(anuncio.diaria,3,'POINT',2,'COMMA')}"></span>
+						<span th:text="${#numbers.formatDecimal(anuncio.diaria,2,'POINT',2,'COMMA')}"></span>
 					</p>
 				</div>
 
