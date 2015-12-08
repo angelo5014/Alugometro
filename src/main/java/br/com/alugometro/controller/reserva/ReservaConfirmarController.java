@@ -17,7 +17,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.alugometro.dto.ReservaConfirmacaoDTO;
 import br.com.alugometro.dto.ReservaDTO;
-import br.com.alugometro.exception.AbstractException;
 import br.com.alugometro.mapper.ReservaMapper;
 import br.com.alugometro.service.CalendarioService;
 import br.com.alugometro.service.ReservaService;

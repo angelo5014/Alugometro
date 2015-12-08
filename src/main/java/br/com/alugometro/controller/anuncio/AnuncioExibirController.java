@@ -51,7 +51,6 @@ public class AnuncioExibirController extends AbstractAnuncioController {
 		return anuncioFotoService.listarPorIdAnuncio(idAnuncio);
 	}
 
-	// REST
 	@ResponseBody
 	@RequestMapping(path = "/rest/{idAnuncio}")
 	public String buscarAnuncioFotos(@PathVariable("idAnuncio") Long idAnuncio) {
