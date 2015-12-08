@@ -26,6 +26,7 @@ $(function() {
 		$(divDemaisFotos).append($(labelDemaisFotos));
 	});
 
+	// Faz o close no alert
 	$('#close').click(function(e) {
 		$('#alert').addClass('hidden');
 		console.log('teste');

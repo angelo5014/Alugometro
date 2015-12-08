@@ -1,17 +1,17 @@
 .alert {
 	width: 600px;
 	height: 60px;
-	position: relative;
+	position: absolute;
 	color: #fff;
 	background-color: #2ecc71;
 	border: 1px solid #27ae60;
-	display: block;
-	margin: 20px auto;
 	padding: 20px;
 	text-align: center;
 	font-size: 16px;
 	line-height: 20px;
 	font-weight: 500;
+	top: 160px;
+	left: 25%;
 }
 
 .close {
