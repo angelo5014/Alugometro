@@ -12,7 +12,7 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Repository;
 
 import br.com.alugometro.domain.Reserva;
-import br.com.alugometro.domain.SituacaoReserva;
+import br.com.alugometro.domain.Reserva.SituacaoReserva;
 
 @Repository
 public class ReservaDAO extends AbstractDAO {
@@ -32,26 +32,26 @@ public class ReservaDAO extends AbstractDAO {
 					+ " WHERE email = :email)", Reserva.class)
 					.setParameter("email", email).getResultList();
 	}
-
+  
 	public List<Reserva> listarPorDataESituacao(String dataInicio, String dataFim, SituacaoReserva situacaoReserva) {
 
-		StringBuilder sql = new StringBuilder("FROM Reserva r WHERE 1=1");
+		StringBuilder sql = new StringBuilder("FROM Reserva WHERE 1=1");
 
 		HashMap<String, Object> parameters = new HashMap<String, Object>();
 
 		// AND r.data_FIM <= TO_DATE('2015-12-18', 'yyyy-MM-dd');
 		
-		if (dataInicio != null) {
-			sql.append(" AND r.dataInicio >= TO_DATE(:dataInicio, 'yyyy-MM-dd')");
+		if (!dataInicio.isEmpty()) {
+			sql.append(" AND dataInicio >= TO_DATE(:dataInicio, 'yyyy-MM-dd')");
 			parameters.put("dataInicio", dataInicio);
 		}
-		if (dataFim != null) {
-			sql.append(" AND r.dataFim <= TO_DATE(:dataFim, 'yyyy-MM-dd')");
+		if (!dataFim.isEmpty()) {
+			sql.append(" AND dataFim <= TO_DATE(:dataFim, 'yyyy-MM-dd')");
 			parameters.put("dataFim", dataFim);
 		}
 		if (situacaoReserva != null) {
-			sql.append(" AND r.situacao = :situacaoReserva");
-			parameters.put("situacaoReserva", situacaoReserva);
+			sql.append(" AND Id_Situacao_Reserva = :situacaoReserva");
+			parameters.put("situacaoReserva", situacaoReserva.ordinal());
 		}
 
 		TypedQuery<Reserva> query = em.createQuery(sql.toString(), Reserva.class);
@@ -88,7 +88,7 @@ public class ReservaDAO extends AbstractDAO {
 	}
 	
 	public List<Reserva> buscarReservaPorPeriodoESituacao(Reserva reserva){
-		return em.createQuery("FROM Reserva WHERE Data_Inicio = :dataInicio AND Data_Fim = :dataFim AND Id_Situacao_Reserva != 4")
+		return em.createQuery("FROM Reserva WHERE Data_Inicio = :dataInicio AND Data_Fim = :dataFim AND Id_Situacao_Reserva != 4", Reserva.class)
 				  .setParameter("dataInicio", reserva.getDataInicio())
 				  .setParameter("dataFim", reserva.getDataFim())
 			   	  .getResultList();
