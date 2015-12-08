@@ -33,7 +33,7 @@ public class AnuncioDAO extends AbstractDAO {
 	}
 	
 	public List<Anuncio> listarPorCidade(String cidade) {
-		return em.createQuery("FROM Anuncio a WHERE lower(a.cidade.nome) LIKE :cidade", Anuncio.class)
+		return em.createQuery("FROM Anuncio a WHERE lower(a.cidade.nome) LIKE :cidade AND a.situacao = 1", Anuncio.class)
 				.setParameter("cidade", cidade.toLowerCase() + "%")
 				.getResultList();
 	}
@@ -63,6 +63,8 @@ public class AnuncioDAO extends AbstractDAO {
 			parameters.put("idCidade", idCidade);
 		}
 
+		sql.append(" AND a.situacao = 1");
+		
 		TypedQuery<Anuncio> query = em.createQuery(sql.toString(), Anuncio.class);
 
 		Set set = parameters.entrySet();
