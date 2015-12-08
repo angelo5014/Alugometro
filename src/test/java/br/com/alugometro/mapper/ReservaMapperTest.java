@@ -11,8 +11,10 @@ import java.util.Date;
 import org.junit.Test;
 
 import br.com.alugometro.domain.Anuncio;
+import br.com.alugometro.domain.Cidade;
 import br.com.alugometro.domain.Reserva;
 import br.com.alugometro.domain.Reserva.SituacaoReserva;
+import br.com.alugometro.domain.TipoImovel;
 import br.com.alugometro.domain.Usuario;
 import br.com.alugometro.dto.ReservaConfirmacaoDTO;
 import br.com.alugometro.dto.ReservaDTO;
@@ -27,9 +29,17 @@ public class ReservaMapperTest {
 		
 		Usuario usuario = new Usuario();
 		usuario.setIdUsuario(1L);
-
+		
+		TipoImovel tipoImovel = new TipoImovel();
+		tipoImovel.setDescricao("teste");
+		
+		Cidade cidade = new Cidade();
+		cidade.setNome("teste");
+		
 		Anuncio anuncio = new Anuncio();
 		anuncio.setIdAnuncio(1L);
+		anuncio.setTipoImovel(tipoImovel);
+		anuncio.setCidade(cidade);
 		
 		Date dataInicio = new Date();;
 		Date dataFim = new Date();
