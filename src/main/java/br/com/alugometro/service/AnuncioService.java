@@ -40,8 +40,8 @@ public class AnuncioService {
 		return AnuncioMapper.paraDTO(anuncioDAO.buscarPorId(idAnuncio));
 	}
 	
-	public void desativarAnuncio(Long idAnuncio){
-		anuncioDAO.desativar(idAnuncio);
+	public int desativarAnuncio(Long idAnuncio){
+		return anuncioDAO.desativar(idAnuncio);
 	}
 	
 	public List<AnuncioResumoDTO> listarTodos() {

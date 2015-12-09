@@ -27,8 +27,8 @@ public class AnuncioDAO extends AbstractDAO {
 	}
 	
 	@Transactional
-	public void desativar(Long idAnuncio) {
-		em.createQuery("UPDATE Anuncio SET Id_Situacao_Anuncio=0 WHERE Id_Anuncio=:idAnuncio")
+	public int desativar(Long idAnuncio) {
+		return em.createQuery("UPDATE Anuncio SET Id_Situacao_Anuncio=0 WHERE Id_Anuncio=:idAnuncio")
 			.setParameter("idAnuncio", idAnuncio).executeUpdate();
 	}
 	
