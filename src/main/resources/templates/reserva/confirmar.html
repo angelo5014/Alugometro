@@ -37,6 +37,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 								<p th:text="*{#dates.format(periodoDisponivelInicio, 'dd/MM/yyyy')}" readonly="true" class="inline-block input-disponibilidade-text"></p>
 								<p class="inline-block input-disponibilidade-text">  à  </p>
 								<p th:text="*{#dates.format(periodoDisponivelFim, 'dd/MM/yyyy')}" readonly="true" class="inline-block input-disponibilidade-text"></p>
+								<input type="hidden" th:field="*{periodoDisponivel}" />
 							</label>
 
 							<label>
@@ -54,6 +55,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 								<p class="inline-block input-disponibilidade-text">R$</p>
 								<input type="hidden" th:field="*{diaria}" />
 								<p th:text="*{#numbers.formatDecimal(diaria,3,'POINT',2,'COMMA')}" class="inline-block input-disponibilidade-text"></p>
+								<input type="hidden" th:field="*{diaria}" />
 							</label>
 
 							<label>
@@ -61,6 +63,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 								<p class="inline-block input-disponibilidade-text">R$</p>
 								<input type="hidden" th:field="*{total}" />
 								<p th:text="*{#numbers.formatDecimal(total,3,'POINT',2,'COMMA')}" readonly="true" class="inline-block input-disponibilidade-text"></p>
+								<input type="hidden" th:field="*{total}" />
 							</label>
 
 							<label>

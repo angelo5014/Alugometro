@@ -28,7 +28,7 @@ public class ReservaDAO extends AbstractDAO {
 	
 	@SuppressWarnings("unchecked")
 	public List<Reserva> buscarPorEmailUsuario(String email) {
-		return em.createNativeQuery("FROM Reserva r WHERE r.Id_Usuario ="
+		return em.createNativeQuery("SELECT * FROM Reserva WHERE Id_Usuario ="
 					+ " (SELECT Id_Usuario FROM Usuario"
 					+ " WHERE email = :email)", Reserva.class)
 					.setParameter("email", email).getResultList();
