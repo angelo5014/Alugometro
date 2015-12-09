@@ -2,9 +2,6 @@ package br.com.alugometro.email;
 
 import java.util.Properties;
 
-import java.security.Security;
-import java.util.Properties;
-
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
@@ -15,12 +12,11 @@ import javax.mail.internet.MimeMessage;
 
 public class AlugometroEmailSender {
 
-	private static final String SMTP_HOST = "smtp.gmail.com";
-	
-	private static final String SMTP_PORT = "465";
+	// private static final String SMTP_HOST = "smtp.gmail.com";
+	// private static final String SMTP_PORT = "465";
+	// private static final String SSL_FACTORY = "javax.net.ssl.SSLSocketFactory";
 
-	private static final String SSL_FACTORY = "javax.net.ssl.SSLSocketFactory";
-
+	@SuppressWarnings("static-access")
 	public void sendSSLMessage(String destinatario, String assunto,
 		String mensagem) throws MessagingException {
 
@@ -33,7 +29,6 @@ public class AlugometroEmailSender {
         mailProps.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
         mailProps.put("mail.smtp.socketFactory.fallback", false);
         mailProps.put("mail.smtp.starttls.enable", true);
-		
 		
 		Session session = Session.getDefaultInstance(mailProps,  new javax.mail.Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
@@ -57,6 +52,7 @@ public class AlugometroEmailSender {
 		Transport transport = session.getTransport("smtps");
 		transport.send(msg);
 	}
+	
 }
 
 //

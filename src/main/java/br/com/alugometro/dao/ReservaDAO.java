@@ -26,8 +26,9 @@ public class ReservaDAO extends AbstractDAO {
 				.setParameter("idUsuario", idUsuario).getResultList();
 	}
 	
+	@SuppressWarnings("unchecked")
 	public List<Reserva> buscarPorEmailUsuario(String email) {
-		return em.createNativeQuery("SELECT * FROM Reserva WHERE Id_Usuario ="
+		return em.createNativeQuery("FROM Reserva r WHERE r.Id_Usuario ="
 					+ " (SELECT Id_Usuario FROM Usuario"
 					+ " WHERE email = :email)", Reserva.class)
 					.setParameter("email", email).getResultList();
@@ -38,8 +39,6 @@ public class ReservaDAO extends AbstractDAO {
 		StringBuilder sql = new StringBuilder("FROM Reserva WHERE 1=1");
 
 		HashMap<String, Object> parameters = new HashMap<String, Object>();
-
-		// AND r.data_FIM <= TO_DATE('2015-12-18', 'yyyy-MM-dd');
 		
 		if (!dataInicio.isEmpty()) {
 			sql.append(" AND dataInicio >= TO_DATE(:dataInicio, 'yyyy-MM-dd')");
@@ -56,10 +55,10 @@ public class ReservaDAO extends AbstractDAO {
 
 		TypedQuery<Reserva> query = em.createQuery(sql.toString(), Reserva.class);
 
-		Set set = parameters.entrySet();
-		Iterator iterator = set.iterator();
+		Set<Map.Entry<String, Object>> set = parameters.entrySet();
+		Iterator<Map.Entry<String, Object>> iterator = set.iterator();
 		while (iterator.hasNext()) {
-			Map.Entry mentry = (Map.Entry) iterator.next();
+			Map.Entry<String, Object> mentry = iterator.next();
 			query.setParameter(mentry.getKey().toString(), mentry.getValue());
 		}
 		
@@ -94,4 +93,5 @@ public class ReservaDAO extends AbstractDAO {
 				.setParameter("dataFim", reserva.getDataFim())
 			   	.getResultList();
 	}
+	
 }

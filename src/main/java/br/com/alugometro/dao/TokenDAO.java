@@ -9,13 +9,14 @@ import org.springframework.stereotype.Repository;
 import br.com.alugometro.domain.Token;
 
 @Repository
-public class TokenDAO extends AbstractDAO{
+public class TokenDAO extends AbstractDAO {
 	
 	@Transactional
 	public void salvarTokenRecuperacaoSenha(Token token){
 		this.em.persist(token);
 	}
 	
+	@SuppressWarnings("unchecked")
 	public Token buscarToken(String token){
 		List<Token> lista = this.em.createQuery("FROM Token WHERE token = :token")
 					.setParameter("token", token)
@@ -28,4 +29,5 @@ public class TokenDAO extends AbstractDAO{
 	public void anularToken(Token token) {
 		this.em.merge(token);
 	}
+	
 }
