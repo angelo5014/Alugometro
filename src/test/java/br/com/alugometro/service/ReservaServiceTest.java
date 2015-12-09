@@ -39,6 +39,7 @@ public class ReservaServiceTest {
 	AnuncioDAO anuncioDAO;
 	
 	Reserva reserva;
+	ReservaDTO reservaDTO;
 	Usuario usuario;
 	List<Reserva> reservas;
 	Anuncio anuncio;
@@ -87,6 +88,12 @@ public class ReservaServiceTest {
 		reserva.setValorDia(new BigDecimal(10));
 		reserva.setValorTotal(new BigDecimal(100));
 		reserva.setSituacao(SituacaoReserva.PENDENTE);
+		
+		reservaDTO = new ReservaDTO();
+		reservaDTO.setDataInicio(dataInicio);
+		reservaDTO.setDataFim(dataFim);
+		reservaDTO.setValorDia(new BigDecimal(10));
+		reservaDTO.setValorTotal(new BigDecimal(100));
 		
 		reservas = new ArrayList<Reserva>();
 		reservas.add(reserva);
@@ -183,4 +190,22 @@ public class ReservaServiceTest {
 		// Assert
 		assertEquals(idAnuncioEsperado, reservaObtida.getIdAnuncio());
 	}
+	
+	@Test
+	public void salvaNovaReservaESituacaoÉPendente() {
+		// Arrange
+		Mockito.when(reservaService.salvar(reservaDTO)).thenReturn(reserva);
+		
+		// Act
+		Reserva reservaObtida = reservaService.salvar(reservaDTO);
+		
+		// Assert
+		assertEquals(SituacaoReserva.PENDENTE, reservaObtida.getSituacao());
+	}
+	
+	@Test
+	public void cancelarReserva() {
+		
+	}
+	
 }

@@ -55,7 +55,7 @@ public class ReservaService {
 		return reservasDTO;
 	}
 
-	public void salvar(ReservaDTO dto) {
+	public Reserva salvar(ReservaDTO dto) {
 		if (dto.getIdReserva() == null) {
 			dto.setSituacao("PENDENTE");
 		}
@@ -63,6 +63,8 @@ public class ReservaService {
 		Reserva entidade = ReservaMapper.paraEntidade(dto);
 
 		this.reservaDAO.salvar(entidade);
+		
+		return entidade;
 	}
 
 	public ReservaConfirmacaoDTO obterDadosParaConfirmacao(Long idAnuncio) {
@@ -148,7 +150,7 @@ public class ReservaService {
 	}
 
 	public void cancelarReserva(Long idReserva) {
-		reservaDAO.cancelar(idReserva);
+		reservaDAO.cancelar(idReserva); 
 	}
 
 	public List<SituacaoReserva> listarSituacoes() {
