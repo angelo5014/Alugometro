@@ -67,10 +67,10 @@ public class AnuncioDAO extends AbstractDAO {
 		
 		TypedQuery<Anuncio> query = em.createQuery(sql.toString(), Anuncio.class);
 
-		Set set = parameters.entrySet();
-		Iterator iterator = set.iterator();
+		Set<Map.Entry<String, Object>> set = parameters.entrySet();
+		Iterator<Map.Entry<String, Object>> iterator = set.iterator();
 		while (iterator.hasNext()) {
-			Map.Entry mentry = (Map.Entry) iterator.next();
+			Map.Entry<String, Object> mentry = (Map.Entry<String, Object>) iterator.next();
 			query.setParameter(mentry.getKey().toString(), mentry.getValue());
 		}
 		

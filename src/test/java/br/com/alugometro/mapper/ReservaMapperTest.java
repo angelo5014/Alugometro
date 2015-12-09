@@ -23,7 +23,7 @@ import br.com.alugometro.service.CalendarioService;
 public class ReservaMapperTest {
 
 	@Test
-	public void converteParaDTOComSucesso(){
+	public void converteParaDTOComSucesso() {
 		// Arrange
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		
@@ -48,7 +48,6 @@ public class ReservaMapperTest {
 			dataInicio = df.parse("2015-10-10");
 			dataFim = df.parse("2015-10-11");
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -80,7 +79,7 @@ public class ReservaMapperTest {
 	}
 	
 	@Test
-	public void converteParaEntidadeComsucesso(){
+	public void converteParaEntidadeComsucesso() {
 		// Arrange
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		
@@ -97,7 +96,6 @@ public class ReservaMapperTest {
 			dataInicio = df.parse("2015-10-10");
 			dataFim = df.parse("2015-10-11");
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -131,7 +129,7 @@ public class ReservaMapperTest {
 	@Test
 	public void converteDeReservaConfirmacaoDTOParaEntidadeComsucesso(){
 		// Arrange
-		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		// DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		
 		Usuario usuario = new Usuario();
 		usuario.setIdUsuario(1L);
@@ -157,7 +155,6 @@ public class ReservaMapperTest {
 			entidadeEsperada.setDataInicio(CalendarioService.converterStringParaDate(dataInicio));
 			entidadeEsperada.setDataFim(CalendarioService.converterStringParaDate(dataFim));
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -169,11 +166,11 @@ public class ReservaMapperTest {
 		try {
 			entidadeObtida = ReservaMapper.paraEntidade(dto);
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 		// Assert
 		assertEquals(entidadeEsperada, entidadeObtida);
 	}
+	
 }
