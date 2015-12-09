@@ -27,7 +27,6 @@ import br.com.alugometro.domain.Foto;
 import br.com.alugometro.domain.TipoAcomodacao;
 import br.com.alugometro.domain.TipoImovel;
 import br.com.alugometro.domain.Usuario;
-import br.com.alugometro.dto.AnuncioDTO;
 import br.com.alugometro.dto.AnuncioResumoDTO;
 import br.com.alugometro.exception.AbstractException;
 import br.com.alugometro.exception.UsuarioNaoEncontradoException;
