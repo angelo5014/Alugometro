@@ -1,5 +1,6 @@
 package br.com.alugometro;
 
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -12,4 +13,8 @@ import br.com.alugometro.AppConfig;
 @WebAppConfiguration
 public class AbstractInfrastructureTest {
 
+	@Test
+	public void testeObrigatorio() {
+	}
+	
 }
