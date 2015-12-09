@@ -8,18 +8,20 @@ xmlns:th="http://www.thymeleaf.org">
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	
 	<title>Erro</title>
+
+	<link rel="stylesheet" href="/css/error.css" />
 </head>
 <body>
-	<h1 class="error-title">Ocorreu algum erro inesperado :(</h1>
+	<h1 class="erro-title">Ocorreu algum erro inesperado :(</h1>
 
-	<p th:text="${timestamp}" class="index-paragraph"></p>
+	<p th:text="${timestamp}" class="erro-text"></p>
 
-	<p th:text="${status}" class="index-paragraph"></p>
+	<p th:text="${status}" class="erro-text"></p>
 
-	<p th:text="${error}" class="index-paragraph"></p>
+	<p th:text="${error}" class="erro-text"></p>
 
 	<div th:if="${ex} or ${exception} or (${message} and ${message.length() != 0})">
-		<p th:text="${message}" class="index-paragraph">message...</p>
+		<p th:text="${message}" class="erro-text"></p>
 	</div>
 </body>
 </html>
