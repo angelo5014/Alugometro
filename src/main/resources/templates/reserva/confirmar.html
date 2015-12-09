@@ -52,12 +52,14 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 							<label>
 								<span>Diária:</span>
 								<p class="inline-block input-disponibilidade-text">R$</p>
+								<input type="hidden" th:field="*{diaria}" />
 								<p th:text="*{#numbers.formatDecimal(diaria,3,'POINT',2,'COMMA')}" class="inline-block input-disponibilidade-text"></p>
 							</label>
 
 							<label>
 								<span>Total:</span>
 								<p class="inline-block input-disponibilidade-text">R$</p>
+								<input type="hidden" th:field="*{total}" />
 								<p th:text="*{#numbers.formatDecimal(total,3,'POINT',2,'COMMA')}" readonly="true" class="inline-block input-disponibilidade-text"></p>
 							</label>
 
