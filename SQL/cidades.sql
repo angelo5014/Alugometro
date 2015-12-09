@@ -1,0 +1,15 @@
+INSERT INTO Cidade (Id_Cidade, Nome, Id_Estado) VALUES (2, 'São Leopoldo', 1);
+INSERT INTO Cidade (Id_Cidade, Nome, Id_Estado) VALUES (3, 'Novo Hamburgo', 1);
+INSERT INTO Cidade (Id_Cidade, Nome, Id_Estado) VALUES (4, 'Campo Bom', 1);
+INSERT INTO Cidade (Id_Cidade, Nome, Id_Estado) VALUES (5, 'Esteio', 1);
+INSERT INTO Cidade (Id_Cidade, Nome, Id_Estado) VALUES (6, 'Sapucaia', 1);
+INSERT INTO Cidade (Id_Cidade, Nome, Id_Estado) VALUES (7, 'Canoas', 1);
+INSERT INTO Cidade (Id_Cidade, Nome, Id_Estado) VALUES (8, 'Sapucaia', 1);
+INSERT INTO Cidade (Id_Cidade, Nome, Id_Estado) VALUES (9, 'Lajeado', 1);
+INSERT INTO Cidade (Id_Cidade, Nome, Id_Estado) VALUES (10, 'Gramado', 1);
+INSERT INTO Cidade (Id_Cidade, Nome, Id_Estado) VALUES (11, 'Canela', 1);
+INSERT INTO Cidade (Id_Cidade, Nome, Id_Estado) VALUES (12, 'Morro da Pedra', 1);
+INSERT INTO Cidade (Id_Cidade, Nome, Id_Estado) VALUES (13, 'Taquara', 1);
+INSERT INTO Cidade (Id_Cidade, Nome, Id_Estado) VALUES (14, 'Gravatai', 1);
+INSERT INTO Cidade (Id_Cidade, Nome, Id_Estado) VALUES (15, 'Canela', 1);
+commit;
